@@ -1,22 +1,12 @@
-<?php
 
-try{
-
-    $cliente_DAO = new ClienteDAO();
-    $lista_cli = $cliente_DAO->getAllRows();
-
-    $total_cli = count($lista_cli);
-}
-catch(Exception $e){
-    echo $e->getMessage();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Clientes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
+    <title>Listar Clientes</title>
 </head>
 <body>
     <?php include PATH_VIEW . 'includes/cabecalho.php' ?>

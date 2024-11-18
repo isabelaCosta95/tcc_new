@@ -32,7 +32,28 @@ class ProdutoController{
             'id_categoria' => $_POST['id_categoria'],
             'id_fornecedor' => $_POST['id_fornecedor'],
             'descricao' => $_POST['descricao'],
-            'preco' => $_POST['preco']
+            'preco' => $_POST['preco'],
+            'marca' => $_POST['marca'],
+            'observacao' => $_POST['observacao'],
+            'estoque' => $_POST['estoque'],
+            'unidade' => $_POST['unidade'],
+            'validade' => $_POST['validade'],
+            'ativo' => $_POST['ativo'],
+            'ncm' => $_POST['ncm'],
+            'cfop' => $_POST['cfop'],
+            'pis' => $_POST['pis'],
+            'cofins' => $_POST['cofins'],
+            'icms_cst' => $_POST['icms_cst'],
+            'aliquota_pis' => $_POST['aliquota_pis'],
+            'aliquota_cofins' => $_POST['aliquota_cofins'],
+            'aliquota_icms' => $_POST['aliquota_icms'],
+            'ipi' => $_POST['ipi'],
+            'aliquota_recucao_bc' => $_POST['aliquota_recucao_bc'],
+            'origem_icms' => $_POST['origem_icms'],
+            'cest' => $_POST['cest'],
+            'gtin' => $_POST['gtin'],
+            'aliquota_mva' => $_POST['aliquota_mva'],
+            'codigo_barras' => $_POST['codigo_barras']
         );
         
         if(isset($_POST['id'])){

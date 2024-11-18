@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 select.form-control {
@@ -29,8 +29,9 @@ select.form-control:focus {
 }
 
 form {
-    max-width: 900px;
-    margin: 50px auto; 
+    max-width: 100%; 
+    width: 80%; 
+    margin: 20px auto; 
     padding: 30px; 
     border-radius: 8px; 
     background-color: #ffffff; 
@@ -38,7 +39,8 @@ form {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
 }
 
-h2 {
+
+h1 {
     text-align: center;
     color: #343a40;
     margin-bottom: 25px;
@@ -66,11 +68,12 @@ h2 {
 }
 
 .conteudo {
-    margin-left: 250px;
+    margin-left: 260px; 
     padding: 20px;
-    width: calc(100% - 250px);
+    width: calc(100% - 260px);
     margin-top: 60px; 
 }
+
 
 label {
     display: block; 
@@ -94,6 +97,29 @@ input[type="text"]:focus, input[type="date"]:focus, select.form-control:focus {
     outline: none; 
 }
 
+.form-section {
+    margin-bottom: 20px; /* Espaço entre as seções */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ced4da; /* Borda sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.form-section h2 {
+    margin-bottom: 15px; /* Espaço abaixo do título */
+    font-size: 18px; /* Tamanho do texto do título */
+    color: #343a40; /* Cor do texto */
+    padding-bottom: 5px; /* Espaçamento interno para o título */
+}
+
+/* Container para os botões */
+.form-buttons {
+    display: flex; /* Alinhar botões em linha */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo geral dos botões */
 button {
     background-color: #28a745; 
     color: #ffffff; 
@@ -102,26 +128,79 @@ button {
     border-radius: 4px; 
     cursor: pointer; 
     font-size: 16px;
-    width: 100%; 
     transition: background-color 0.3s; 
+    flex: 1; /* Faz os botões terem tamanhos iguais */
 }
 
+/* Botão 'Cadastrar' ao passar o mouse */
 button:hover {
     background-color: #218838;
 }
 
-.form-row {
+/* Botão 'Consultar' */
+button.btn-consultar {
+    background-color: #34c759; /* Verde mais claro */
+}
+
+/* Botão 'Consultar' ao passar o mouse */
+button.btn-consultar:hover {
+    background-color: #28a745; /* Hover */
+}
+
+/* Botão 'Excluir' */
+button.btn-excluir {
+    background-color: #dc3545; /* Vermelho */
+    color: #ffffff;
+}
+
+/* Botão 'Excluir' ao passar o mouse */
+button.btn-excluir:hover {
+    background-color: #c82333; /* Vermelho mais escuro */
+}
+
+.form-section .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; 
-    margin-bottom: 20px;
+    gap: 15px; /* Espaço entre as colunas */
 }
 
-.form-column {
-    flex: 1 1 48%; 
+.form-section .form-column {
+    flex: 1 1 48%; /* Duas colunas com 48% de largura */
 }
 
-label i {
-    margin-right: 10px; 
-    color: #6c757d; 
+.form-section label {
+    font-size: 14px; /* Tamanho consistente para labels */
+    color: #6c757d; /* Cor neutra para labels */
+}
+
+.form-section input[type="text"], 
+.form-section input[type="date"], 
+.form-section select.form-control {
+    margin-bottom: 10px; /* Menor espaçamento entre inputs */
+}
+
+/* Estilo específico para o campo "Tipo de Pessoa" */
+select#tipo_pessoa {
+    width: 100%; /* Mantém a largura do campo igual aos outros */
+    padding: 10px; /* Preenchimento do campo */
+    border: 1px solid #6c757d; /* Borda igual aos outros campos */
+    border-radius: 4px; /* Bordas arredondadas */
+    margin-bottom: 15px; /* Espaçamento inferior igual aos outros campos */
+    font-size: 16px; /* Tamanho de fonte igual aos outros campos */
+    transition: border-color 0.3s; /* Efeito de transição na borda */
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #495057; /* Cor do texto */
+}
+
+select#tipo_pessoa:focus {
+    border-color: #007bff; /* Cor da borda quando em foco */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo de label */
+label[for="tipo_pessoa"] {
+    display: block; 
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #495057;
 }

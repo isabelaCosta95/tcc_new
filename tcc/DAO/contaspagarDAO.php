@@ -113,4 +113,19 @@ class contaspagarDAO{
 
     }
 
+    public function getFormasPagamento() {
+        $sql = "SELECT id, descricao FROM forma_pagamento";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
+    }
+    
+    public function getPlanoContas() {
+        $sql = "SELECT id, descricao FROM plano_conta";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
+    }
+
 }
+

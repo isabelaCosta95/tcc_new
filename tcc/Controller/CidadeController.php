@@ -1,6 +1,6 @@
 <?php
 
-class EstadoController{
+class CidadeController{
 
     public static function index(){
 
@@ -12,19 +12,14 @@ class EstadoController{
     }
 
     public static function cadastrar(){
-        $estado_DAO = new EstadoDAO();
-        $lista_estado = $estado_DAO->getAllRows();
-        $total_estado = count($lista_estado);
         include 'View/modulos/cidade/cadastrar_cidade.php';
     }
 
     public static function salvar(){
 
-        $estado_DAO = new CidadeDAO();
+        $cidade_DAO = new CidadeDAO();
         $dados_para_salvar = array(
-            'descricao' => $_POST['descricao'],
-            'estado' => $_POST['estado'],
-            'ibge' => $_POST['ibge']
+            'descricao' => $_POST['descricao']
         );
             
         if(isset($_POST['id'])){
@@ -40,11 +35,6 @@ class EstadoController{
     public static function excluir(){
         $cidade_DAO = new CidadeDAO();
         $cidade_DAO->delete($_GET['id']);
-
-        $estado_DAO = new EstadoDAO();
-        $lista_estado = $estado_DAO->getAllRows();
-        $total_estado = count($lista_estado);
-
         header("Location: /tcc/cidade");
     }
 

@@ -119,7 +119,7 @@
         <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
     </div> 
     <div class="titulo-pagina">
-        <h2>Consultar Veículos</h2>
+        <h2>Listar Veículos</h2>
     </div>
     <div class="menu">
         <?php include PATH_VIEW . 'includes/menu.php' ?>

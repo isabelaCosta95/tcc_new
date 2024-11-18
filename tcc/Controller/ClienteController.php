@@ -12,6 +12,15 @@ class ClienteController{
     }
 
     public static function cadastrar(){
+
+        $estado_DAO = new EstadoDAO();
+        $lista_estado = $estado_DAO->getAllRows();
+        $total_estado = count($lista_estado);
+
+        $cidade_DAO = new CidadeDAO();
+        $lista_cidade = $cidade_DAO->getAllRows();
+        $total_cidade = count($lista_cidade);
+
         include 'View/modulos/cliente/cadastrar_cliente.php';
     }
 
@@ -56,6 +65,14 @@ class ClienteController{
         if(isset($_GET['id'])){
             $cliente_DAO = new ClienteDAO();
             $dados_cli = $cliente_DAO->getById($_GET['id']);
+
+            $estado_DAO = new EstadoDAO();
+            $lista_estado = $estado_DAO->getAllRows();
+            $total_estado = count($lista_estado);
+
+            $cidade_DAO = new CidadeDAO();
+            $lista_cidade = $cidade_DAO->getAllRows();
+            $total_cidade = count($lista_cidade);
         
             include 'View/modulos/cliente/cadastrar_cliente.php';
         }

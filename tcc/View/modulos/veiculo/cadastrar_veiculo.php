@@ -19,7 +19,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h2>Cadastrar Veículo</h2>
+            <h2>Cadastro de Veículo</h2>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/veiculo/salvar">

@@ -48,15 +48,10 @@
     <nav class="nav flex-column">
         <a href="/tcc/" class="nav-link active"><i class="fas fa-home"></i>Tela inicial</a>
         <a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Cliente</a>
-        <a href="/tcc/cliente" class="nav-link"><i class="fas fa-list"></i>Listar Cliente</a>
         <a href="/tcc/categoria/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Categoria</a>
-        <a href="/tcc/categoria" class="nav-link"><i class="fas fa-list-alt"></i>Listar Categoria</a>
         <a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Pagar</a>
-        <a href="/tcc/contasPagar" class="nav-link"><i class="fas fa-list-alt"></i>Listar Contas a Pagar</a>
         <a href="/tcc/produto/cadastrar" class="nav-link"><i class="fas fa-cart-plus"></i>Cadastrar Produto</a>
-        <a href="/tcc/produto" class="nav-link"><i class="fas fa-cubes"></i>Listar Produto</a>
         <a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Veículo</a>
-        <a href="/tcc/veiculo" class="nav-link"><i class="fas fa-list"></i>Listar Veículo</a>
     </nav>
 </body>
 </html>
