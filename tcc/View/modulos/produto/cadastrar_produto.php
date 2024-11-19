@@ -19,44 +19,61 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h2>Cadastrar Produto</h2>
+            <h1>Cadastrar Produto</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/produto/salvar">
-                <div class="form-row">
-                    <div class="form-column">
-                        <label for="descricao">Descrição
-                            <input id="descricao" name="descricao" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->descricao : "" ?>" />
-                        </label>
+                <div class="form-section">
+                    <h2>Descrição</h2>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="descricao">Descrição
+                                <input id="descricao" name="descricao" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->descricao : "" ?>" />
+                            </label>
 
-                        <label for="preco">Preço
-                            <input id="preco" name="preco" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->preco : "" ?>" />
-                        </label>
+                            <label for="marca">Marca
+                                <input id="marca" name="marca" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->marca : "" ?>" />
+                            </label>
 
-                        <label for="marca">Marca
-                            <input id="marca" name="marca" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->marca : "" ?>" />
-                        </label>
+                            <label for="unidade">Unidade de Venda
+                                <input id="unidade" name="unidade" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->unidade : "" ?>" />
+                            </label>
 
-                        <label for="observacao">Observação
-                            <input id="observacao" name="observacao" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->observacao : "" ?>" />
-                        </label>
+                            <label for="validade">Validade
+                                <input id="validade" name="validade" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->validade : "" ?>" />
+                            </label>
+                        </div>
+                        <div class="form-column">
+                            <label for="preco">Preço
+                                <input id="preco" name="preco" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->preco : "" ?>" />
+                            </label>
 
-                        <label for="estoque">Estoque
-                            <input id="estoque" name="estoque" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->estoque : "" ?>" />
-                        </label>
+                            <label for="id_categoria">Categoria
+                                <select id="id_categoria" name="id_categoria" class="form-control">
+                                    <option>Selecione</option>
+                                    <?php for ($i = 0; $i < $total_categ; $i++): 
+                                        $selecionado = "";
+                                        if (isset($dados_prod->id)) 
+                                            $selecionado = ($lista_categ[$i]->id == $dados_prod->id_categoria) ? "selected" : "";
+                                    ?>
+                                        <option value="<?= $lista_categ[$i]->id ?>" <?= $selecionado ?>>
+                                            <?= $lista_categ[$i]->descricao ?>
+                                        </option>
+                                    <?php endfor ?>
+                                </select>
+                            </label>
 
-                        <label for="unidade">Unidade de Venda
-                            <input id="unidade" name="unidade" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->unidade : "" ?>" />
-                        </label>
+                            <label for="codigo_barras">Código de barras
+                                <input id="codigo_barras" name="codigo_barras" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->codigo_barras : "" ?>" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-                        <label for="validade">Validade
-                            <input id="validade" name="validade" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->validade : "" ?>" />
-                        </label>
-
-                        <label for="ativo">Ativo
-                            <input id="ativo" name="ativo" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->ativo : "" ?>" />
-                        </label>
-
+                <div class="form-section">
+                    <h2>Tributação</h2>
+                    <div class="form-row">
+                        <div class="form-column">
                         <label for="ncm">NCM
                             <input id="ncm" name="ncm" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->ncm : "" ?>" />
                         </label>
@@ -72,38 +89,6 @@
                         <label for="cofins">COFINS
                             <input id="cofins" name="cofins" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->cofins : "" ?>" />
                         </label>
-                    </div>
-                    <div class="form-column">
-                        <label for="id_fornecedor">Cliente
-                            <select id="id_fornecedor" name="id_cli" class="form-control">
-                                <option>Selecione</option>
-                                <?php for ($i = 0; $i < $total_cli; $i++): 
-                                    $selecionado = "";
-                                    if (isset($dados_prod->id)) 
-                                        $selecionado = ($lista_cli[$i]->id == $dados_prod->id_cliente) ? "selected" : "";
-                                ?>
-                                    <option value="<?= $lista_cli[$i]->id ?>" <?= $selecionado ?>>
-                                        <?= $lista_cli[$i]->razao_social ?>
-                                    </option>
-                                <?php endfor ?>
-                            </select>
-                        </label>
-
-                        <label for="id_categoria">Categoria
-                            <select id="id_categoria" name="id_categoria" class="form-control">
-                                <option>Selecione</option>
-                                <?php for ($i = 0; $i < $total_categ; $i++): 
-                                    $selecionado = "";
-                                    if (isset($dados_prod->id)) 
-                                        $selecionado = ($lista_categ[$i]->id == $dados_prod->id_categoria) ? "selected" : "";
-                                ?>
-                                    <option value="<?= $lista_categ[$i]->id ?>" <?= $selecionado ?>>
-                                        <?= $lista_categ[$i]->descricao ?>
-                                    </option>
-                                <?php endfor ?>
-                            </select>
-                        </label>
-
                         <label for="icms_cst">ICMS | CST
                             <input id="icms_cst" name="icms_cst" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->icms_cst : "" ?>" />
                         </label>
@@ -116,6 +101,8 @@
                             <input id="aliquota_cofins" name="aliquota_cofins" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->aliquota_cofins : "" ?>" />
                         </label>
 
+                        </div>
+                        <div class="form-column">
                         <label for="aliquota_icms">Aliquota ICMS
                             <input id="aliquota_icms" name="aliquota_icms" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->aliquota_icms : "" ?>" />
                         </label>
@@ -143,19 +130,39 @@
                         <label for="aliquota_mva">Alíquota MVA
                             <input id="aliquota_mva" name="aliquota_mva" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->aliquota_mva : "" ?>" />
                         </label>
-
-                        <label for="codigo_barras">Código de barras
-                            <input id="codigo_barras" name="codigo_barras" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->codigo_barras : "" ?>" />
-                        </label>
+                        </div>
                     </div>
                 </div>
 
-                <?php if (isset($dados_prod)): ?>
-                    <input name="id" type="hidden" value="<?= isset($dados_prod) ? $dados_prod->id : "" ?>" />
-                    <a href="/tcc/produto/excluir?id=<?= isset($dados_prod) ? $dados_prod->id : "" ?>">Excluir</a>
-                <?php endif ?>
+                <div class="form-section">
+                    <h2>Configurações do sistema</h2>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="estoque">Estoque
+                                <input id="estoque" name="estoque" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->estoque : "" ?>" />
+                            </label>
+                        </div>
+                        <div class="form-column">
+                            <label for="ativo">Ativo
+                                <input id="ativo" name="ativo" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->ativo : "" ?>" />
+                            </label>
+                        </div>
+                    </div>
+                    <label for="observacao">Observação
+                    <input id="observacao" name="observacao" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->observacao : "" ?>" />
+                </label>
+                </div>
+                
 
-                <button type="submit" class="btn btn-success mt-3">Cadastrar</button>
+                <div class="form-buttons">
+                    <button type="submit">Cadastrar</button>
+                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/produto'">Consultar</button>
+                    <?php if (isset($dados_prod)): ?>
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/produto/excluir?id=<?= $dados_prod->id ?>'">
+                            Excluir
+                        </button>
+                    <?php endif ?>
+                </div>
             </form>
         </div>
     </div>
