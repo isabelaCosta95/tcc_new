@@ -25,7 +25,7 @@ class ClienteController{
     }
 
     public static function salvar(){
-
+        
         $cliente_DAO = new ClienteDAO();
         $dados_para_salvar = array(
             'razao_social' => $_POST['razao_social'],
