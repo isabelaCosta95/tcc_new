@@ -30,7 +30,7 @@ select.form-control:focus {
 
 form {
     max-width: 100%; 
-    width: 80%; 
+    width: 100%; 
     margin: 20px auto; 
     padding: 30px; 
     border-radius: 8px; 
