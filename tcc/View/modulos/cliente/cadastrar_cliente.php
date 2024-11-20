@@ -26,11 +26,12 @@
             <form method="post" action="/tcc/cliente/salvar">
                 <div class="form-section">
                     <h2>Informações Pessoais</h2>
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label>Razão Social
+                    <label>Razão Social
                                 <input name="razao_social" value="<?= isset($dados_cli) ? $dados_cli->razao_social : "" ?>" maxlength="150" type="text" />
                             </label>
+                    <div class="form-row">
+                        <div class="form-column">
+                            
                             <label>Nome Fantasia
                                 <input name="nome_fantasia" value="<?= isset($dados_cli) ? $dados_cli->nome_fantasia : "" ?>" maxlength="150" type="text" />
                             </label>
@@ -65,7 +66,7 @@
                         </div>
                         <div class="form-column">
                             <label>Estado
-                                <select name="estado" class="form-control">
+                                <select name="estado" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_estado; $i++): 
                                         $selecionado = "";
@@ -79,7 +80,7 @@
                                 </select>
                             </label>
                             <label>Cidade
-                                <select name="cidade" class="form-control">
+                                <select name="cidade" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_cidade; $i++): 
                                         $selecionado = "";
@@ -124,14 +125,24 @@
                     </div>
                 </div>
 
+                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
+                <?php if (isset($dados_cli)): ?>
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($dados_cli->id) ?>">
+                <?php endif; ?>
+
                 <div class="form-buttons">
-                    <button type="submit">Cadastrar</button>
+                    <!-- Botão dinâmico -->
+                    <button type="submit">
+                        <?= isset($dados_cli) ? 'Alterar' : 'Cadastrar' ?>
+                    </button>
+
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/cliente'">Consultar</button>
+                    
                     <?php if (isset($dados_cli)): ?>
                         <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/cliente/excluir?id=<?= $dados_cli->id ?>'">
                             Excluir
                         </button>
-                    <?php endif ?>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
