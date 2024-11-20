@@ -52,6 +52,7 @@
         <a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Pagar</a>
         <a href="/tcc/produto/cadastrar" class="nav-link"><i class="fas fa-cart-plus"></i>Cadastrar Produto</a>
         <a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Veículo</a>
+        <a href="/tcc/motorista/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Motorista</a>
     </nav>
 </body>
 </html>
