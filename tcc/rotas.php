@@ -172,6 +172,28 @@ try{
     case '/tcc/estado/excluir':
         EstadoController::excluir();
     break;
+        
+
+    // Rotas Motorista
+    case '/tcc/motorista':
+        MotoristaController::index();
+    break;
+
+    case '/tcc/motorista/cadastrar':
+        MotoristaController::cadastrar();
+    break;
+
+    case '/tcc/motorista/ver':
+        MotoristaController::ver();
+    break;
+
+    case '/tcc/motorista/salvar':
+        MotoristaController::salvar();
+    break;
+
+    case '/tcc/motorista/excluir':
+        MotoristaController::excluir();
+    break;
     }
 
     
