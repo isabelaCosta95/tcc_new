@@ -68,6 +68,40 @@
         height: 20px;
         text-align: center;
     }
+
+    button {
+        margin-top: 15px;
+        background-color: #28a745; 
+        color: #ffffff; 
+        border: none; 
+        padding: 15px; 
+        border-radius: 4px; 
+        cursor: pointer; 
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #495057; 
+    }
+
+    select, input[type="text"], input[type="date"]{
+            width: 150px; 
+            padding: 10px; 
+            border: 1px solid #6c757d;
+            border-radius: 4px;
+            margin-bottom: 15px; 
+            font-size: 16px; 
+            transition: border-color 0.3s;
+        }
+
+    .checkbox-group{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
 </style>
 </head>
 
@@ -89,25 +123,37 @@
     
     <!-- Filtros -->
     <form method="GET" action="listar_contas.php">
-        '<label for="descricao">Descrição:</label>
-        <input type="text" name="descricao" id="descricao" value="<?= $_GET['descricao'] ?? '' ?>">
+        
 
-        <label for="dt_pagamento">Data de Pagamento:</label>
-        <input type="date" name="dt_pagamento" id="dt_pagamento" value="<?= $_GET['dt_pagamento'] ?? '' ?>">
+        <div class="checkbox-group">
+            <label for="dt_pagamento">Data de Pagamento:</label>
+            <input type="date" name="dt_pagamento" id="dt_pagamento" value="<?= $_GET['dt_pagamento'] ?? date('Y-m-d') ?>">
+        </div>
 
-        <label for="dt_vencimento">Data de Vencimento:</label>
-        <input type="date" name="dt_vencimento" id="dt_vencimento" value="<?= $_GET['dt_vencimento'] ?? '' ?>">
+        <div class="checkbox-group">
+            <label for="form_pagamento">Descrição:</label>
+            <input type="text" name="form_pagamento" id="form_pagamento" value="<?= $_GET['form_pagamento'] ?? '' ?>">
+        </div>
 
-        <label for="form_pagamento">Forma de Pagamento:</label>
-        <input type="text" name="form_pagamento" id="form_pagamento" value="<?= $_GET['form_pagamento'] ?? '' ?>">
-
-        <label for="stts">Status:</label>
-        <select name="stts" id="stts">
-            <option value="">Todos</option>
-            <option value="A" <?= (isset($_GET['stts']) && $_GET['stts'] == 'A') ? 'selected' : '' ?>>Aberto</option>
-            <option value="P" <?= (isset($_GET['stts']) && $_GET['stts'] == 'P') ? 'selected' : '' ?>>Pago</option>
-            <option value="C" <?= (isset($_GET['stts']) && $_GET['stts'] == 'C') ? 'selected' : '' ?>>Cancelado</option>
-        </select>
+        <div class="checkbox-group">
+            <label for="dt_vencimento">Data de Vencimento:</label>
+            <input type="date" name="dt_vencimento" id="dt_vencimento" value="<?= $_GET['dt_vencimento'] ?? date('Y-m-d') ?>">
+        </div>
+        
+        <div class="checkbox-group">
+            <label for="form_pagamento">Forma de Pagamento:</label>
+            <input type="text" name="form_pagamento" id="form_pagamento" value="<?= $_GET['form_pagamento'] ?? '' ?>">
+        </div>
+        
+        <div class="checkbox-group">
+            <label for="stts">Status:</label>
+            <select name="stts" id="stts">
+                <option value="">Todos</option>
+                <option value="A" <?= (isset($_GET['stts']) && $_GET['stts'] == 'A') ? 'selected' : '' ?>>Aberto</option>
+                <option value="P" <?= (isset($_GET['stts']) && $_GET['stts'] == 'P') ? 'selected' : '' ?>>Pago</option>
+                <option value="C" <?= (isset($_GET['stts']) && $_GET['stts'] == 'C') ? 'selected' : '' ?>>Cancelado</option>
+            </select>
+        </div>
 
         <button type="submit">Filtrar</button>
     </form>'
@@ -119,13 +165,9 @@
                 <th>Ações</th>
                 <th>Código</th>
                 <th>Descrição</th>
-                <th>Quantidade de Parcelas</th>
                 <th>Data de Pagamento</th>
                 <th>Data de Vencimento</th>
                 <th>Valor</th>
-                <th>Forma de Pagamento</th>
-                <th>Plano de Contas</th>
-                <th>Observação</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -133,19 +175,16 @@
             <?php for($i=0; $i<$total_pag; $i++): ?>
             <tr>
                 <td class="icon">
+                    <input type="checkbox">
                     <a href="/tcc/contasPagar/ver?id=<?= $lista_pag[$i]->id ?>">
                         <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
                     </a>
                 </td>
                 <td><?= $lista_pag[$i]->id ?></td>
                 <td><?= $lista_pag[$i]->descricao ?></td>
-                <td><?= $lista_pag[$i]->qnt_parcelas ?></td>
                 <td><?= (new DateTime($lista_pag[$i]->dt_pagamento))->format('d/m/Y') ?></td>
                 <td><?= (new DateTime($lista_pag[$i]->dt_vencimento))->format('d/m/Y') ?></td>
                 <td><?= 'R$ ' . number_format($lista_pag[$i]->valor, 2, ',', '.') ?></td>
-                <td><?= $lista_pag[$i]->form_pagamento ?></td>
-                <td><?= $lista_pag[$i]->plano_contas ?></td>
-                <td><?= $lista_pag[$i]->observacao ?></td>
                 <td>
                     <span class="
                         <?php 
@@ -171,6 +210,20 @@
             <?php endfor; ?>
         </tbody>
     </table>
+
+    <div class="checkbox-group" style="margin-left: 15px">
+        <label>Forma de pagamento</label>
+        <input type="text">
+    </div>
+
+    <div class="checkbox-group">
+        <label>Data de Pagamento</label>
+        <input type="date">
+    </div>
+
+    <div class="checkbox-group">
+        <button class="baixar-conta" type="submit">Baixar Conta</button>
+    </div>
     </main>
     <?php include PATH_VIEW . 'includes/rodape.php' ?>
 </body>

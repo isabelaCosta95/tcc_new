@@ -10,19 +10,21 @@ class CategoriaDAO{
 
     public function insert($dados_categoria){
         
-        $sql = "INSERT INTO categoria(descricao)VALUES(?)";
+        $sql = "INSERT INTO categoria(descricao, ativo)VALUES(?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1,$dados_categoria['descricao']);
+        $stmt->bindValue(2,$dados_categoria['ativo']);
         $stmt->execute();
     }
 
     public function update($dados_categoria){
-        $sql = "UPDATE categoria set descricao = ? where id = ?";
+        $sql = "UPDATE categoria set descricao = ?, ativo = ? where id = ?";
         
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1,$dados_categoria['descricao']);
-        $stmt->bindValue(2,$dados_categoria['id']);
+        $stmt->bindValue(2,$dados_categoria['ativo']);
+        $stmt->bindValue(3,$dados_categoria['id']);
 
         $stmt->execute();
     }

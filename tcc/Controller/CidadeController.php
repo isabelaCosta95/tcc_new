@@ -8,7 +8,7 @@ class CidadeController{
         $lista_cidade = $cidade_DAO->getAllRows();
         $total_cidade = count($lista_cidade);
             
-        include 'View/modulos/cidade/lista_cidade.php';
+        include 'View/modulos/cidade/listar_cidade.php';
     }
 
     public static function cadastrar(){
@@ -19,7 +19,10 @@ class CidadeController{
 
         $cidade_DAO = new CidadeDAO();
         $dados_para_salvar = array(
-            'descricao' => $_POST['descricao']
+            'descricao' => $_POST['descricao'],
+            'estado' => $_POST['estado'],
+            'ibge' => $_POST['ibge']
+
         );
             
         if(isset($_POST['id'])){

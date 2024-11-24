@@ -73,17 +73,42 @@ function formatarTelefone(input) {
     }
 }
 
-function formatarValor(input) {
-    let valor = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+function formatarValor(campo) {
+    // Remove caracteres não numéricos
+    let valor = campo.value.replace(/\D/g, '');
 
-    // Verifica se o valor tem mais de 2 dígitos após o ponto para formatar como moeda
+    // Adiciona as casas decimais
     if (valor.length > 2) {
-        valor = valor.replace(/(\d{2})$/, ',$1'); // Adiciona a vírgula antes dos centavos
+        valor = valor.slice(0, -2) + ',' + valor.slice(-2);
+    } else if (valor.length === 2) {
+        valor = '0,' + valor;
+    } else if (valor.length === 1) {
+        valor = '0,0' + valor;
+    } else {
+        valor = '0,00';
     }
 
-    // Formata o número com separador de milhar
-    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-    // Adiciona o prefixo de moeda
-    input.value = valor ? 'R$ ' + valor : '';
+    // Atualiza o valor do campo
+    campo.value = valor;
 }
+
+document.getElementById('adicionar-parada').addEventListener('click', function() {
+    // Criar o contêiner da parada
+    const parada = document.createElement('div');
+    parada.classList.add('parada');
+
+    // Adicionar os campos de parada
+    parada.innerHTML = `
+        <div class="form-row">
+            <label for="local[]">Local
+                <input name="local[]" type="text" placeholder="Digite o local" />
+            </label>
+            <label for="valor[]">Valor
+                <input name="valor[]" type="text" placeholder="Digite o valor" />
+            </label>
+        </div>
+    `;
+
+    // Inserir no contêiner de paradas
+    document.getElementById('paradas-container').appendChild(parada);
+});

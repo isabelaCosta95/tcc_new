@@ -32,23 +32,34 @@
                             </label>
                         </div>
                         <div class="form-column">
-                            <label>Ativo
+                        <label>Ativo
                                 <select name="ativo" class="form-control">
-                                    <option value="1" <?= isset($dados_categ) && $dados_categ->ativo == 1 ? 'selected' : '' ?>>Sim</option>
-                                    <option value="0" <?= isset($dados_categ) && $dados_categ->ativo == 0 ? 'selected' : '' ?>>Não</option>
+                                    <option value="S" <?= isset($dados_categ) && $dados_categ->ativo == 'S' ? 'selected' : '' ?>>Sim</option>
+                                    <option value="N" <?= isset($dados_categ) && $dados_categ->ativo == 'N' ? 'selected' : '' ?>>Não</option>
                                 </select>
                             </label>
                         </div>
                     </div>    
                 </div>
+
+                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
+                <?php if (isset($dados_categ)): ?>
+                    <input type="hidden" name="id" value="<?= $dados_categ->id ?>">
+                <?php endif; ?>
+
                 <div class="form-buttons">
-                    <button type="submit">Cadastrar</button>
+                    <!-- Botão dinâmico -->
+                    <button type="submit">
+                        <?= isset($dados_categ) ? 'Alterar' : 'Cadastrar' ?>
+                    </button>
+
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/categoria'">Consultar</button>
+                    
                     <?php if (isset($dados_categ)): ?>
                         <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/categoria/excluir?id=<?= $dados_categ->id ?>'">
                             Excluir
                         </button>
-                    <?php endif ?>
+                    <?php endif; ?>
                 </div>
             </form>
 

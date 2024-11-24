@@ -19,7 +19,8 @@ class CategoriaController{
 
         $categoria_DAO = new CategoriaDAO();
         $dados_para_salvar = array(
-            'descricao' => $_POST['descricao']
+            'descricao' => $_POST['descricao'],
+            'ativo' => $_POST['ativo']
         );
             
         if(isset($_POST['id'])){

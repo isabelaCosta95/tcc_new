@@ -127,7 +127,7 @@
 
                 <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_cli)): ?>
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($dados_cli->id) ?>">
+                    <input type="hidden" name="id" value="<?= $dados_cli->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">

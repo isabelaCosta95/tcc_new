@@ -22,6 +22,9 @@ class ProdutoController{
         $lista_cli = $cliente_DAO->getAllRows();
         $total_cli = count($lista_cli);
 
+        $produto_DAO = new ProdutoDAO();
+        $unidade_venda = $produto_DAO->getUnidadeVenda();
+
         include 'View/modulos/produto/cadastrar_produto.php';
     }
 
@@ -30,7 +33,6 @@ class ProdutoController{
         $produto_DAO = new ProdutoDAO();
         $dados_para_salvar = array(
             'id_categoria' => $_POST['id_categoria'],
-            'id_fornecedor' => $_POST['id_fornecedor'],
             'descricao' => $_POST['descricao'],
             'preco' => $_POST['preco'],
             'marca' => $_POST['marca'],

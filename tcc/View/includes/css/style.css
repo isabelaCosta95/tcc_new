@@ -113,13 +113,11 @@ input[type="text"]:focus, input[type="date"]:focus, select.form-control:focus {
     padding-bottom: 5px; /* Espaçamento interno para o título */
 }
 
-/* Container para os botões */
 .form-buttons {
-    display: flex; /* Alinhar botões em linha */
-    gap: 10px; /* Espaço entre os botões */
+    display: flex; 
+    gap: 10px; 
 }
 
-/* Estilo geral dos botões */
 button {
     background-color: #28a745; 
     color: #ffffff; 
@@ -129,39 +127,42 @@ button {
     cursor: pointer; 
     font-size: 16px;
     transition: background-color 0.3s; 
-    flex: 1; /* Faz os botões terem tamanhos iguais */
+    flex: 1; 
 }
 
-/* Botão 'Cadastrar' ao passar o mouse */
 button:hover {
     background-color: #218838;
 }
 
-/* Botão 'Consultar' */
 button.btn-consultar {
-    background-color: #34c759; /* Verde mais claro */
+    background-color: #34c759; 
 }
 
-/* Botão 'Consultar' ao passar o mouse */
 button.btn-consultar:hover {
-    background-color: #28a745; /* Hover */
+    background-color: #28a745;
 }
 
-/* Botão 'Excluir' */
+button.btn-associar {
+    background-color: #007bff; 
+}
+
+button.btn-receber {
+    background-color: #439dfd; 
+}
+
 button.btn-excluir {
-    background-color: #dc3545; /* Vermelho */
+    background-color: #dc3545;
     color: #ffffff;
 }
 
-/* Botão 'Excluir' ao passar o mouse */
 button.btn-excluir:hover {
-    background-color: #c82333; /* Vermelho mais escuro */
+    background-color: #c82333; 
 }
 
 .form-section .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Espaço entre as colunas */
+    gap: 15px;
 }
 
 .form-section .form-column {
@@ -179,7 +180,6 @@ button.btn-excluir:hover {
     margin-bottom: 10px; /* Menor espaçamento entre inputs */
 }
 
-/* Estilo específico para o campo "Tipo de Pessoa" */
 select#tipo_pessoa {
     width: 100%; /* Mantém a largura do campo igual aos outros */
     padding: 10px; /* Preenchimento do campo */
@@ -197,10 +197,26 @@ select#tipo_pessoa:focus {
     outline: none; /* Remove o contorno padrão */
 }
 
-/* Estilo de label */
 label[for="tipo_pessoa"] {
     display: block; 
     margin-bottom: 5px;
     font-size: 14px;
     color: #495057;
+}
+
+.parcela {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espaçamento entre os itens */
+}
+
+.parcela label {
+    flex: 1; /* Todos os campos terão o mesmo tamanho */
+    min-width: 200px; /* Define um tamanho mínimo */
+}
+
+.parcela input, 
+.parcela select {
+    width: 100%; /* Garante que os campos ocupem toda a largura do container */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
 }

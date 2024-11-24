@@ -7,7 +7,7 @@ class VeiculoController {
         $lista_veiculo = $veiculo_DAO->getAllRows();
         $total_veiculo = count($lista_veiculo);
         
-        include 'View/modulos/veiculo/lista_veiculo.php';
+        include 'View/modulos/veiculo/listar_veiculo.php';
     }
 
     public static function cadastrar() {

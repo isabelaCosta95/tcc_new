@@ -25,18 +25,26 @@
             <form method="post" action="/tcc/produto/salvar">
                 <div class="form-section">
                     <h2>Descrição</h2>
-                    <div class="form-row">
-                        <div class="form-column">
-                            <label for="descricao">Descrição
+                    <label for="descricao">Descrição
                                 <input id="descricao" name="descricao" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->descricao : "" ?>" />
                             </label>
-
+                    <div class="form-row">
+                        
+                        <div class="form-column">
                             <label for="marca">Marca
                                 <input id="marca" name="marca" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->marca : "" ?>" />
                             </label>
 
-                            <label for="unidade">Unidade de Venda
-                                <input id="unidade" name="unidade" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->unidade : "" ?>" />
+                            <label for="unidade">Unidade de venda
+                                <select id="unidade" required name="unidade" class="form-control">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($unidade_venda as $unid): ?>
+                                        <option value="<?= $unid['id'] ?>" 
+                                            <?= isset($dados_prod) && $dados_prod->unidade == $unid['id'] ? 'selected' : '' ?>>
+                                            <?= $unid['descricao'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </label>
 
                             <label for="validade">Validade
@@ -48,8 +56,8 @@
                                 <input id="preco" name="preco" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->preco : "" ?>" />
                             </label>
 
-                            <label for="id_categoria">Categoria
-                                <select id="id_categoria" name="id_categoria" class="form-control">
+                            <label for="id_categoria ">Categoria
+                                <select id="id_categoria" name="id_categoria" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for ($i = 0; $i < $total_categ; $i++): 
                                         $selecionado = "";
@@ -143,8 +151,11 @@
                             </label>
                         </div>
                         <div class="form-column">
-                            <label for="ativo">Ativo
-                                <input id="ativo" name="ativo" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->ativo : "" ?>" />
+                            <label>Ativo
+                                <select name="ativo" class="form-control">
+                                    <option value="S" <?= isset($dados_prod) && $dados_prod->ativo == 'S' ? 'selected' : '' ?>>Sim</option>
+                                    <option value="N" <?= isset($dados_prod) && $dados_prod->ativo == 'N' ? 'selected' : '' ?>>Não</option>
+                                </select>
                             </label>
                         </div>
                     </div>
