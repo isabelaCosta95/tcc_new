@@ -95,7 +95,7 @@
         </div>
 
         <div class="nav-group">
-            <div class="nav-group-title"><i class="fas fa-tags"></i>Financeiro<i class="fa-solid fa-arrow-right"></i></div>
+            <div class="nav-group-title"><i class="fas fa-money-bill-wave"></i>Financeiro<i class="fa-solid fa-arrow-right"></i></div>
             <ul class="nav-group-items">
                 <li><a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-address-card"></i>Cliente</a></li>
                 <li><a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-wallet"></i>Contas a Pagar</a></li>
