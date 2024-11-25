@@ -97,39 +97,39 @@
         <div class="nav-group">
             <div class="nav-group-title"><i class="fas fa-tags"></i>Financeiro<i class="fa-solid fa-arrow-right"></i></div>
             <ul class="nav-group-items">
-                <li><a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Cliente</a></li>
-                <li><a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Pagar</a></li>
-                <li><a href="/tcc/contasReceber/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Receber</a></li>
-                <li><a href="/tcc/planoContas/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Plano de Contas</a></li>
-                <li><a href="/tcc/formaPagamento/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Forma de Pagamentos</a></li>
+                <li><a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cliente</a></li>
+                <li><a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Contas a Pagar</a></li>
+                <li><a href="/tcc/contasReceber/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Contas a Receber</a></li>
+                <li><a href="/tcc/planoContas/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Plano de Contas</a></li>
+                <li><a href="/tcc/formaPagamento/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Forma de Pagamentos</a></li>
             </ul>
         </div>
 
         <div class="nav-group">
             <div class="nav-group-title"><i class="fas fa-truck"></i>Veículo<i class="fa-solid fa-arrow-right"></i></div>
             <ul class="nav-group-items">
-                <li><a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Veículo</a></li>
-                <li><a href="/tcc/peca/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Peças</a></li>
-                <li><a href="/tcc/manutencao/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Manutencao</a></li>
-                <li><a href="/tcc/seguradora/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Seguradora</a></li>
+                <li><a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Veículo</a></li>
+                <li><a href="/tcc/peca/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Peças</a></li>
+                <li><a href="/tcc/manutencao/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Realizar Manutencao</a></li>
+                <li><a href="/tcc/seguradora/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Seguradora</a></li>
             </ul>
         </div>
 
         <div class="nav-group">
             <div class="nav-group-title"><i class="fas fa-cart-plus"></i>Viagem<i class="fa-solid fa-arrow-right"></i></div>
             <ul class="nav-group-items">
-                <li><a href="/tcc/carga/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Carga</a></li>
-                <li><a href="/tcc/viagem/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Viagem</a></li>
+                <li><a href="/tcc/carga/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Carga</a></li>
+                <li><a href="/tcc/viagem/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Viagem</a></li>
             </ul>
         </div>
 
         <div class="nav-group">
             <div class="nav-group-title"><i class="fas fa-key"></i>ADM<i class="fa-solid fa-arrow-right"></i></div>
             <ul class="nav-group-items">
-                <li><a href="/tcc/empresa/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Empresa</a></li>
-                <li><a href="/tcc/funcionario/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Funcionário</a></li>
-                <li><a href="/tcc/cidade/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cidades</a></li>
-                <li><a href="/tcc/cargo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cargo</a></li>
+                <li><a href="/tcc/empresa/cadastrar" class="nav-link"><i class="fas fa-box"></i>Empresa</a></li>
+                <li><a href="/tcc/funcionario/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Funcionário</a></li>
+                <li><a href="/tcc/cidade/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cidades</a></li>
+                <li><a href="/tcc/cargo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cargo</a></li>
             </ul>
         </div>
     </nav>
