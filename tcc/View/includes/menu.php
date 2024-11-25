@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Lateral</title>
+    <title>Menu Lateral Agrupado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -11,6 +11,7 @@
             margin: 0;
             background-color: #f8f9fa;
         }
+
         .nav {
             width: 250px;
             height: 100vh;
@@ -19,7 +20,41 @@
             padding-top: 1rem;
             overflow-y: auto;
         }
-        .nav-link {
+
+        .nav-group {
+            margin-bottom: 1rem;
+        }
+
+        .nav-group-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.75rem 1rem;
+            color: #333;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-group-title i {
+            color: #28a745;
+        }
+
+        .nav-group-title:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .nav-group-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+        }
+
+        .nav-group-items .nav-link {
             color: #333;
             font-size: 1rem;
             padding: 0.75rem 1rem;
@@ -30,14 +65,18 @@
             border-radius: 4px;
             transition: background-color 0.3s, color 0.3s;
         }
-        .nav-link i {
+
+        .nav-group-items .nav-link i {
             margin-right: 0.5rem;
+            color: #28a745;
         }
-        .nav-link:hover {
-            background-color: #e9ecef;
-            color: #000;
+
+        .nav-group-items .nav-link:hover {
+            background-color: #28a745;
+            color: #fff;
         }
-        .nav-link.active {
+
+        .nav-group-items .nav-link.active {
             background-color: #28a745;
             color: #fff;
             font-weight: bold;
@@ -45,26 +84,62 @@
     </style>
 </head>
 <body>
-    <nav class="nav flex-column">
-        <a href="/tcc/" class="nav-link active"><i class="fas fa-home"></i>Tela inicial</a>
-        <a href="/tcc/empresa/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Empresa</a>
-        <a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Cliente</a>
-        <a href="/tcc/categoria/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Categoria</a>
-        <a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Pagar</a>
-        <a href="/tcc/contasReceber/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Receber</a>
-        <a href="/tcc/produto/cadastrar" class="nav-link"><i class="fas fa-cart-plus"></i>Cadastrar Produto</a>
-        <a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Veículo</a>
-        <a href="/tcc/palete/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Movimentação de Paletes</a>
-        <a href="/tcc/funcionario/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Funcionário</a>
-        <a href="/tcc/carga/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Carga</a>
-        <a href="/tcc/viagem/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Viagem</a>
-        <a href="/tcc/manutencao/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Manutencao</a>
-        <a href="/tcc/planoContas/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Plano de Contas</a>
-        <a href="/tcc/formaPagamento/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Forma de Pagamentos</a>
-        <a href="/tcc/cidade/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cidades</a>
-        <a href="/tcc/cargo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cargo</a>
-        <a href="/tcc/peca/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Peças</a>
-        <a href="/tcc/seguradora/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Seguradora</a>
+    <nav class="nav">
+        <div class="nav-group">
+            <div class="nav-group-title"><i class="fas fa-box"></i>Produto<i class="fa-solid fa-arrow-right"></i></div>
+            <ul class="nav-group-items">
+                <li><a href="/tcc/produto/cadastrar" class="nav-link"><i class="fas fa-cart-plus"></i>Produto</a></li>
+                <li><a href="/tcc/categoria/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Categoria</a></li>
+                <li><a href="/tcc/palete/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Movimentação de Paletes</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title"><i class="fas fa-tags"></i>Financeiro<i class="fa-solid fa-arrow-right"></i></div>
+            <ul class="nav-group-items">
+                <li><a href="/tcc/cliente/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Cliente</a></li>
+                <li><a href="/tcc/contasPagar/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Pagar</a></li>
+                <li><a href="/tcc/contasReceber/cadastrar" class="nav-link"><i class="fas fa-tags"></i>Cadastrar Contas a Receber</a></li>
+                <li><a href="/tcc/planoContas/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Plano de Contas</a></li>
+                <li><a href="/tcc/formaPagamento/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Forma de Pagamentos</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title"><i class="fas fa-truck"></i>Veículo<i class="fa-solid fa-arrow-right"></i></div>
+            <ul class="nav-group-items">
+                <li><a href="/tcc/veiculo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Veículo</a></li>
+                <li><a href="/tcc/peca/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Peças</a></li>
+                <li><a href="/tcc/manutencao/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Manutencao</a></li>
+                <li><a href="/tcc/seguradora/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Seguradora</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title"><i class="fas fa-cart-plus"></i>Viagem<i class="fa-solid fa-arrow-right"></i></div>
+            <ul class="nav-group-items">
+                <li><a href="/tcc/carga/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Carga</a></li>
+                <li><a href="/tcc/viagem/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Viagem</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title"><i class="fas fa-key"></i>ADM<i class="fa-solid fa-arrow-right"></i></div>
+            <ul class="nav-group-items">
+                <li><a href="/tcc/empresa/cadastrar" class="nav-link"><i class="fas fa-box"></i>Cadastrar Empresa</a></li>
+                <li><a href="/tcc/funcionario/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Funcionário</a></li>
+                <li><a href="/tcc/cidade/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cidades</a></li>
+                <li><a href="/tcc/cargo/cadastrar" class="nav-link"><i class="fas fa-truck"></i>Cadastrar Cargo</a></li>
+            </ul>
+        </div>
     </nav>
+    <script>
+        document.querySelectorAll('.nav-group-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const items = title.nextElementSibling;
+                items.style.display = items.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
 </body>
 </html>

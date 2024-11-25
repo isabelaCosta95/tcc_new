@@ -92,7 +92,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Viagem</h1>
+            <h1>Gerenciar Viagem</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/carga/salvar">

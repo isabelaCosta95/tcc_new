@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Carga</h1>
+            <h1>Lançamento de Carga</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/carga/salvar">
@@ -60,6 +60,19 @@
                                         <label>Status
                                 <input name="status" value="<?= isset($dados_car) && isset($dados_car->status) ? $dados_car->status : "" ?>" type="text" readonly/>
                             </label>
+
+                            <label for="carga" style="margin: 0; flex-grow: 1;">
+        Seguradora
+        <select id="carga" name="carga" class="form-control" style="width: 100%;">
+            <option value="">Selecione</option>
+            <?php foreach ($carga as $vei): ?>
+                <option value="<?= $vei['id'] ?>" 
+                    <?= isset($dados_pagar) && $dados_pagar->carga == $vei['id'] ? 'selected' : '' ?>>
+                    <?= $vei['descricao'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </label>
                         </div>
                         <div class="form-column">
                             <label>Quantidade
@@ -68,6 +81,10 @@
 
                             <label>Valor total
                                 <input name="valor_total" value="<?= isset($dados_car) && isset($dados_car->valor_total) ? $dados_car->valor_total : "" ?>" type="text" readonly/>
+                            </label>
+
+                            <label>Número do seguro
+                                <input name="quantidade" value="<?= isset($dados_car) && isset($dados_car->quantidade) ? $dados_car->quantidade : "" ?>" type="text"/>
                             </label>
 
                         </div>

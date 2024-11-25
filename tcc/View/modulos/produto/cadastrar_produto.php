@@ -35,7 +35,7 @@
                                 <input id="marca" name="marca" type="text" class="form-control" value="<?= isset($dados_prod) ? $dados_prod->marca : "" ?>" />
                             </label>
 
-                            <label for="unidade">Unidade de venda
+                            <label for="unidade">Unidade de Medida
                                 <select id="unidade" required name="unidade" class="form-control">
                                     <option value="">Selecione</option>
                                     <?php foreach ($unidade_venda as $unid): ?>

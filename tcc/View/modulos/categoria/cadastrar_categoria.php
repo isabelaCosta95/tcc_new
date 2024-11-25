@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Categoria</h1>
+            <h1>Categoria</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/categoria/salvar">
