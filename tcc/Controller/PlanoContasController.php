@@ -9,7 +9,7 @@ class PlanoContasController{
     
         $total_plac = count($lista_plac);
             
-        include 'View/modulos/plano_contas/lista_plano_contas.php';
+        include 'View/modulos/plano_contas/listar_plano_contas.php';
     }
 
     public static function cadastrar(){
@@ -31,30 +31,11 @@ class PlanoContasController{
 
         $plano_contas_DAO = new PlanoContasDAO();
         $dados_para_salvar = array(
-            'id_categoria' => $_POST['id_categoria'],
             'descricao' => $_POST['descricao'],
-            'preco' => $_POST['preco'],
-            'marca' => $_POST['marca'],
-            'observacao' => $_POST['observacao'],
-            'estoque' => $_POST['estoque'],
-            'unidade' => $_POST['unidade'],
-            'validade' => $_POST['validade'],
             'ativo' => $_POST['ativo'],
-            'ncm' => $_POST['ncm'],
-            'cfop' => $_POST['cfop'],
-            'pis' => $_POST['pis'],
-            'cofins' => $_POST['cofins'],
-            'icms_cst' => $_POST['icms_cst'],
-            'aliquota_pis' => $_POST['aliquota_pis'],
-            'aliquota_cofins' => $_POST['aliquota_cofins'],
-            'aliquota_icms' => $_POST['aliquota_icms'],
-            'ipi' => $_POST['ipi'],
-            'aliquota_recucao_bc' => $_POST['aliquota_recucao_bc'],
-            'origem_icms' => $_POST['origem_icms'],
-            'cest' => $_POST['cest'],
-            'gtin' => $_POST['gtin'],
-            'aliquota_mva' => $_POST['aliquota_mva'],
-            'codigo_barras' => $_POST['codigo_barras']
+            'natureza' => $_POST['natureza'],
+            'observacao' => $_POST['observacao'],
+            'tipo' => $_POST['tipo']
         );
         
         if(isset($_POST['id'])){

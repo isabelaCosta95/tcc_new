@@ -20,21 +20,16 @@ class VeiculoController {
     public static function salvar() {
         $veiculo_DAO = new VeiculoDAO();
         $dados_para_salvar = array(
-            'nome_prop' => $_POST['nome_prop'],
-            'marca_modelo' => $_POST['marca_modelo'],
+            'nome_proprietario' => $_POST['nome_proprietario'],
+            'marca' => $_POST['marca'],
             'placa' => $_POST['placa'],
             'rntc' => $_POST['rntc'],
             'chassi' => $_POST['chassi'],
             'renavam' => $_POST['renavam'],
             'cor' => $_POST['cor'],
             'combustivel' => $_POST['combustivel'],
-            'categoria' => $_POST['categoria'],
-            'pot_cilindrada' => $_POST['pot_cilindrada'],
-            'estado' => $_POST['estado'],
-            'motor' => $_POST['motor'],
-            'carroceria' => $_POST['carroceria'],
-            'observacao' => $_POST['observacao'],
-            'ativo' => $_POST['ativo']
+            'dt_fabricacao' => $_POST['dt_fabricacao'],
+            'dt_licenciamento' => $_POST['dt_licenciamento']
         );
         
         if (isset($_POST['id'])) {

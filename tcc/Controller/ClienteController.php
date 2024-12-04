@@ -8,7 +8,7 @@ class ClienteController{
         $lista_cli = $cliente_DAO->getAllRows();
         $total_cli = count($lista_cli);
             
-        include 'View/modulos/cliente/lista_cliente.php';
+        include 'View/modulos/cliente/listar_cliente.php';
     }
 
     public static function cadastrar(){
@@ -36,8 +36,8 @@ class ClienteController{
             'bairro' => $_POST['bairro'],
             'complemento' => $_POST['complemento'],
             'numero' => $_POST['numero'],
-            'cidade' => $_POST['cidade'],
-            'estado' => $_POST['estado'],
+            'id_cidade' => $_POST['id_cidade'],
+            'id_estado' => $_POST['id_estado'],
             'telefone1' => $_POST['telefone1'],
             'telefone2' => $_POST['telefone2'],
             'observacao' => $_POST['observacao'],

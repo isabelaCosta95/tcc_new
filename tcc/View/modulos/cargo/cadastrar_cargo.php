@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Cargo</h1>
+            <h1>Cargo</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/cargo/salvar">
@@ -27,12 +27,12 @@
                     <h2>Dados</h2>
                     <div class="form-row">
                         <div class="form-column">
-                            <label>Nome do cargo
+                            <label>Nome do Cargo
                                 <input name="nome" value="<?= isset($dados_car) && isset($dados_car->nome) ? $dados_car->nome : "" ?>" type="text"/>
                             </label>
                         </div>
                         <div class="form-column">
-                            <label>Descrição
+                        <label>Descrição
                                 <input name="descricao" value="<?= isset($dados_car) && isset($dados_car->descricao) ? $dados_car->descricao : "" ?>" type="text"/>
                             </label>
                         </div>
@@ -51,8 +51,7 @@
                     </button>
 
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/cargo'">Consultar</button>
-                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/cargo'">Associar Viagem</button>
-                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/cargo'">Contas a Receber</button>
+                    
                     <?php if (isset($dados_car)): ?>
                         <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/cargo/excluir?id=<?= $dados_car->id ?>'">
                             Excluir
@@ -60,6 +59,7 @@
                     <?php endif; ?>
                 </div>
             </form>
+
         </div>
     </div>
         

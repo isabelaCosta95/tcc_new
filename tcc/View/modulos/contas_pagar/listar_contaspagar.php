@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Contas a Receber</title>
+    <title>Listar Contas a Pagar</title>
     <style>
     /* Estilo para a tabela */
     table {
@@ -110,7 +110,7 @@
         <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
     </div> 
     <div class="titulo-pagina">
-        <h2>Listar Contas a Receber</h2>
+        <h2>Listar Contas a Pagar</h2>
     </div>
     <div class="menu">
         <?php include PATH_VIEW . 'includes/menu.php' ?>
@@ -126,7 +126,7 @@
         
 
         <div class="checkbox-group">
-            <label for="dt_pagamento">Data de Recebimento:</label>
+            <label for="dt_pagamento">Data de Pagamento:</label>
             <input type="date" name="dt_pagamento" id="dt_pagamento" value="<?= $_GET['dt_pagamento'] ?? date('Y-m-d') ?>">
         </div>
 
@@ -141,7 +141,7 @@
         </div>
         
         <div class="checkbox-group">
-            <label for="form_pagamento">Forma de Recebimento:</label>
+            <label for="form_pagamento">Forma de Pagamento:</label>
             <input type="text" name="form_pagamento" id="form_pagamento" value="<?= $_GET['form_pagamento'] ?? '' ?>">
         </div>
         
@@ -172,23 +172,23 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=0; $i<$total_rec; $i++): ?>
+            <?php for($i=0; $i<$total_pag; $i++): ?>
             <tr>
                 <td class="icon">
                     <input type="checkbox">
-                    <a href="/tcc/contasReceber/ver?id=<?= $lista_rec[$i]->id ?>">
+                    <a href="/tcc/contasPagar/ver?id=<?= $lista_pag[$i]->id ?>">
                         <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
                     </a>
                 </td>
-                <td><?= $lista_rec[$i]->id ?></td>
-                <td><?= $lista_rec[$i]->descricao ?></td>
-                <td><?= (new DateTime($lista_rec[$i]->dt_pagamento))->format('d/m/Y') ?></td>
-                <td><?= (new DateTime($lista_rec[$i]->dt_vencimento))->format('d/m/Y') ?></td>
-                <td><?= 'R$ ' . number_format($lista_rec[$i]->valor, 2, ',', '.') ?></td>
+                <td><?= $lista_pag[$i]->id ?></td>
+                <td><?= $lista_pag[$i]->descricao ?></td>
+                <td><?= (new DateTime($lista_pag[$i]->dt_pagamento))->format('d/m/Y') ?></td>
+                <td><?= (new DateTime($lista_pag[$i]->dt_vencimento))->format('d/m/Y') ?></td>
+                <td><?= 'R$ ' . number_format($lista_pag[$i]->valor, 2, ',', '.') ?></td>
                 <td>
                     <span class="
                         <?php 
-                            switch ($lista_rec[$i]->stts) {
+                            switch ($lista_pag[$i]->stts) {
                                 case 'A': echo 'status-aberto'; break;
                                 case 'P': echo 'status-pago'; break;
                                 case 'C': echo 'status-cancelado'; break;
@@ -197,7 +197,7 @@
                         ?>
                     ">
                         <?php 
-                            switch ($lista_rec[$i]->stts) {
+                            switch ($lista_pag[$i]->stts) {
                                 case 'A': echo 'Aberto'; break;
                                 case 'P': echo 'Pago'; break;
                                 case 'C': echo 'Cancelado'; break;
@@ -212,12 +212,12 @@
     </table>
 
     <div class="checkbox-group" style="margin-left: 15px">
-        <label>Forma de Recebimento</label>
+        <label>Forma de pagamento</label>
         <input type="text">
     </div>
 
     <div class="checkbox-group">
-        <label>Data de Recebimento</label>
+        <label>Data de Pagamento</label>
         <input type="date">
     </div>
 

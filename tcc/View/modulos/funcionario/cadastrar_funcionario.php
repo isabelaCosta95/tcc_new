@@ -20,7 +20,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Funcionário</h1>
+            <h1>Funcionário</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/funcionario/salvar">
@@ -43,11 +43,21 @@
                                 <input name="rg" id="rg" value="<?= isset($dados_func) ? $dados_func->rg : "" ?>" type="text">
                             </label>
                             <label>Data de Nascimento
-                                <input name="dt_nasc" value="<?= isset($dados_func) ? $dados_func->dt_nasc : "" ?>"type="date" />
-                            </label>                            
-                            <label>Data de Vencimento da CNH
-                                <input name="dt_venc_cnh" id="dt_venc_cnh" value="<?= isset($dados_func) ? $dados_func->dt_venc_cnh : "" ?>" type="date" />
-                            </label>
+    <input 
+        name="dt_nascimento" 
+        value="<?= isset($dados_func) && !empty($dados_func->dt_nascimento) ? $dados_func->dt_nascimento : date('Y-m-d') ?>" 
+        type="date" 
+    />
+</label>
+<label>Data de Vencimento da CNH
+    <input 
+        name="dt_venc_cnh" 
+        id="dt_venc_cnh" 
+        value="<?= isset($dados_func) && !empty($dados_func->dt_venc_cnh) ? $dados_func->dt_venc_cnh : date('Y-m-d') ?>" 
+        type="date" 
+    />
+</label>
+
                         </div>
                     </div>
                 </div>
@@ -67,29 +77,29 @@
                             </label>
                         </div>
                         <div class="form-column">
-                            <label>Estado
-                                <select name="estado" class="form-control" required>
+                        <label>Estado
+                                <select name="id_estado" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_estado; $i++): 
                                         $selecionado = "";
                                         if(isset($dados_func->id))
-                                            $selecionado = ($lista_estado[$i]->codigo == $dados_func->estado) ? "selected" : "";
+                                            $selecionado = ($lista_estado[$i]->id == $dados_func->id_estado) ? "selected" : "";
                                     ?>
-                                        <option value="<?= $lista_estado[$i]->codigo ?>" <?= $selecionado ?>>
+                                        <option value="<?= $lista_estado[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_estado[$i]->descricao ?>
                                         </option>
                                     <?php endfor ?>
                                 </select>
                             </label>
                             <label>Cidade
-                                <select name="cidade" class="form-control">
+                                <select name="id_cidade" class="form-control">
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_cidade; $i++): 
                                         $selecionado = "";
                                         if(isset($dados_func->id))
-                                            $selecionado = ($lista_cidade[$i]->codigo == $dados_func->cidade) ? "selected" : "";
+                                            $selecionado = ($lista_cidade[$i]->id == $dados_func->id_cidade) ? "selected" : "";
                                     ?>
-                                        <option value="<?= $lista_cidade[$i]->codigo ?>" <?= $selecionado ?>>
+                                        <option value="<?= $lista_cidade[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_cidade[$i]->descricao ?>
                                         </option>
                                     <?php endfor ?>

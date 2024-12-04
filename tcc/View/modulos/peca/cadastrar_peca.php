@@ -41,7 +41,7 @@
                         </div>
                     </div>  
                     <label>Observação
-                        <input name="descricao" value="<?= isset($dados_peca) && isset($dados_peca->descricao) ? $dados_peca->descricao : "" ?>" type="text"/>
+                        <input name="observacao" value="<?= isset($dados_peca) && isset($dados_peca->observacao) ? $dados_peca->observacao : "" ?>" type="text"/>
                     </label>  
                 </div>
     

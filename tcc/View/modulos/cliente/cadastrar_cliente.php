@@ -20,7 +20,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Cliente</h1>
+            <h1>Cliente</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/cliente/salvar">
@@ -66,28 +66,28 @@
                         </div>
                         <div class="form-column">
                             <label>Estado
-                                <select name="estado" class="form-control" required>
+                                <select name="id_estado" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_estado; $i++): 
                                         $selecionado = "";
                                         if(isset($dados_cli->id))
-                                            $selecionado = ($lista_estado[$i]->codigo == $dados_cli->estado) ? "selected" : "";
+                                            $selecionado = ($lista_estado[$i]->id == $dados_cli->id_estado) ? "selected" : "";
                                     ?>
-                                        <option value="<?= $lista_estado[$i]->codigo ?>" <?= $selecionado ?>>
+                                        <option value="<?= $lista_estado[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_estado[$i]->descricao ?>
                                         </option>
                                     <?php endfor ?>
                                 </select>
                             </label>
                             <label>Cidade
-                                <select name="cidade" class="form-control" required>
+                                <select name="id_cidade" class="form-control" required>
                                     <option>Selecione</option>
                                     <?php for($i = 0; $i < $total_cidade; $i++): 
                                         $selecionado = "";
                                         if(isset($dados_cli->id))
-                                            $selecionado = ($lista_cidade[$i]->codigo == $dados_cli->cidade) ? "selected" : "";
+                                            $selecionado = ($lista_cidade[$i]->id == $dados_cli->id_cidade) ? "selected" : "";
                                     ?>
-                                        <option value="<?= $lista_cidade[$i]->codigo ?>" <?= $selecionado ?>>
+                                        <option value="<?= $lista_cidade[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_cidade[$i]->descricao ?>
                                         </option>
                                     <?php endfor ?>
@@ -125,13 +125,11 @@
                     </div>
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_cli)): ?>
                     <input type="hidden" name="id" value="<?= $dados_cli->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_cli) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

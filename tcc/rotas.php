@@ -147,7 +147,7 @@ try{
         break;
 
         // Rotas Produtos
-        case '/tcc/planoContas':
+        case '/tcc/produto':
             ProdutoController::index();
         break;
 

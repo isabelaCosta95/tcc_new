@@ -8,7 +8,7 @@ class SeguradoraController{
         $lista_seg = $seguradora_DAO->getAllRows();
         $total_seg = count($lista_seg);
             
-        include 'View/modulos/seguradora/lista_seguradora.php';
+        include 'View/modulos/seguradora/listar_seguradora.php';
     }
 
     public static function cadastrar(){
@@ -20,20 +20,11 @@ class SeguradoraController{
         
         $seguradora_DAO = new SeguradoraDAO();
         $dados_para_salvar = array(
-            'razao_social' => $_POST['razao_social'],
-            'nome_fantasia' => $_POST['nome_fantasia'],
-            'cnpj_cpf' => $_POST['cnpj_cpf'],
+            'nome' => $_POST['nome'],
+            'contato' => $_POST['contato'],
+            'cnpj' => $_POST['cnpj'],
             'inscricao_estadual' => $_POST['inscricao_estadual'],
-            'endereco' => $_POST['endereco'],
-            'bairro' => $_POST['bairro'],
-            'complemento' => $_POST['complemento'],
-            'numero' => $_POST['numero'],
-            'cidade' => $_POST['cidade'],
-            'estado' => $_POST['estado'],
-            'telefone1' => $_POST['telefone1'],
-            'telefone2' => $_POST['telefone2'],
-            'observacao' => $_POST['observacao'],
-            'ativo' => $_POST['ativo'],
+            'telefone' => $_POST['telefone'],
             'email' => $_POST['email']
         );
         

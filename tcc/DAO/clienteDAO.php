@@ -11,7 +11,7 @@ class ClienteDAO{
     public function insert($dados_cliente){
         
         $sql = "INSERT INTO cliente(razao_social, nome_fantasia, cnpj_cpf, inscricao_estadual, endereco, 
-        bairro, complemento, numero, cidade, estado, telefone1, telefone2, observacao, ativo, email)
+        bairro, complemento, numero, id_cidade, id_estado, telefone1, telefone2, observacao, ativo, email)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->conexao->prepare($sql);+
@@ -23,8 +23,8 @@ class ClienteDAO{
         $stmt->bindValue(6,$dados_cliente['bairro']);
         $stmt->bindValue(7,$dados_cliente['complemento']);
         $stmt->bindValue(8,$dados_cliente['numero']);
-        $stmt->bindValue(9,$dados_cliente['cidade']);
-        $stmt->bindValue(10,$dados_cliente['estado']);
+        $stmt->bindValue(9,$dados_cliente['id_cidade']);
+        $stmt->bindValue(10,$dados_cliente['id_estado']);
         $stmt->bindValue(11,$dados_cliente['telefone1']);
         $stmt->bindValue(12,$dados_cliente['telefone2']);
         $stmt->bindValue(13,$dados_cliente['observacao']);
@@ -34,7 +34,7 @@ class ClienteDAO{
     }
 
     public function update($dados_cliente) {
-        $sql = "UPDATE cliente SET razao_social = ?, nome_fantasia = ?, cnpj_cpf = ?, inscricao_estadual = ?, endereco = ?, bairro = ?, complemento = ?, numero = ?, cidade = ?, estado = ?, telefone1 = ?, telefone2 = ?, observacao = ?, ativo = ?, email = ? WHERE id = ?";
+        $sql = "UPDATE cliente SET razao_social = ?, nome_fantasia = ?, cnpj_cpf = ?, inscricao_estadual = ?, endereco = ?, bairro = ?, complemento = ?, numero = ?, id_cidade = ?, id_estado = ?, telefone1 = ?, telefone2 = ?, observacao = ?, ativo = ?, email = ? WHERE id = ?";
     
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $dados_cliente['razao_social']);
@@ -45,8 +45,8 @@ class ClienteDAO{
         $stmt->bindValue(6, $dados_cliente['bairro']);
         $stmt->bindValue(7, $dados_cliente['complemento']);
         $stmt->bindValue(8, $dados_cliente['numero']);
-        $stmt->bindValue(9, $dados_cliente['cidade']);
-        $stmt->bindValue(10, $dados_cliente['estado']);
+        $stmt->bindValue(9, $dados_cliente['id_cidade']);
+        $stmt->bindValue(10, $dados_cliente['id_estado']);
         $stmt->bindValue(11, $dados_cliente['telefone1']);
         $stmt->bindValue(12, $dados_cliente['telefone2']);
         $stmt->bindValue(13, $dados_cliente['observacao']);

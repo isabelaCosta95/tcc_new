@@ -165,14 +165,24 @@
                 </div>
                 
 
+                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
+                <?php if (isset($dados_prod)): ?>
+                    <input type="hidden" name="id" value="<?= $dados_prod->id ?>">
+                <?php endif; ?>
+
                 <div class="form-buttons">
-                    <button type="submit">Cadastrar</button>
+                    <!-- Botão dinâmico -->
+                    <button type="submit">
+                        <?= isset($dados_prod) ? 'Alterar' : 'Cadastrar' ?>
+                    </button>
+
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/produto'">Consultar</button>
+                    
                     <?php if (isset($dados_prod)): ?>
                         <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/produto/excluir?id=<?= $dados_prod->id ?>'">
                             Excluir
                         </button>
-                    <?php endif ?>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>

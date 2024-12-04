@@ -8,7 +8,7 @@ class CategoriaController{
         $lista_categ = $categoria_DAO->getAllRows();
         $total_categ = count($lista_categ);
             
-        include 'View/modulos/categoria/lista_categoria.php';
+        include 'View/modulos/categoria/listar_categoria.php';
     }
 
     public static function cadastrar(){

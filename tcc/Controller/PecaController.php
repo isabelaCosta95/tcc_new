@@ -8,7 +8,7 @@ class PecaController{
         $lista_peca = $peca_DAO->getAllRows();
         $total_peca = count($lista_peca);
             
-        include 'View/modulos/peca/lista_peca.php';
+        include 'View/modulos/peca/listar_peca.php';
     }
 
     public static function cadastrar(){
@@ -20,21 +20,9 @@ class PecaController{
         
         $peca_DAO = new PecaDAO();
         $dados_para_salvar = array(
-            'razao_social' => $_POST['razao_social'],
-            'nome_fantasia' => $_POST['nome_fantasia'],
-            'cnpj_cpf' => $_POST['cnpj_cpf'],
-            'inscricao_estadual' => $_POST['inscricao_estadual'],
-            'endereco' => $_POST['endereco'],
-            'bairro' => $_POST['bairro'],
-            'complemento' => $_POST['complemento'],
-            'numero' => $_POST['numero'],
-            'cidade' => $_POST['cidade'],
-            'estado' => $_POST['estado'],
-            'telefone1' => $_POST['telefone1'],
-            'telefone2' => $_POST['telefone2'],
-            'observacao' => $_POST['observacao'],
+            'descricao' => $_POST['descricao'],
             'ativo' => $_POST['ativo'],
-            'email' => $_POST['email']
+            'observacao' => $_POST['observacao']
         );
         
         if(isset($_POST['id'])){

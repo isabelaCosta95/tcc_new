@@ -10,23 +10,21 @@ class EstadoDAO{
 
     public function insert($dados_estado){
         
-        $sql = "INSERT INTO estado(sigla, descricao, codigo_uf)VALUES(?, ?, ?)";
+        $sql = "INSERT INTO estado(descricao, ativo)VALUES(?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_estado['sigla']);
-        $stmt->bindValue(2,$dados_estado['descricao']);
-        $stmt->bindValue(3,$dados_estado['codigo_uf']);
+        $stmt->bindValue(1,$dados_estado['descricao']);
+        $stmt->bindValue(2,$dados_estado['ativo']);
         $stmt->execute();
     }
 
     public function update($dados_estado){
-        $sql = "UPDATE estado set sigla = ?, descricao = ?, codigo_uf = ? where id = ?";
+        $sql = "UPDATE estado set descricao = ?, ativo = ? where id = ?";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_estado['sigla']);
-        $stmt->bindValue(2,$dados_estado['descricao']);
-        $stmt->bindValue(3,$dados_estado['codigo_uf']);
-        $stmt->bindValue(4,$dados_estado['id']);
+        $stmt->bindValue(1,$dados_estado['descricao']);
+        $stmt->bindValue(2,$dados_estado['ativo']);
+        $stmt->bindValue(3,$dados_estado['id']);
 
         $stmt->execute();
     }

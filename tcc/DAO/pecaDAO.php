@@ -10,49 +10,24 @@ class PecaDAO{
 
     public function insert($dados_peca){
         
-        $sql = "INSERT INTO peca(razao_social, nome_fantasia, cnpj_cpf, inscricao_estadual, endereco, 
-        bairro, complemento, numero, cidade, estado, telefone1, telefone2, observacao, ativo, email)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO peca(descricao, ativo, observacao)
+        VALUES(?, ?, ?)";
         
-        $stmt = $this->conexao->prepare($sql);+
-        $stmt->bindValue(1,$dados_peca['razao_social']);
-        $stmt->bindValue(2,$dados_peca['nome_fantasia']);
-        $stmt->bindValue(3,$dados_peca['cnpj_cpf']);
-        $stmt->bindValue(4,$dados_peca['inscricao_estadual']);
-        $stmt->bindValue(5,$dados_peca['endereco']);
-        $stmt->bindValue(6,$dados_peca['bairro']);
-        $stmt->bindValue(7,$dados_peca['complemento']);
-        $stmt->bindValue(8,$dados_peca['numero']);
-        $stmt->bindValue(9,$dados_peca['cidade']);
-        $stmt->bindValue(10,$dados_peca['estado']);
-        $stmt->bindValue(11,$dados_peca['telefone1']);
-        $stmt->bindValue(12,$dados_peca['telefone2']);
-        $stmt->bindValue(13,$dados_peca['observacao']);
-        $stmt->bindValue(14,$dados_peca['ativo']);
-        $stmt->bindValue(15,$dados_peca['email']);
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1,$dados_peca['descricao']);
+        $stmt->bindValue(2,$dados_peca['ativo']);
+        $stmt->bindValue(3,$dados_peca['observacao']);
         $stmt->execute();
     }
 
     public function update($dados_peca) {
-        $sql = "UPDATE peca SET razao_social = ?, nome_fantasia = ?, cnpj_cpf = ?, inscricao_estadual = ?, endereco = ?, bairro = ?, complemento = ?, numero = ?, cidade = ?, estado = ?, telefone1 = ?, telefone2 = ?, observacao = ?, ativo = ?, email = ? WHERE id = ?";
+        $sql = "UPDATE peca SET descricao = ?, ativo = ?, observacao = ? WHERE id = ?";
     
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $dados_peca['razao_social']);
-        $stmt->bindValue(2, $dados_peca['nome_fantasia']);
-        $stmt->bindValue(3, $dados_peca['cnpj_cpf']);
-        $stmt->bindValue(4, $dados_peca['inscricao_estadual']);
-        $stmt->bindValue(5, $dados_peca['endereco']);
-        $stmt->bindValue(6, $dados_peca['bairro']);
-        $stmt->bindValue(7, $dados_peca['complemento']);
-        $stmt->bindValue(8, $dados_peca['numero']);
-        $stmt->bindValue(9, $dados_peca['cidade']);
-        $stmt->bindValue(10, $dados_peca['estado']);
-        $stmt->bindValue(11, $dados_peca['telefone1']);
-        $stmt->bindValue(12, $dados_peca['telefone2']);
-        $stmt->bindValue(13, $dados_peca['observacao']);
-        $stmt->bindValue(14, $dados_peca['ativo']);
-        $stmt->bindValue(15, $dados_peca['email']);
-        $stmt->bindValue(16, $dados_peca['id']); 
+        $stmt->bindValue(1, $dados_peca['descricao']);
+        $stmt->bindValue(2, $dados_peca['ativo']);
+        $stmt->bindValue(3, $dados_peca['observacao']);
+        $stmt->bindValue(4, $dados_peca['id']); 
         $stmt->execute();
     }
     
@@ -70,13 +45,13 @@ class PecaDAO{
         $stmt = $this->conexao->prepare("SELECT * FROM peca");
         $stmt->execute();
 
-        $arr_car = array();
+        $arr_peca = array();
 
         while($f = $stmt->fetchObject()){
-            $arr_car[] = $f;
+            $arr_peca[] = $f;
         }
 
-        return $arr_car;
+        return $arr_peca;
     }
 
     public function getById($id){

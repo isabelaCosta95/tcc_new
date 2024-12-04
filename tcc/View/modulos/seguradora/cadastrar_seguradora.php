@@ -28,28 +28,28 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label>Nome
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="nome" value="<?= isset($dados_seg) && isset($dados_seg->nome) ? $dados_seg->nome : "" ?>" type="text"/>
                             </label>
 
                             <label>CNPJ
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="cnpj" value="<?= isset($dados_seg) && isset($dados_seg->cnpj) ? $dados_seg->cnpj : "" ?>" type="text"/>
                             </label>
 
                             <label>Email
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="email" value="<?= isset($dados_seg) && isset($dados_seg->email) ? $dados_seg->email : "" ?>" type="text"/>
                             </label>
                         </div>
                         <div class="form-column">
                             <label>Inscrição Estadual
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="inscricao_estadual" value="<?= isset($dados_seg) && isset($dados_seg->inscricao_estadual) ? $dados_seg->inscricao_estadual : "" ?>" type="text"/>
                             </label>
 
                             <label>Contato
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="contato" value="<?= isset($dados_seg) && isset($dados_seg->contato) ? $dados_seg->contato : "" ?>" type="text"/>
                             </label>
 
                             <label>Telefone
-                                <input name="descricao" value="<?= isset($dados_seg) && isset($dados_seg->descricao) ? $dados_seg->descricao : "" ?>" type="text"/>
+                                <input name="telefone" value="<?= isset($dados_seg) && isset($dados_seg->telefone) ? $dados_seg->telefone : "" ?>" type="text"/>
                             </label>
                         </div>
                     </div>    

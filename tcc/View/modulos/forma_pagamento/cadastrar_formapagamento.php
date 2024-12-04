@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label>Descrição
-                                <input name="descricao" value="<?= isset($dados_fpag) && isset($dados_fpag->descricao) ? $dados_fpag->descricao : "" ?>" type="text"/>
+                                <input name="descricao" value="<?= isset($dados_fpag) && isset($dados_fpag->descricao) ? $dados_fpag->descricao : "" ?>" type="text" autocomplete="off"/>
                             </label>
                         </div>
                         <div class="form-column">
@@ -42,7 +42,6 @@
                     </div>    
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_fpag)): ?>
                     <input type="hidden" name="id" value="<?= $dados_fpag->id ?>">
                 <?php endif; ?>

@@ -10,20 +10,20 @@ class CidadeDAO{
 
     public function insert($dados_cidade){
         
-        $sql = "INSERT INTO cidade(estado, descricao, ibge)VALUES(?, ?, ?)";
+        $sql = "INSERT INTO cidade(id_estado, descricao, ibge)VALUES(?, ?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_cidade['estado']);
+        $stmt->bindValue(1,$dados_cidade['id_estado']);
         $stmt->bindValue(2,$dados_cidade['descricao']);
         $stmt->bindValue(3,$dados_cidade['ibge']);
         $stmt->execute();
     }
 
     public function update($dados_cidade){
-        $sql = "UPDATE cidade set estado = ?, descricao = ?, ibge = ? where id = ?";
+        $sql = "UPDATE cidade set id_estado = ?, descricao = ?, ibge = ? where id = ?";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_cidade['estado']);
+        $stmt->bindValue(1,$dados_cidade['id_estado']);
         $stmt->bindValue(2,$dados_cidade['descricao']);
         $stmt->bindValue(3,$dados_cidade['ibge']);
         $stmt->bindValue(4,$dados_cidade['id']);
@@ -44,14 +44,15 @@ class CidadeDAO{
         $stmt = $this->conexao->prepare("SELECT * FROM cidade");
         $stmt->execute();
 
-        $arr_cidade = array();
+        $arr_cid = array();
 
         while($f = $stmt->fetchObject()){
-            $arr_cidade[] = $f;
+            $arr_cid[] = $f;
         }
 
-        return $arr_cidade;
+        return $arr_cid;
     }
+
 
     public function getById($id){
         $stmt = $this->conexao->prepare("SELECT * FROM cidade WHERE id=?");

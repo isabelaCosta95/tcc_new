@@ -22,44 +22,44 @@
             <h1>Movimentação de Paletes</h1>
         </div>
         <div class="formulario">
-            <form method="post" action="/tcc/categoria/salvar">
+            <form method="post" action="/tcc/palete/salvar">
                 <div class="form-section">
                     
                     <div class="form-row">
                         <div class="form-column">
                             <label>Produto
-                                <select name="ativo" class="form-control">
-                                    <option value="S" <?= isset($dados_categ) && $dados_categ->ativo == 'S' ? 'selected' : '' ?>>Palete</option>
+                                <select name="produto" class="form-control">
+                                    <option >Palete</option>
                                 </select>
                             </label>
 
                             <label>Quantidade
-                                <input name="descricao" value="<?= isset($dados_categ) && isset($dados_categ->descricao) ? $dados_categ->descricao : "" ?>" type="text"/>
+                                <input name="quantidade" value="<?= isset($dados_pal) && isset($dados_pal->quantidade) ? $dados_pal->quantidade : "" ?>" type="text"/>
                             </label>
                         </div>
                         <div class="form-column">
                             <label>Tipo de Movimentação
-                                <select name="ativo" class="form-control">
-                                    <option value="S" <?= isset($dados_categ) && $dados_categ->ativo == 'S' ? 'selected' : '' ?>>Entrada</option>
-                                    <option value="N" <?= isset($dados_categ) && $dados_categ->ativo == 'N' ? 'selected' : '' ?>>Saída</option>
+                                <select name="tipo" class="form-control">
+                                    <option value="E" <?= isset($dados_pal) && $dados_pal->tipo == 'E' ? 'selected' : '' ?>>Entrada</option>
+                                    <option value="S" <?= isset($dados_pal) && $dados_pal->tipo == 'S' ? 'selected' : '' ?>>Saída</option>
                                 </select>
                             </label>
 
                             <label>Justificativa
-                                <input name="descricao" value="<?= isset($dados_categ) && isset($dados_categ->descricao) ? $dados_categ->descricao : "" ?>" type="text"/>
+                                <input name="justificativa" value="<?= isset($dados_pal) && isset($dados_pal->justificativa) ? $dados_pal->justificativa : "" ?>" type="text"/>
                             </label>
                         </div>
                     </div>   
                 </div>
 
                 <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
-                <?php if (isset($dados_categ)): ?>
-                    <input type="hidden" name="id" value="<?= $dados_categ->id ?>">
+                <?php if (isset($dados_pal)): ?>
+                    <input type="hidden" name="id" value="<?= $dados_pal->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
                     <button type="submit">Adicionar</button>
-                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/categoria'">Consultar Movimentações</button>
+                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/palete'">Consultar Movimentações</button>
                 </div>
             </form>
 

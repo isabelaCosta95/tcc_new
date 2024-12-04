@@ -10,23 +10,23 @@ class FuncionarioDAO{
 
     public function insert($dados_funcionario){
         
-        $sql = "INSERT INTO funcionario(nome_completo, cpf, rg, dt_nasc, cnh, dt_venc_cnh, endereco, 
-        bairro, complemento, numero, cidade, estado, telefone, chave_pix, observacao, ativo, email)
+        $sql = "INSERT INTO funcionario(nome_completo, cpf, rg, dt_nascimento, cnh, dt_venc_cnh, endereco, 
+        bairro, complemento, numero, id_cidade, id_estado, telefone, chave_pix, observacao, ativo, email)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1,$dados_funcionario['nome_completo']);
         $stmt->bindValue(2,$dados_funcionario['cpf']);
         $stmt->bindValue(3,$dados_funcionario['rg']);
-        $stmt->bindValue(4,$dados_funcionario['dt_nasc']);
+        $stmt->bindValue(4,$dados_funcionario['dt_nascimento']);
         $stmt->bindValue(5,$dados_funcionario['cnh']);
         $stmt->bindValue(6,$dados_funcionario['dt_venc_cnh']);
         $stmt->bindValue(7,$dados_funcionario['endereco']);
         $stmt->bindValue(8,$dados_funcionario['bairro']);
         $stmt->bindValue(9,$dados_funcionario['complemento']);
         $stmt->bindValue(10,$dados_funcionario['numero']);
-        $stmt->bindValue(11,$dados_funcionario['cidade']);
-        $stmt->bindValue(12,$dados_funcionario['estado']);
+        $stmt->bindValue(11,$dados_funcionario['id_cidade']);
+        $stmt->bindValue(12,$dados_funcionario['id_estado']);
         $stmt->bindValue(13,$dados_funcionario['telefone']);
         $stmt->bindValue(14,$dados_funcionario['chave_pix']);
         $stmt->bindValue(15,$dados_funcionario['observacao']);
@@ -36,23 +36,23 @@ class FuncionarioDAO{
     }
 
     public function update($dados_funcionario) {
-        $sql = "UPDATE funcionario SET nome_completo = ?, cpf = ?, rg = ?, dt_nasc = ?, cnh = ?, 
-        dt_venc_cnh = ?, endereco = ?, bairro = ?, complemento = ?, numero = ?, cidade = ?, estado = ?, 
+        $sql = "UPDATE funcionario SET nome_completo = ?, cpf = ?, rg = ?, dt_nascimento = ?, cnh = ?, 
+        dt_venc_cnh = ?, endereco = ?, bairro = ?, complemento = ?, numero = ?, id_cidade = ?, id_estado = ?, 
         telefone = ?, chave_pix = ?, observacao = ?, ativo = ?, email = ? WHERE id = ?";
         
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $dados_funcionario['nome_completo']);
         $stmt->bindValue(2, $dados_funcionario['cpf']);
         $stmt->bindValue(3, $dados_funcionario['rg']);
-        $stmt->bindValue(4, $dados_funcionario['dt_nasc']);
+        $stmt->bindValue(4, $dados_funcionario['dt_nascimento']);
         $stmt->bindValue(5, $dados_funcionario['cnh']);
         $stmt->bindValue(6, $dados_funcionario['dt_venc_cnh']);
         $stmt->bindValue(7, $dados_funcionario['endereco']);
         $stmt->bindValue(8, $dados_funcionario['bairro']);
         $stmt->bindValue(9, $dados_funcionario['complemento']);
         $stmt->bindValue(10, $dados_funcionario['numero']);
-        $stmt->bindValue(11, $dados_funcionario['cidade']);
-        $stmt->bindValue(12, $dados_funcionario['estado']);
+        $stmt->bindValue(11, $dados_funcionario['id_cidade']);
+        $stmt->bindValue(12, $dados_funcionario['id_estado']);
         $stmt->bindValue(13, $dados_funcionario['telefone']);
         $stmt->bindValue(14, $dados_funcionario['chave_pix']);
         $stmt->bindValue(15, $dados_funcionario['observacao']);

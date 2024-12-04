@@ -19,56 +19,55 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Cidade</h1>
+            <h1>Cidade</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/cidade/salvar">
                 <div class="form-section">
                     <h2>Dados</h2>
-                    <label>Descrição
-                                <input name="descricao" value="<?= isset($dados_cid) && isset($dados_cid->descricao) ? $dados_cid->descricao : "" ?>" type="text"/>
+                        <label>Descrição
+                                <input name="descricao" value="<?= isset($dados_cidade) && isset($dados_cidade->descricao) ? $dados_cidade->descricao : "" ?>" type="text"/>
                             </label>
                     <div class="form-row">
                         <div class="form-column">
-                            <label>Estado
-                                <select name="estado" class="form-control" required>
+                        <label for="id_estado ">Estado
+                                <select id="id_estado" name="id_estado" class="form-control" required>
                                     <option>Selecione</option>
-                                    <?php for($i = 0; $i < $total_estado; $i++): 
+                                    <?php for ($i = 0; $i < $total_estado; $i++): 
                                         $selecionado = "";
-                                        if(isset($dados_cid->id))
-                                            $selecionado = ($lista_estado[$i]->codigo == $dados_cid->estado) ? "selected" : "";
+                                        if (isset($dados_cidade->id)) 
+                                            $selecionado = ($lista_estado[$i]->id == $dados_cidade->id_estado) ? "selected" : "";
                                     ?>
-                                        <option value="<?= $lista_estado[$i]->codigo ?>" <?= $selecionado ?>>
+                                        <option value="<?= $lista_estado[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_estado[$i]->descricao ?>
                                         </option>
                                     <?php endfor ?>
                                 </select>
                             </label>
-
                         </div>
                         <div class="form-column">
-                            <label>Código IBGE
-                                <input name="ibge" value="<?= isset($dados_cid) && isset($dados_cid->ibge) ? $dados_cid->ibge : "" ?>" type="text"/>
+                        <label>Código ibge
+                                <input name="ibge" value="<?= isset($dados_cidade) && isset($dados_cidade->ibge) ? $dados_cidade->ibge : "" ?>" type="text"/>
                             </label>
                         </div>
                     </div>    
                 </div>
 
                 <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
-                <?php if (isset($dados_cid)): ?>
-                    <input type="hidden" name="id" value="<?= $dados_cid->id ?>">
+                <?php if (isset($dados_cidade)): ?>
+                    <input type="hidden" name="id" value="<?= $dados_cidade->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
                     <!-- Botão dinâmico -->
                     <button type="submit">
-                        <?= isset($dados_cid) ? 'Alterar' : 'Cadastrar' ?>
+                        <?= isset($dados_cidade) ? 'Alterar' : 'Cadastrar' ?>
                     </button>
 
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/cidade'">Consultar</button>
                     
-                    <?php if (isset($dados_cid)): ?>
-                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/cidade/excluir?id=<?= $dados_cid->id ?>'">
+                    <?php if (isset($dados_cidade)): ?>
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/cidade/excluir?id=<?= $dados_cidade->id ?>'">
                             Excluir
                         </button>
                     <?php endif; ?>

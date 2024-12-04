@@ -12,6 +12,10 @@ class CidadeController{
     }
 
     public static function cadastrar(){
+        $estado_DAO = new EstadoDAO();
+        $lista_estado = $estado_DAO->getAllRows();
+        $total_estado = count($lista_estado);
+        
         include 'View/modulos/cidade/cadastrar_cidade.php';
     }
 
@@ -20,7 +24,7 @@ class CidadeController{
         $cidade_DAO = new CidadeDAO();
         $dados_para_salvar = array(
             'descricao' => $_POST['descricao'],
-            'estado' => $_POST['estado'],
+            'id_estado' => $_POST['id_estado'],
             'ibge' => $_POST['ibge']
 
         );
@@ -43,6 +47,10 @@ class CidadeController{
 
     public static function ver(){
         if(isset($_GET['id'])){
+            $estado_DAO = new EstadoDAO();
+            $lista_estado = $estado_DAO->getAllRows();
+            $total_estado = count($lista_estado);
+
             $cidade_DAO = new CidadeDAO();
             $dados_cidade = $cidade_DAO->getById($_GET['id']);
         

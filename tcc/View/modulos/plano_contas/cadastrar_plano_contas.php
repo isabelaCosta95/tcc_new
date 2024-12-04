@@ -28,13 +28,13 @@
                     <div class="form-row">
                         <div class="form-column">
                             <label>Descrição
-                                <input name="descricao" value="<?= isset($dados_categ) && isset($dados_categ->descricao) ? $dados_categ->descricao : "" ?>" type="text"/>
+                                <input name="descricao" value="<?= isset($dados_plac) && isset($dados_plac->descricao) ? $dados_plac->descricao : "" ?>" type="text"/>
                             </label>
 
                             <label>Ativo
                                 <select name="ativo" class="form-control">
-                                    <option value="S" <?= isset($dados_cli) && $dados_cli->ativo == 'S' ? 'selected' : '' ?>>Sim</option>
-                                    <option value="N" <?= isset($dados_cli) && $dados_cli->ativo == 'N' ? 'selected' : '' ?>>Não</option>
+                                    <option value="S" <?= isset($dados_plac) && $dados_plac->ativo == 'S' ? 'selected' : '' ?>>Sim</option>
+                                    <option value="N" <?= isset($dados_plac) && $dados_plac->ativo == 'N' ? 'selected' : '' ?>>Não</option>
                                 </select>
                             </label>
 
@@ -42,42 +42,42 @@
                         </div>
                         <div class="form-column">
                             <label>Natureza
-                                <select name="ativo" class="form-control">
-                                    <option value="S" <?= isset($dados_cli) && $dados_cli->ativo == 'S' ? 'selected' : '' ?>>Credora</option>
-                                    <option value="N" <?= isset($dados_cli) && $dados_cli->ativo == 'N' ? 'selected' : '' ?>>Devedona</option>
+                                <select name="natureza" class="form-control">
+                                    <option value="C" <?= isset($dados_plac) && $dados_plac->natureza == 'C' ? 'selected' : '' ?>>Credora</option>
+                                    <option value="D" <?= isset($dados_plac) && $dados_plac->natureza == 'D' ? 'selected' : '' ?>>Devedora</option>
                                 </select>
                             </label>
                             <label>Tipo de Contas
-                                <select name="ativo" class="form-control">
-                                    <option value="S" <?= isset($dados_cli) && $dados_cli->ativo == 'S' ? 'selected' : '' ?>>Ativo</option>
-                                    <option value="N" <?= isset($dados_cli) && $dados_cli->ativo == 'N' ? 'selected' : '' ?>>Passivo</option>
-                                    <option value="S" <?= isset($dados_cli) && $dados_cli->ativo == 'S' ? 'selected' : '' ?>>Receita</option>
-                                    <option value="N" <?= isset($dados_cli) && $dados_cli->ativo == 'N' ? 'selected' : '' ?>>Despesa</option>
-                                    <option value="N" <?= isset($dados_cli) && $dados_cli->ativo == 'N' ? 'selected' : '' ?>>Patrimônio Líquido</option>
+                                <select name="tipo" class="form-control">
+                                    <option value="A" <?= isset($dados_plac) && $dados_plac->tipo == 'A' ? 'selected' : '' ?>>Ativo</option>
+                                    <option value="PS" <?= isset($dados_plac) && $dados_plac->tipo == 'PS' ? 'selected' : '' ?>>Passivo</option>
+                                    <option value="R" <?= isset($dados_plac) && $dados_plac->tipo == 'R' ? 'selected' : '' ?>>Receita</option>
+                                    <option value="D" <?= isset($dados_plac) && $dados_plac->tipo == 'D' ? 'selected' : '' ?>>Despesa</option>
+                                    <option value="PT" <?= isset($dados_plac) && $dados_plac->tipo == 'PT' ? 'selected' : '' ?>>Patrimônio Líquido</option>
                                 </select>
                             </label>
                         </div>
                     </div>  
                     <label>Observação
-                                <input name="descricao" value="<?= isset($dados_categ) && isset($dados_categ->descricao) ? $dados_categ->descricao : "" ?>" type="text"/>
+                                <input name="observacao" value="<?= isset($dados_plac) && isset($dados_plac->observacao) ? $dados_plac->observacao : "" ?>" type="text"/>
                             </label>  
                 </div>
     
                 <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
-                <?php if (isset($dados_categ)): ?>
-                    <input type="hidden" name="id" value="<?= $dados_categ->id ?>">
+                <?php if (isset($dados_plac)): ?>
+                    <input type="hidden" name="id" value="<?= $dados_plac->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
                     <!-- Botão dinâmico -->
                     <button type="submit">
-                        <?= isset($dados_categ) ? 'Alterar' : 'Cadastrar' ?>
+                        <?= isset($dados_plac) ? 'Alterar' : 'Cadastrar' ?>
                     </button>
 
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/planoContas'">Consultar</button>
                     
-                    <?php if (isset($dados_categ)): ?>
-                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/planoContas/excluir?id=<?= $dados_categ->id ?>'">
+                    <?php if (isset($dados_plac)): ?>
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/planoContas/excluir?id=<?= $dados_plac->id ?>'">
                             Excluir
                         </button>
                     <?php endif; ?>

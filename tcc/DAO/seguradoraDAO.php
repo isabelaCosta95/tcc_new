@@ -10,21 +10,29 @@ class SeguradoraDAO{
 
     public function insert($dados_seguradora){
         
-        $sql = "INSERT INTO seguradora(descricao, ativo)VALUES(?, ?)";
+        $sql = "INSERT INTO seguradora(nome, cnpj, email, inscricao_estadual, contato, telefone)VALUES(?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_seguradora['descricao']);
-        $stmt->bindValue(2,$dados_seguradora['ativo']);
+        $stmt->bindValue(1,$dados_seguradora['nome']);
+        $stmt->bindValue(2,$dados_seguradora['cnpj']);
+        $stmt->bindValue(3,$dados_seguradora['email']);
+        $stmt->bindValue(4,$dados_seguradora['inscricao_estadual']);
+        $stmt->bindValue(5,$dados_seguradora['contato']);
+        $stmt->bindValue(6,$dados_seguradora['telefone']);
         $stmt->execute();
     }
 
     public function update($dados_seguradora){
-        $sql = "UPDATE seguradora set descricao = ?, ativo = ? where id = ?";
+        $sql = "UPDATE seguradora set nome = ?, cnpj = ?, email = ?, inscricao_estadual = ?, contato = ?, telefone = ? where id = ?";
         
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1,$dados_seguradora['descricao']);
-        $stmt->bindValue(2,$dados_seguradora['ativo']);
-        $stmt->bindValue(3,$dados_seguradora['id']);
+        $stmt->bindValue(1,$dados_seguradora['nome']);
+        $stmt->bindValue(2,$dados_seguradora['cnpj']);
+        $stmt->bindValue(3,$dados_seguradora['email']);
+        $stmt->bindValue(4,$dados_seguradora['inscricao_estadual']);
+        $stmt->bindValue(5,$dados_seguradora['contato']);
+        $stmt->bindValue(6,$dados_seguradora['telefone']);
+        $stmt->bindValue(7,$dados_seguradora['id']);
 
         $stmt->execute();
     }

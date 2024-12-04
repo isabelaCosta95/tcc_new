@@ -9,7 +9,7 @@ class ProdutoController{
     
         $total_prod = count($lista_prod);
             
-        include 'View/modulos/produto/lista_produto.php';
+        include 'View/modulos/produto/listar_produto.php';
     }
 
     public static function cadastrar(){
@@ -50,7 +50,7 @@ class ProdutoController{
             'aliquota_cofins' => $_POST['aliquota_cofins'],
             'aliquota_icms' => $_POST['aliquota_icms'],
             'ipi' => $_POST['ipi'],
-            'aliquota_recucao_bc' => $_POST['aliquota_recucao_bc'],
+            'aliquota_reducao_bc' => $_POST['aliquota_reducao_bc'],
             'origem_icms' => $_POST['origem_icms'],
             'cest' => $_POST['cest'],
             'gtin' => $_POST['gtin'],
@@ -86,6 +86,8 @@ class ProdutoController{
             $cliente_DAO = new ClienteDAO();
             $lista_cli = $cliente_DAO->getAllRows();
             $total_cli = count($lista_cli);
+
+            $unidade_venda = $produto_DAO->getUnidadeVenda();
             
             include 'View/modulos/produto/cadastrar_produto.php';
         
