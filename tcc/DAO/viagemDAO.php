@@ -105,7 +105,4 @@ class ViagemDAO
         }
     }
 
-    public function cadastraConta(){
-
-    }
 }

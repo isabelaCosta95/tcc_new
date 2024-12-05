@@ -67,8 +67,34 @@ class ViagemController
                     'id_viagem' => $viagem_id,
                 ];
                 $parada_DAO->insert($dados_parada);
-            }
+
+                //Gerar contas a Pagar
+                $pagar_DAO = new contaspagarDAO();
+
+                $dados_para_salvar_pg = array(
+                    'descricao' => 'Viagem: '. $dados_para_salvar['id'] . ' - ' . $paradas[$i],
+                    'dt_vencimento' => $_POST['data_inicio'],
+                    'valor' => $valores[$i], 
+                    'stts' => 'A',
+                    'dt_pagamento' => NULL,
+                    'form_pagamento' => NULL,
+                    'plano_contas' => NULL, 
+                    'observacao' => NULL,
+                    'qnt_parcelas' => 1,
+                    'cliente' => $_POST['id_funcionario']
+                );
+
+                $pagar_id = $pagar_DAO->insert($dados_para_salvar_pg);
+
+                }
         }
+
+        
+
+        
+
+
+
 
         header('Location: /tcc/viagem');
         exit();
