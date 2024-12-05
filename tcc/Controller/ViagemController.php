@@ -1,53 +1,81 @@
 <?php
 
-class ViagemController {
+class ViagemController
+{
 
-    // Listar todas as viagens
-    public static function index() {
+    public static function index()
+    {
         $viagem_DAO = new ViagemDAO();
         $lista_viagem = $viagem_DAO->getAllRows();
         $total_viagem = count($lista_viagem);
 
-        // Passar as variáveis para a view
         include 'View/modulos/viagem/listar_viagem.php';
     }
 
-    // Mostrar o formulário de cadastro
-    public static function cadastrar() {
+    public static function cadastrar()
+    {
+
+        $veiculo_DAO = new VeiculoDAO();
+        $lista_veiculo = $veiculo_DAO->getAllRows();
+        $total_veiculo = count($lista_veiculo);
+
+        $funcionario_DAO = new FuncionarioDAO();
+        $lista_func = $funcionario_DAO->getAllRows();
+        $total_func = count($lista_func);
+
+        $carga_DAO = new CargaDAO();
+        $lista_car = $carga_DAO->getAllRows();
+        $total_car = count($lista_car);
+
         include 'View/modulos/viagem/cadastrar_viagem.php';
     }
 
-    // Salvar ou atualizar uma viagem
-    public static function salvar() {
+    public static function salvar()
+    {
         $viagem_DAO = new ViagemDAO();
 
-        // Validação básica dos dados recebidos
         $dados_para_salvar = [
             'id' => $_POST['id'] ?? null,
-            'dt_inicio' => $_POST['dt_inicio'] ?? null,
-            'endereco_saida' => $_POST['endereco_saida'] ?? null,
-            'veiculo' => $_POST['veiculo'] ?? null,
-            'motorista' => $_POST['motorista'] ?? null,
-            'dt_fim' => $_POST['dt_fim'] ?? null,
+            'data_inicio' => $_POST['data_inicio'] ?? null,
+            'endereco_partida' => $_POST['endereco_partida'] ?? null,
+            'id_veiculo' => $_POST['id_veiculo'] ?? null,
+            'id_funcionario' => $_POST['id_funcionario'] ?? null,
+            'id_carga' => $_POST['id_carga'] ?? null,
+            'data_fim' => $_POST['data_fim'] ?? null,
             'endereco_chegada' => $_POST['endereco_chegada'] ?? null,
             'observacao' => $_POST['observacao'] ?? null,
         ];
 
-        // Remover valores nulos para evitar problemas com o banco
-        $dados_para_salvar = array_filter($dados_para_salvar, fn($value) => $value !== null);
-
         if (isset($_POST['id']) && !empty($_POST['id'])) {
             $viagem_DAO->update($dados_para_salvar);
+            $viagem_id = $dados_para_salvar['id'];
         } else {
-            $viagem_DAO->insert($dados_para_salvar);
+            $viagem_id = $viagem_DAO->insert($dados_para_salvar);
+        }
+
+        $paradas = $_POST['parada'] ?? [];
+        $locais = $_POST['local'] ?? [];
+        $valores = $_POST['valor_unitario'] ?? [];
+
+        if (!empty($paradas)) {
+            $parada_DAO = new ParadaDAO();
+            for ($i = 0; $i < count($paradas); $i++) {
+                $dados_parada = [
+                    'parada' => $paradas[$i],
+                    'local' => $locais[$i],
+                    'valor_unitario' => $valores[$i],
+                    'id_viagem' => $viagem_id,
+                ];
+                $parada_DAO->insert($dados_parada);
+            }
         }
 
         header('Location: /tcc/viagem');
         exit();
     }
 
-    // Excluir uma viagem
-    public static function excluir() {
+    public static function excluir()
+    {
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $viagem_DAO = new ViagemDAO();
             $viagem_DAO->delete((int)$_GET['id']);
@@ -57,13 +85,25 @@ class ViagemController {
         exit();
     }
 
-    // Ver detalhes de uma viagem
-    public static function ver() {
+    public static function ver()
+    {
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+
+            $veiculo_DAO = new VeiculoDAO();
+            $lista_veiculo = $veiculo_DAO->getAllRows();
+            $total_veiculo = count($lista_veiculo);
+
+            $funcionario_DAO = new FuncionarioDAO();
+            $lista_func = $funcionario_DAO->getAllRows();
+            $total_func = count($lista_func);
+
+            $carga_DAO = new CargaDAO();
+            $lista_carga = $carga_DAO->getAllRows();
+            $total_carga = count($lista_carga);
+
             $viagem_DAO = new ViagemDAO();
             $dados_viagem = $viagem_DAO->getById((int)$_GET['id']);
 
-            // Passar os dados para o formulário de edição
             include 'View/modulos/viagem/cadastrar_viagem.php';
         } else {
             header("Location: /tcc/viagem");
