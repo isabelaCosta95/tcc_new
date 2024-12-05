@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Contas a Pagar</title>
+    <title>Empresa</title>
     <style>
-    /* Estilo para a tabela */
     table {
         width: 50%;
         border-collapse: collapse;
@@ -42,7 +41,6 @@
         text-decoration: underline;
     }
 
-    /* Estilos específicos para status com bordas arredondadas */
     .status-aberto, .status-pago, .status-cancelado {
         color: #fff;
         padding: 5px 10px;
@@ -110,7 +108,7 @@
         <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
     </div> 
     <div class="titulo-pagina">
-        <h2>Listar Contas a Pagar</h2>
+        <h2>Listar Empresa</h2>
     </div>
     <div class="menu">
         <?php include PATH_VIEW . 'includes/menu.php' ?>
@@ -118,30 +116,29 @@
     <main>
 
     <?php if(isset($_GET['excluido'])): ?>
-        <p>Categoria Excluída</p>
+        <p>Empresa Excluída</p>
     <?php endif ?>
 
-    <!-- Resultados -->
     <table>
         <thead>
             <tr>
-                <th>Ações</th>
+                <th></th>
                 <th>Código</th>
-                <th>Descrição</th>
-                <th>Ativo</th>
+                <th>Nome Fantasia</th>
+                <th>CNPJ</th>
             </tr>
         </thead>
         <tbody>
-            <?php for($i=0; $i<$total_categ; $i++): ?>
+            <?php for($i=0; $i<$total_emp; $i++): ?>
             <tr>
                 <td class="icon">
-                    <a href="/tcc/categoria/ver?id=<?= $lista_categ[$i]->id ?>">
+                    <a href="/tcc/empresa/ver?id=<?= $lista_emp[$i]->id ?>">
                         <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
                     </a>
                 </td>
-                <td><?= $lista_categ[$i]->id ?></td>
-                <td><?= $lista_categ[$i]->descricao ?></td>
-                <td>Sim</td>
+                <td><?= $lista_emp[$i]->id ?></td>
+                <td><?= $lista_emp[$i]->nome_fantasia ?></td>
+                <td><?= $lista_emp[$i]->cnpj ?></td>
             </tr>
             <?php endfor; ?>
         </tbody>

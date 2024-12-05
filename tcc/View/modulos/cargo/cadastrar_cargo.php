@@ -39,13 +39,11 @@
                     </div>    
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_car)): ?>
                     <input type="hidden" name="id" value="<?= $dados_car->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_car) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

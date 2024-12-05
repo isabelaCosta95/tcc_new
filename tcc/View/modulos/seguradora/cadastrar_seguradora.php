@@ -55,13 +55,12 @@
                     </div>    
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_seg)): ?>
                     <input type="hidden" name="id" value="<?= $dados_seg->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
+
                     <button type="submit">
                         <?= isset($dados_seg) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

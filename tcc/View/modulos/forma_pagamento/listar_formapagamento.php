@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Formas de Pagamento</title>
     <style>
-    /* Estilo para a tabela */
     table {
         width: 50%;
         border-collapse: collapse;
@@ -42,7 +41,6 @@
         text-decoration: underline;
     }
 
-    /* Estilos específicos para status com bordas arredondadas */
     .status-aberto, .status-pago, .status-cancelado {
         color: #fff;
         padding: 5px 10px;
@@ -105,14 +103,14 @@
 </style>
 <script>
     function abrirJanela() {
-        const largura = 800; // Define a largura da nova janela
-        const altura = 600; // Define a altura da nova janela
-        const left = (screen.width - largura) / 2; // Centraliza horizontalmente
-        const top = (screen.height - altura) / 2; // Centraliza verticalmente
+        const largura = 800;
+        const altura = 600;
+        const left = (screen.width - largura) / 2;
+        const top = (screen.height - altura) / 2;
 
         window.open(
-            window.location.href, // URL da página atual
-            '_blank', // Abre em uma nova aba ou janela
+            window.location.href,
+            '_blank',
             `width=${largura},height=${altura},top=${top},left=${left},resizable=yes,scrollbars=yes`
         );
     }
@@ -134,7 +132,7 @@
     <?php endif ?>
     <button onclick="abrirJanela()">Abrir em Nova Janela</button>
 
-    <!-- Resultados -->
+    
     <table>
         <thead>
             <tr>

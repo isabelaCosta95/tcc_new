@@ -3,11 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Contas a Pagar</title>
+    <title>Listar Categorias</title>
     <style>
+    /* Estilos gerais */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    /* Cabeçalho fixo no topo */
+    .header {
+        background-color: #343a40;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .header button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .header button:hover {
+        background-color: #c82333;
+    }
+
+    /* Rodapé fixo no fim */
+    .footer {
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    /* Layout principal */
+    .container {
+        display: flex;
+        flex: 1;
+        margin-top: 50px; /* Altura do cabeçalho */
+        margin-bottom: 40px; /* Altura do rodapé */
+    }
+
+    .menu {
+        width: 20%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        box-sizing: border-box;
+        border-right: 1px solid #ddd; /* Apenas uma linha separando */
+    }
+
+    main {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
     /* Estilo para a tabela */
     table {
-        width: 50%;
+        width: 100%; /* Ajusta largura total */
         border-collapse: collapse;
         font-family: Arial, sans-serif;
     }
@@ -42,111 +119,67 @@
         text-decoration: underline;
     }
 
-    /* Estilos específicos para status com bordas arredondadas */
-    .status-aberto, .status-pago, .status-cancelado {
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 15px;
-        text-align: center;
-        width: 100px;
-        display: inline-block;
+    /* Ícone do lápis */
+    .icon img {
+        width: 16px; /* Corrigido tamanho do lápis */
+        height: 16px;
     }
-
-    .status-aberto {
-        background-color: #ffeb3b; /* Amarelo */
-    }
-
-    .status-pago {
-        background-color: #4caf50; /* Verde */
-    }
-
-    .status-cancelado {
-        background-color: #f44336; /* Vermelho */
-    }
-    .icon{
-        width: 20px;
-        height: 20px;
-        text-align: center;
-    }
-
-    button {
-        margin-top: 15px;
-        background-color: #28a745; 
-        color: #ffffff; 
-        border: none; 
-        padding: 15px; 
-        border-radius: 4px; 
-        cursor: pointer; 
-    }
-
-    label {
-        margin-bottom: 5px;
-        color: #495057; 
-    }
-
-    select, input[type="text"], input[type="date"]{
-            width: 150px; 
-            padding: 10px; 
-            border: 1px solid #6c757d;
-            border-radius: 4px;
-            margin-bottom: 15px; 
-            font-size: 16px; 
-            transition: border-color 0.3s;
-        }
-
-    .checkbox-group{
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-right: 20px;
-    }
-
-</style>
+    </style>
 </head>
-
 <body>
+    <!-- Cabeçalho -->
     <div class="header">
-        <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
-    </div> 
-    <div class="titulo-pagina">
-        <h2>Listar Contas a Pagar</h2>
+        <h1>Sistema de Gerenciamento de Transportes</h1>
+        <button>Sair</button>
     </div>
-    <div class="menu">
-        <?php include PATH_VIEW . 'includes/menu.php' ?>
+
+    <!-- Layout principal -->
+    <div class="container">
+        <!-- Menu lateral -->
+        <div class="menu">
+            <?php include PATH_VIEW . 'includes/menu.php' ?>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <main>
+            <div class="titulo-pagina">
+                <h2>Listar Contas a Pagar</h2>
+            </div>
+
+            <?php if(isset($_GET['excluido'])): ?>
+                <p>Categoria Excluída</p>
+            <?php endif ?>
+
+            <!-- Resultados -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ações</th>
+                        <th>Código</th>
+                        <th>Descrição</th>
+                        <th>Ativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<$total_categ; $i++): ?>
+                    <tr>
+                        <td class="icon">
+                            <a href="/tcc/categoria/ver?id=<?= $lista_categ[$i]->id ?>">
+                                <img title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
+                            </a>
+                        </td>
+                        <td><?= $lista_categ[$i]->id ?></td>
+                        <td><?= $lista_categ[$i]->descricao ?></td>
+                        <td><?= $lista_categ[$i]->ativo ?></td>
+                    </tr>
+                    <?php endfor; ?>
+                </tbody>
+            </table>
+        </main>
     </div>
-    <main>
 
-    <?php if(isset($_GET['excluido'])): ?>
-        <p>Categoria Excluída</p>
-    <?php endif ?>
-
-    <!-- Resultados -->
-    <table>
-        <thead>
-            <tr>
-                <th>Ações</th>
-                <th>Código</th>
-                <th>Descrição</th>
-                <th>Ativo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for($i=0; $i<$total_categ; $i++): ?>
-            <tr>
-                <td class="icon">
-                    <a href="/tcc/categoria/ver?id=<?= $lista_categ[$i]->id ?>">
-                        <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
-                    </a>
-                </td>
-                <td><?= $lista_categ[$i]->id ?></td>
-                <td><?= $lista_categ[$i]->descricao ?></td>
-                <td><?= $lista_categ[$i]->ativo ?></td>
-            </tr>
-            <?php endfor; ?>
-        </tbody>
-    </table>
-    </main>
-    <?php include PATH_VIEW . 'includes/rodape.php' ?>
+    <div class="footer">
+        TMS - Todos os direitos reservados
+    </div>
 </body>
 </html>

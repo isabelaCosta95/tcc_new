@@ -100,6 +100,12 @@
             margin-left: 305px;
         }
 
+        .icon {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        }
+
         .titulo-pagina h2 {
             background-color: #f8f9fa;
             font-size: 24px;
@@ -133,7 +139,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Ações</th>
+                    <th></th>
                     <th>Código</th>
                     <th>Modelo</th>
                     <th>Placa</th>
@@ -143,10 +149,12 @@
                 <?php for($i=0; $i<$total_veiculo; $i++): ?>
                 <tr>
                     <td>
-                        <a href="/tcc/veiculo/ver?id=<?= $lista_veiculo[$i]->id ?>">Abrir</a> 
+                        <a href="/tcc/veiculo/ver?id=<?= $lista_veiculo[$i]->id ?>">
+                        <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
+                        </a> 
                     </td>
                     <td> <?= $lista_veiculo[$i]->id ?> </td>
-                    <td> <?= $lista_veiculo[$i]->marca_modelo ?></td>
+                    <td> <?= $lista_veiculo[$i]->marca ?></td>
                     <td> <?= $lista_veiculo[$i]->placa ?></td>
                 </tr>
                 <?php endfor ?>

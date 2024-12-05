@@ -25,18 +25,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i=0; $i<$total_mot; $i++): ?>
+            <?php for($i=0; $i<$total_func; $i++): ?>
             <tr>
                 <td>
-                    <a href="/tcc/motorista/ver?id=<?= $lista_mot[$i]->id ?>">Abrir</a>
+                    <a href="/tcc/funcionario/ver?id=<?= $lista_func[$i]->id ?>">Abrir</a>
                 </td>
-                <td> <?= $lista_mot[$i]->id ?> </td>
-                <td> <?= $lista_mot[$i]->nome_completo ?></td>
-                <td> <?= $lista_mot[$i]->cpf ?></td>
-                <td> <?= $lista_mot[$i]->telefone ?></td>
-                <td> <?= $lista_mot[$i]->chave_pix ?> </td>
-                <td> <?= $lista_mot[$i]->email ?></td>
-                <td> <?= $lista_mot[$i]->ativo ?></td>
+                <td> <?= $lista_func[$i]->id ?> </td>
+                <td> <?= $lista_func[$i]->nome_completo ?></td>
+                <td> <?= $lista_func[$i]->cpf ?></td>
+                <td> <?= $lista_func[$i]->telefone ?></td>
+                <td> <?= $lista_func[$i]->chave_pix ?> </td>
+                <td> <?= $lista_func[$i]->email ?></td>
+                <td> <?= $lista_func[$i]->ativo ?></td>
 
             </tr>
             <?php endfor ?>

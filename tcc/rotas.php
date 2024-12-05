@@ -336,6 +336,10 @@ try{
         PecaController::salvar();
     break;
 
+    case '/tcc/peca/excluir':
+        PecaController::excluir();
+    break;
+
     // Rotas Cargo
     case '/tcc/cargo':
         CargoController::index();
@@ -353,25 +357,8 @@ try{
         CargoController::salvar();
     break;
 
-    // Rotas Carga
-    case '/tcc/carga':
-        CargaController::index();
-    break;
-
-    case '/tcc/carga/cadastrar':
-        CargaController::cadastrar();
-    break;
-
-    case '/tcc/carga/ver':
-        CargaController::ver();
-    break;
-
-    case '/tcc/carga/salvar':
-        CargaController::salvar();
-    break;
-
-    case '/tcc/carga/excluir':
-        CargaController::excluir();
+    case '/tcc/cargo/excluir':
+        CargoController::excluir();
     break;
 
     // Rotas Carga
