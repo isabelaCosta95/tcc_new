@@ -80,8 +80,8 @@ class CargaController
     public static function ver(){
         if(isset($_GET['id'])){
             $carga_DAO = new CargaDAO();
-            $dados_car = $carga_DAO->getById($_GET['id']);
-            
+            $dados_car = $carga_DAO->getById($_GET['id']);       
+                
             $produto = new ProdutoDAO();
             $lista_prod = $produto->getAllRows();
             $total_prod = count($lista_prod);
@@ -89,14 +89,22 @@ class CargaController
             $cliente_DAO = new ClienteDAO();
             $lista_cli = $cliente_DAO->getAllRows();
             $total_cli = count($lista_cli);
-
+    
             $seguradora_DAO = new SeguradoraDAO();
             $lista_seg = $seguradora_DAO->getAllRows();
             $total_seg = count($lista_seg);
+
+            // Obter a descrição da carga
+            $descricaoCarga = $dados_car->descricao;
+    
+            // Buscar o ID da conta a receber usando o método buscarConta e passando a descrição
+            $idConta = CargaDAO::buscarConta($descricaoCarga);
             
+            // Passar a variável $idConta para a view
             include 'View/modulos/carga/cadastrar_carga.php';
         } else {
             header("Location: /tcc/carga");
         }
     }
+
 }
