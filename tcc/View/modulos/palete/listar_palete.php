@@ -45,6 +45,12 @@
                     <?php endfor; ?>
                 </tbody>
             </table>
+
+            <!-- Exibindo a quantidade total de paletes abaixo da tabela -->
+            <div class="total-paletes">
+                <p><strong>Total de Paletes: </strong><?= $soma_paletes ?></p>
+            </div>
+            
         </main>
     </div>
 

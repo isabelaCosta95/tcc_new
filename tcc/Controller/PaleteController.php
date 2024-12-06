@@ -7,6 +7,8 @@ class PaleteController{
         $palete_DAO = new PaleteDAO();
         $lista_pal = $palete_DAO->getAllRows();
         $total_pal = count($lista_pal);
+
+        $soma_paletes = $palete_DAO->somarPaletes();
             
         include 'View/modulos/palete/listar_palete.php';
     }
@@ -51,9 +53,5 @@ class PaleteController{
         else{
             header("Location: /tcc/palete");
         }
-    }
-
-    public static function somarPaletes(){
-        
     }
 }
