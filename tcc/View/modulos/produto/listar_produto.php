@@ -32,7 +32,7 @@
                         <th></th>
                         <th>Código</th>
                         <th>Descrição</th>
-                        <th>Marca</th>
+                        <th>Categoria</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                             </td>
                             <td> <?= $lista_prod[$i]->id ?> </td>
                             <td> <?= $lista_prod[$i]->descricao ?></td>
-                            <td> <?= $lista_prod[$i]->marca ?></td>
+                            <td> <?= $lista_categ[$i]->descricao ?></td>
 
                         </tr>
                     <?php endfor ?>

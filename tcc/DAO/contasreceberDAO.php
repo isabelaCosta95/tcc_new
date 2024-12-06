@@ -54,40 +54,54 @@ class contasreceberDAO{
 
     }
 
-    public function getAllRows($filters = [])
-    {
-        $sql = "SELECT * FROM contas_receber WHERE 1 = 1";
-
-        $params = [];
-
+    public function getAllRows($filters = []) {
+        $sql = "SELECT * FROM contas_receber WHERE 1=1";
+        
+        // Adicionando condições baseadas nos filtros
         if (!empty($filters['descricao'])) {
             $sql .= " AND descricao LIKE :descricao";
-            $params[':descricao'] = '%' . $filters['descricao'] . '%';
         }
-
         if (!empty($filters['dt_pagamento'])) {
             $sql .= " AND dt_pagamento = :dt_pagamento";
-            $params[':dt_pagamento'] = $filters['dt_pagamento'];
         }
-
         if (!empty($filters['dt_vencimento'])) {
             $sql .= " AND dt_vencimento = :dt_vencimento";
-            $params[':dt_vencimento'] = $filters['dt_vencimento'];
         }
-
+        if (!empty($filters['form_pagamento'])) {
+            $sql .= " AND form_pagamento LIKE :form_pagamento";
+        }
         if (!empty($filters['stts'])) {
             $sql .= " AND stts = :stts";
-            $params[':stts'] = $filters['stts'];
-        } else {
-            $sql .= " AND stts != 'C'";
         }
-
+    
         $stmt = $this->conexao->prepare($sql);
-        $stmt->execute($params);
-
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+        // Vinculando parâmetros
+        if (!empty($filters['descricao'])) {
+            $stmt->bindValue(':descricao', "%{$filters['descricao']}%");
+        }
+        if (!empty($filters['dt_pagamento'])) {
+            $stmt->bindValue(':dt_pagamento', $filters['dt_pagamento']);
+        }
+        if (!empty($filters['dt_vencimento'])) {
+            $stmt->bindValue(':dt_vencimento', $filters['dt_vencimento']);
+        }
+        if (!empty($filters['form_pagamento'])) {
+            $stmt->bindValue(':form_pagamento', "%{$filters['form_pagamento']}%");
+        }
+        if (!empty($filters['stts'])) {
+            $stmt->bindValue(':stts', $filters['stts']);
+        }
+    
+        $stmt->execute();
+    
+        $arr_contasreceber = array();
+        while ($p = $stmt->fetchObject()) {
+            $arr_contasreceber[] = $p;
+        }
+    
+        return $arr_contasreceber;
     }
-
     
 
     public function getById($id){
@@ -103,14 +117,14 @@ class contasreceberDAO{
         $sql = "SELECT id, descricao FROM forma_pagamento";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
     }
     
     public function getPlanoContas() {
         $sql = "SELECT id, descricao FROM plano_conta";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
     }
 
 }

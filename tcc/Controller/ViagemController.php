@@ -89,9 +89,6 @@ class ViagemController
                 }
         }
 
-        
-
-
         header('Location: /tcc/viagem');
         exit();
     }
@@ -120,8 +117,8 @@ class ViagemController
             $total_func = count($lista_func);
 
             $carga_DAO = new CargaDAO();
-            $lista_carga = $carga_DAO->getAllRows();
-            $total_carga = count($lista_carga);
+            $lista_car = $carga_DAO->getAllRows();
+            $total_car = count($lista_car);
 
             $viagem_DAO = new ViagemDAO();
             $dados_viagem = $viagem_DAO->getById((int)$_GET['id']);

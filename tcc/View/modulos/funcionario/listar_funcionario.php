@@ -20,7 +20,7 @@
 
         <main>
             <div class="titulo-pagina">
-                <h2>Funcionários</h2>
+                <h2>Listar Categoria</h2>
             </div>
 
             <?php if(isset($_GET['excluido'])): ?>
@@ -31,11 +31,11 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Código</th>
-                        <th>Nome Completo</th>
+                        <th>Id:</th>
+                        <th>Nome Completo:</th>
                         <th>CPF</th>
-                        <th>Chave Pix</th>
-                        <th>Ativo</th>
+                        <th>Chave Pix:</th>
+                        <th>Ativo:</th>
                     </tr>
                 </thead>
                 <tbody>

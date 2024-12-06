@@ -4,18 +4,24 @@ class ContasReceberController{
 
     public static function index() {
         $contasReceber_DAO = new contasreceberDAO();
-        $formas_pagamento = $contasReceber_DAO->getFormasPagamento(); 
     
+        // Capturando filtros de consulta
         $filters = [
             'descricao' => $_GET['descricao'] ?? null,
             'dt_pagamento' => $_GET['dt_pagamento'] ?? null,
             'dt_vencimento' => $_GET['dt_vencimento'] ?? null,
+            'form_pagamento' => $_GET['form_pagamento'] ?? null,
             'stts' => $_GET['stts'] ?? null,
         ];
     
+        // Obtendo dados com filtros
         $lista_rec = $contasReceber_DAO->getAllRows($filters);
-        $total_rec= count($lista_rec);
+        $total_rec = count($lista_rec);
     
+        $cliente_DAO = new ClienteDAO();
+        $lista_cli = $cliente_DAO->getAllRows();
+        $total_cli = count($lista_cli);
+            
         include 'View/modulos/contas_receber/listar_contasreceber.php';
     }
     
@@ -37,19 +43,22 @@ class ContasReceberController{
     public static function salvar(){
         $contasReceber_DAO = new contasreceberDAO();
     
+        // Função para formatar o valor
         function formatarValorParaBanco($valor) {
-            $valor = str_replace('R$', '', $valor);
-            $valor = str_replace('.', '', $valor);
-            $valor = str_replace(',', '.', $valor); 
+            // Remove o "R$" e substitui a vírgula por ponto
+            $valor = str_replace('R$', '', $valor); // Remove "R$"
+            $valor = str_replace('.', '', $valor);  // Remove ponto (milhares)
+            $valor = str_replace(',', '.', $valor); // Substitui vírgula por ponto
             return $valor;
         }
     
+        // Formatar o valor antes de salvar
         $valor_formatado = formatarValorParaBanco($_POST['valor']);
         
         $dados_para_salvar = array(
             'descricao' => $_POST['descricao'],
             'dt_vencimento' => $_POST['dt_vencimento'],
-            'valor' => $valor_formatado,
+            'valor' => $valor_formatado, // Usar o valor formatado
             'stts' => $_POST['stts'],
             'dt_pagamento' => $_POST['dt_pagamento'],
             'form_pagamento' => $_POST['form_pagamento'],

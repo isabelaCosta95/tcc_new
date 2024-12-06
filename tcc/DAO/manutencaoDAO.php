@@ -10,6 +10,11 @@ class ManutencaoDAO{
 
     }
 
+    public function getLastInsertId()
+    {
+        return $this->conexao->lastInsertId(); 
+    }
+
     public function getById($id){
         $stmt = $this->conexao->prepare("SELECT * FROM manutencao WHERE id=?");
         $stmt->bindValue(1,$id);
@@ -33,81 +38,59 @@ class ManutencaoDAO{
     }
 
     public function insert($dados_manutencao) {
-        $sql = "INSERT INTO manutencao(id_categoria, descricao, preco, marca, observacao, estoque, unidade, validade, ativo, ncm, cfop, pis, cofins, icms_cst, aliquota_pis, aliquota_cofins, aliquota_icms, ipi, aliquota_reducao_bc, origem_icms, cest, gtin, aliquota_mva, codigo_barras) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-        $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(1, $dados_manutencao['id_categoria']);
-        $stmt->bindValue(2, $dados_manutencao['descricao']);
-        $stmt->bindValue(3, $dados_manutencao['preco']);
-        $stmt->bindValue(4, $dados_manutencao['marca']);
-        $stmt->bindValue(5, $dados_manutencao['observacao']);
-        $stmt->bindValue(6, $dados_manutencao['estoque']);
-        $stmt->bindValue(7, $dados_manutencao['unidade']);
-        $stmt->bindValue(8, $dados_manutencao['validade']);
-        $stmt->bindValue(9, $dados_manutencao['ativo']);
-        $stmt->bindValue(10, $dados_manutencao['ncm']);
-        $stmt->bindValue(11, $dados_manutencao['cfop']);
-        $stmt->bindValue(12, $dados_manutencao['pis']);
-        $stmt->bindValue(13, $dados_manutencao['cofins']);
-        $stmt->bindValue(14, $dados_manutencao['icms_cst']);
-        $stmt->bindValue(15, $dados_manutencao['aliquota_pis']);
-        $stmt->bindValue(16, $dados_manutencao['aliquota_cofins']);
-        $stmt->bindValue(17, $dados_manutencao['aliquota_icms']);
-        $stmt->bindValue(18, $dados_manutencao['ipi']);
-        $stmt->bindValue(19, $dados_manutencao['aliquota_reducao_bc']);
-        $stmt->bindValue(20, $dados_manutencao['origem_icms']);
-        $stmt->bindValue(21, $dados_manutencao['cest']);
-        $stmt->bindValue(22, $dados_manutencao['gtin']);
-        $stmt->bindValue(23, $dados_manutencao['aliquota_mva']);
-        $stmt->bindValue(24, $dados_manutencao['codigo_barras']);
+        try {
+            $sql = "INSERT INTO manutencao (descricao, tipo, dt_manutencao, quilometragem, id_veiculo, valor, id_funcionario) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute([
+                $dados_manutencao['descricao'],
+                $dados_manutencao['tipo'],
+                $dados_manutencao['dt_manutencao'],
+                $dados_manutencao['quilometragem'],
+                $dados_manutencao['id_veiculo'],
+                $dados_manutencao['valor'],
+                $dados_manutencao['id_funcionario']
+            ]);
     
-        $stmt->execute();
-    }   
+            return $this->conexao->lastInsertId(); // Retorna o ID do registro inserido
+        } catch (PDOException $e) {
+            echo "Erro ao inserir manutenção: " . $e->getMessage();
+        }
+    }
+    
 
     public function update($dados_manutencao) {
-        $sql = "UPDATE manutencao 
-                SET id_categoria = ?, descricao = ?, preco = ?, marca = ?, observacao = ?, estoque = ?, unidade = ?, validade = ?, ativo = ?, ncm = ?, cfop = ?, pis = ?, cofins = ?, icms_cst = ?, aliquota_pis = ?, aliquota_cofins = ?, aliquota_icms = ?, ipi = ?, aliquota_reducao_bc = ?, origem_icms = ?, cest = ?, gtin = ?, aliquota_mva = ?, codigo_barras = ? 
-                WHERE id = ?";
-        
-        $stmt = $this->conexao->prepare($sql);
-    
-        $stmt->bindValue(1, $dados_manutencao['id_categoria']);
-        $stmt->bindValue(2, $dados_manutencao['descricao']);
-        $stmt->bindValue(3, $dados_manutencao['preco']);
-        $stmt->bindValue(4, $dados_manutencao['marca']);
-        $stmt->bindValue(5, $dados_manutencao['observacao']);
-        $stmt->bindValue(6, $dados_manutencao['estoque']);
-        $stmt->bindValue(7, $dados_manutencao['unidade']);
-        $stmt->bindValue(8, $dados_manutencao['validade']);
-        $stmt->bindValue(9, $dados_manutencao['ativo']);
-        $stmt->bindValue(10, $dados_manutencao['ncm']);
-        $stmt->bindValue(11, $dados_manutencao['cfop']);
-        $stmt->bindValue(12, $dados_manutencao['pis']);
-        $stmt->bindValue(13, $dados_manutencao['cofins']);
-        $stmt->bindValue(14, $dados_manutencao['icms_cst']);
-        $stmt->bindValue(15, $dados_manutencao['aliquota_pis']);
-        $stmt->bindValue(16, $dados_manutencao['aliquota_cofins']);
-        $stmt->bindValue(17, $dados_manutencao['aliquota_icms']);
-        $stmt->bindValue(18, $dados_manutencao['ipi']);
-        $stmt->bindValue(19, $dados_manutencao['aliquota_reducao_bc']);
-        $stmt->bindValue(20, $dados_manutencao['origem_icms']);
-        $stmt->bindValue(21, $dados_manutencao['cest']);
-        $stmt->bindValue(22, $dados_manutencao['gtin']);
-        $stmt->bindValue(23, $dados_manutencao['aliquota_mva']);
-        $stmt->bindValue(24, $dados_manutencao['codigo_barras']);
-        $stmt->bindValue(25, $dados_manutencao['id']);
-    
-        $stmt->execute();
+        try {
+            $sql = "UPDATE manutencao SET descricao = ?, tipo = ?, dt_manutencao = ?, quilometragem = ?, id_veiculo = ?, valor = ?, valor_total = ?, id_funcionario = ? WHERE id = ?";
+            return $this->conexao->prepare($sql)->execute([
+                $dados_manutencao['descricao'],
+                $dados_manutencao['tipo'],
+                $dados_manutencao['dt_manutencao'],
+                $dados_manutencao['quilometragem'],
+                $dados_manutencao['id_veiculo'],
+                $dados_manutencao['valor'],
+                $dados_manutencao['valor_total'],
+                $dados_manutencao['id_funcionario'],
+                $dados_manutencao['id']
+            ]);
+        } catch (PDOException $e) {
+            echo "Erro ao atualizar manutenção: " . $e->getMessage();
+            return false;
+        }
     }
-
+    
     public function delete($id){
         $sql = "DELETE FROM manutencao where id = ?";
         
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1,$id);
-        $stmt->execute();
-
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erro ao excluir manutenção: " . $e->getMessage();
+        }
     }
+
+    
 }

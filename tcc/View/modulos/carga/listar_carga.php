@@ -31,7 +31,7 @@
                         <th></th>
                         <th>Código</th>
                         <th>Descrição</th>
-                        <th>Valor Total</th>
+                        <th>produto</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +44,7 @@
                         </td>
                         <td><?= $lista_car[$i]->id ?></td>
                         <td><?= $lista_car[$i]->descricao ?></td>
-                        <td><?= $lista_car[$i]->valor_total ?></td>
+                        <td><?= $lista_car[$i]->id_produto ?></td>
                     </tr>
                     <?php endfor; ?>
                 </tbody>

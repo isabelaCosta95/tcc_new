@@ -63,11 +63,13 @@
                             </label>  
                 </div>
     
+                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_plac)): ?>
                     <input type="hidden" name="id" value="<?= $dados_plac->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
+                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_plac) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

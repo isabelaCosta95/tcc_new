@@ -64,6 +64,7 @@ class contaspagarDAO
 
         $params = [];
 
+        // Filtros de busca
         if (!empty($filters['descricao'])) {
             $sql .= " AND descricao LIKE :descricao";
             $params[':descricao'] = '%' . $filters['descricao'] . '%';
@@ -108,7 +109,7 @@ class contaspagarDAO
         $sql = "SELECT id, descricao FROM forma_pagamento";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
     }
 
     public function getPlanoContas()
@@ -116,6 +117,6 @@ class contaspagarDAO
         $sql = "SELECT id, descricao FROM plano_conta";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array com os dados
     }
 }

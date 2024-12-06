@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
-    <title>Cliente</title>
+    <title>Cadastro de Cliente</title>
 </head>
 <body>
     <div class="header">

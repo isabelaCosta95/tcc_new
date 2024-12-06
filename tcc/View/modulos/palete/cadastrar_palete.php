@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Lançar Movimentação de Paletes</h1>
+            <h1>Movimentação de Paletes</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/palete/salvar">

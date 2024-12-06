@@ -9,12 +9,12 @@ try {
 
             // Rota para a tela de login
         case '/tcc/login':
-            include "View/login.php";
+            include "View/login.php"; // A tela de login
             break;
 
             // Rota para processar o login
         case '/tcc/autenticador':
-            include "View/autenticador.php";
+            include "View/autenticador.php"; // A lógica de autenticação
             break;
 
 

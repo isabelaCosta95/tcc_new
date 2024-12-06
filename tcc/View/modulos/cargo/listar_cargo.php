@@ -30,8 +30,8 @@
                     <tr>
                         <th></th>
                         <th>Código</th>
-                        <th>Cargo</th>
-                        <th>Descrição do Cargo</th>
+                        <th>Descrição</th>
+                        <th>produto</th>
                     </tr>
                 </thead>
                 <tbody>

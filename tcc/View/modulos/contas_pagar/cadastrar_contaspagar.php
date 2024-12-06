@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
-    <title>Lançamento Contas a Pagar</title>
+    <title>Cadastro Contas a Pagar</title>
     <script>
         function atualizarCamposCredor() {
             const credor = document.getElementById('credor').value;
@@ -24,6 +24,7 @@
             }
         }
 
+        // Atualiza os campos na inicialização, caso haja valor selecionado no servidor
         document.addEventListener('DOMContentLoaded', () => {
             atualizarCamposCredor();
         });
@@ -42,7 +43,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Lançamento Contas a Pagar</h1>
+            <h1>Cadastrar Contas a Pagar</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/contasPagar/salvar">
@@ -150,11 +151,13 @@
                     
                 </div>
 
+                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_pagar)): ?>
                     <input type="hidden" name="id" value="<?= $dados_pagar->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
+                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_pagar) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

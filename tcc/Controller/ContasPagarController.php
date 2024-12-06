@@ -4,7 +4,6 @@ class ContasPagarController{
 
     public static function index() {
         $contasPagar_DAO = new contaspagarDAO();
-        $formas_pagamento = $contasPagar_DAO->getFormasPagamento(); 
     
         $filters = [
             'descricao' => $_GET['descricao'] ?? null,
@@ -21,7 +20,6 @@ class ContasPagarController{
     
 
     public static function cadastrar() {
-        
         $cliente_DAO = new ClienteDAO();
         $lista_cli = $cliente_DAO->getAllRows();
         $total_cli = count($lista_cli);
@@ -87,7 +85,6 @@ class ContasPagarController{
             $lista_cli = $cliente_DAO->getAllRows();
             $total_cli = count($lista_cli);
     
-
             $formas_pagamento = $contasPagar_DAO->getFormasPagamento(); 
             $plano_contas = $contasPagar_DAO->getPlanoContas(); 
 

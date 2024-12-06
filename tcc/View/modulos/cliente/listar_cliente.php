@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/listar.css">
-    <title>Clientes</title>
+    <title>Listar Clientes</title>
 </head>
 <body>
     <div class="header">
@@ -30,8 +30,7 @@
                     <tr>
                         <th></th>
                         <th>Código</th>
-                        <th>Nome Fantasia</th>
-                        <th>CNPJ | CPF</th>
+                        <th>Descrição</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +42,7 @@
                             </a>
                         </td>
                         <td><?= $lista_cli[$i]->id ?></td>
-                        <td><?= $lista_cli[$i]->nome_fantasia ?></td>
-                        <td><?= $lista_cli[$i]->cnpj_cpf ?></td>
+                        <td><?= $lista_cli[$i]->descricao ?></td>
                     </tr>
                     <?php endfor; ?>
                 </tbody>
