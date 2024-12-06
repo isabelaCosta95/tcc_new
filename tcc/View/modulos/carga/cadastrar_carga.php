@@ -129,7 +129,10 @@
                             Excluir
                         </button>
                         <button type="button" class="btn-associar" onclick="window.location.href='/tcc/viagem/cadastrar?id_carga=<?= $dados_car->id ?>'">Associar Viagem</button>
-                        <button type="button" class="btn-receber" onclick="window.location.href='/tcc/carga'">Contas a Receber</button>
+                        <button type="button" class="btn-receber" 
+                                onclick="window.location.href='/tcc/contasReceber/ver?id=<?php echo isset($idConta) ? htmlspecialchars($idConta) : ''; ?>'">
+                            Contas a Receber
+                        </button>
                     <?php endif; ?>
                 </div>
             </form>
