@@ -106,7 +106,7 @@
                                                         $selecionado = ($lista_cli[$i]->id == $dados_pagar->cliente) ? "selected" : "";
                                                 ?>
                                                     <option value="<?= $lista_cli[$i]->id ?>" <?= $selecionado ?>>
-                                                        <?= $lista_cli[$i]->descricao ?>
+                                                        <?= $lista_cli[$i]->razao_social ?>
                                                     </option>
                                                 <?php endfor ?>
                                             </select>
@@ -120,10 +120,10 @@
                                                 <?php for ($i = 0; $i < $total_func; $i++): 
                                                     $selecionado = "";
                                                     if (isset($dados_pagar->id)) 
-                                                        $selecionado = ($lista_func[$i]->id == $dados_pagar->funcionario) ? "selected" : "";
+                                                        $selecionado = ($lista_func[$i]->id == $dados_pagar->cliente) ? "selected" : "";
                                                 ?>
                                                     <option value="<?= $lista_func[$i]->id ?>" <?= $selecionado ?>>
-                                                        <?= $lista_func[$i]->descricao ?>
+                                                        <?= $lista_func[$i]->nome_completo ?>
                                                     </option>
                                                 <?php endfor ?>
                                             </select>
