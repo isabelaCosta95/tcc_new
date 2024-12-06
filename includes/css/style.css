@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8faf8;
+    font-family: 'Poppins', sans-serif;
+}
+
+select.form-control {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #6c757d; 
+    border-radius: 4px; 
+    margin-bottom: 15px; 
+    font-size: 16px; 
+    transition: border-color 0.3s; 
+    background-color: #ffffff;
+    color: #495057;
+}
+
+select.form-control:focus {
+    border-color: #007bff;
+    outline: none; 
+}
+
+form {
+    max-width: 100%; 
+    width: 100%; 
+    margin: 20px auto; 
+    padding: 30px; 
+    border-radius: 8px; 
+    background-color: #ffffff; 
+    border: 1px solid #ced4da; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+
+
+h1 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 25px;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    z-index: 1000;
+}
+
+.spacer {
+    height: 60px;
+}
+
+.menu {
+    width: 250px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+}
+
+.conteudo {
+    margin-left: 260px; 
+    padding: 20px;
+    width: calc(100% - 260px);
+    margin-top: 60px; 
+}
+
+
+label {
+    display: block; 
+    margin-bottom: 5px;
+    font-size: 14px; 
+    color: #495057; 
+}
+
+input[type="text"], input[type="date"], select.form-control {
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #6c757d;
+    border-radius: 4px;
+    margin-bottom: 15px; 
+    font-size: 16px; 
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select.form-control:focus {
+    border-color: #007bff;
+    outline: none; 
+}
+
+.form-section {
+    margin-bottom: 20px; /* Espaço entre as seções */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ced4da; /* Borda sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.form-section h2 {
+    margin-bottom: 15px; /* Espaço abaixo do título */
+    font-size: 18px; /* Tamanho do texto do título */
+    color: #343a40; /* Cor do texto */
+    padding-bottom: 5px; /* Espaçamento interno para o título */
+}
+
+.form-buttons {
+    display: flex; 
+    gap: 10px; 
+}
+
+button {
+    background-color: #28a745; 
+    color: #ffffff; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px;
+    transition: background-color 0.3s; 
+    flex: 1; 
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button.btn-consultar {
+    background-color: #34c759; 
+}
+
+button.btn-consultar:hover {
+    background-color: #28a745;
+}
+
+button.btn-associar {
+    background-color: #007bff; 
+}
+
+button.btn-receber {
+    background-color: #439dfd; 
+}
+
+button.btn-excluir {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+button.btn-excluir:hover {
+    background-color: #c82333; 
+}
+
+.form-section .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-section .form-column {
+    flex: 1 1 48%; /* Duas colunas com 48% de largura */
+}
+
+.form-section label {
+    font-size: 14px; /* Tamanho consistente para labels */
+    color: #6c757d; /* Cor neutra para labels */
+}
+
+.form-section input[type="text"], 
+.form-section input[type="date"], 
+.form-section select.form-control {
+    margin-bottom: 10px; /* Menor espaçamento entre inputs */
+}
+
+select#tipo_pessoa {
+    width: 100%; /* Mantém a largura do campo igual aos outros */
+    padding: 10px; /* Preenchimento do campo */
+    border: 1px solid #6c757d; /* Borda igual aos outros campos */
+    border-radius: 4px; /* Bordas arredondadas */
+    margin-bottom: 15px; /* Espaçamento inferior igual aos outros campos */
+    font-size: 16px; /* Tamanho de fonte igual aos outros campos */
+    transition: border-color 0.3s; /* Efeito de transição na borda */
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #495057; /* Cor do texto */
+}
+
+select#tipo_pessoa:focus {
+    border-color: #007bff; /* Cor da borda quando em foco */
+    outline: none; /* Remove o contorno padrão */
+}
+
+label[for="tipo_pessoa"] {
+    display: block; 
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #495057;
+}
+
+.parcela {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espaçamento entre os itens */
+}
+
+.parcela label {
+    flex: 1; /* Todos os campos terão o mesmo tamanho */
+    min-width: 200px; /* Define um tamanho mínimo */
+}
+
+.parcela input, 
+.parcela select {
+    width: 100%; /* Garante que os campos ocupem toda a largura do container */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+.parada-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.parada-row input {
+    flex: 1;
+}
+
+.parada-row .btn-remover {
+    padding: 10px 10px;
+    color: white;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -18px;
+}
