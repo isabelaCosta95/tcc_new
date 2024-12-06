@@ -1,5 +1,5 @@
 <?php 
-if(isset($_GET['sair'])){
+if (isset($_GET['sair'])) {
     unset($_SESSION['usuario_login']);
     header("Location: login.php");
 }
@@ -9,7 +9,7 @@ try {
     $stmt = $mysql->prepare("SELECT nome FROM usuario WHERE id=:marcador_id");
     $stmt->execute(array('marcador_id' => $_SESSION['usuario_login']));
     $dados_do_usuario = $stmt->fetchObject();
-} catch(Exception $e) {
+} catch (Exception $e) {
     echo $e->getMessage();
 }
 ?>
@@ -19,55 +19,46 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gerenciamento de Transportes</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
+        .header {
             background-color: #343a40;
             color: #fff;
-            padding: 1rem 0;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
         }
-        .user-info {
-            font-size: 0.9rem;
-        }
-        .logout-btn {
+
+        .header .logout-btn {
             background-color: #dc3545;
-            color: #fff;
-            padding: 0.5rem 1rem;
+            color: white;
             border: none;
+            padding: 8px 12px;
             border-radius: 4px;
             text-decoration: none;
             cursor: pointer;
         }
-        .logout-btn:hover {
+
+        .header .logout-btn:hover {
             background-color: #c82333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <small>Sistema de Gerenciamento de Transportes</small>
-            <div class="user-info">
-                <a href="?sair=true" class="logout-btn">Sair</a>
-            </div>
+    <header class="header">
+        <small>Sistema de Gerenciamento de Transportes</small>
+        <div class="user-info">
+            <a href="?sair=true" class="logout-btn">Sair</a>
         </div>
     </header>
 </body>

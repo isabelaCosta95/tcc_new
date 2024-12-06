@@ -5,86 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Categorias</title>
     <style>
-    /* Estilos gerais */
+
     body {
         margin: 0;
         font-family: Arial, sans-serif;
         display: flex;
         flex-direction: column;
         height: 100vh;
+        overflow: hidden;
     }
 
-    /* Cabeçalho fixo no topo */
-    .header {
-        background-color: #343a40;
-        color: #fff;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-    }
-
-    .header h1 {
-        margin: 0;
-        font-size: 18px;
-    }
-
-    .header button {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .header button:hover {
-        background-color: #c82333;
-    }
-
-    /* Rodapé fixo no fim */
     .footer {
-        background-color: #f1f1f1;
+        background-color: #f8f9fa;
         text-align: center;
-        padding: 10px;
+        padding: 0px;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
+        margin-bottom: 0px;
         border-top: 1px solid #ddd;
-        font-size: 14px;
     }
 
-    /* Layout principal */
     .container {
         display: flex;
         flex: 1;
-        margin-top: 50px; /* Altura do cabeçalho */
-        margin-bottom: 40px; /* Altura do rodapé */
+        margin-top: 60px;
+        margin-bottom: 10px;
     }
 
     .menu {
-        width: 20%;
+        width: 15%;
         background-color: #f8f9fa;
-        padding: 10px;
+        padding: 0px;
         box-sizing: border-box;
-        border-right: 1px solid #ddd; /* Apenas uma linha separando */
+        border-right: 0px solid #ddd;
+        margin-left: 15px;
+
     }
 
     main {
         flex: 1;
         padding: 20px;
         box-sizing: border-box;
+        background-color: #f8f9fa;
+        margin: 0px;
     }
 
-    /* Estilo para a tabela */
     table {
-        width: 100%; /* Ajusta largura total */
+        width: 100%;
         border-collapse: collapse;
         font-family: Arial, sans-serif;
     }
@@ -119,42 +88,35 @@
         text-decoration: underline;
     }
 
-    /* Ícone do lápis */
     .icon img {
-        width: 16px; /* Corrigido tamanho do lápis */
+        width: 16px;
         height: 16px;
     }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho -->
     <div class="header">
-        <h1>Sistema de Gerenciamento de Transportes</h1>
-        <button>Sair</button>
+        <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
     </div>
 
-    <!-- Layout principal -->
     <div class="container">
-        <!-- Menu lateral -->
         <div class="menu">
             <?php include PATH_VIEW . 'includes/menu.php' ?>
         </div>
 
-        <!-- Conteúdo principal -->
         <main>
             <div class="titulo-pagina">
-                <h2>Listar Contas a Pagar</h2>
+                <h2>Listar Categoria</h2>
             </div>
 
             <?php if(isset($_GET['excluido'])): ?>
                 <p>Categoria Excluída</p>
             <?php endif ?>
 
-            <!-- Resultados -->
             <table>
                 <thead>
                     <tr>
-                        <th>Ações</th>
+                        <th></th>
                         <th>Código</th>
                         <th>Descrição</th>
                         <th>Ativo</th>
@@ -179,7 +141,7 @@
     </div>
 
     <div class="footer">
-        TMS - Todos os direitos reservados
+        <?php include PATH_VIEW . 'includes/rodape.php' ?>
     </div>
 </body>
 </html>

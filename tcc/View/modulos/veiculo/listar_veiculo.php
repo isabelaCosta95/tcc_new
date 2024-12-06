@@ -3,164 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Listar Veículo</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow-x: auto;
-            background-color: #f8f9fa !important;
-        }
 
-        .header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-            background-color: #343a40;
-            color: white;
-            padding: 10px;
-            height: 60px;
-        }
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+    }
 
-        .menu {
-            display: flex;
-            width: 300px;
-            position: fixed;
-            top: 92px;
-            bottom: 0;
-            overflow-y: hidden;
-            overflow-x: hidden;
-            background-color: #f8f9fa;
-            z-index: 900;
-            justify-content: space-around;
-            white-space: nowrap;
-        }
-
-        .col-md-3 {
-            width: auto !important; 
-        }
-
-        main {
-            margin-top: 0px;
-            margin-left: 300px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            overflow-y: auto;
-        }
-
-        .formulario {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        a {
-            color: #dc3545;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .titulo-pagina {
-            background-color: #f8f9fa !important;
-            margin-top: 150px;
-            margin-bottom: 0px;
-            margin-left: 305px;
-        }
-
-        .icon {
-        width: 20px;
-        height: 20px;
+    .footer {
+        background-color: #f8f9fa;
         text-align: center;
-        }
+        padding: 0px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-bottom: 0px;
+        border-top: 1px solid #ddd;
+    }
 
-        .titulo-pagina h2 {
-            background-color: #f8f9fa;
-            font-size: 24px;
-            font-weight: bold;
-            font-family: 'Poppins', sans-serif;
-            color: red;
-        }
+    .container {
+        display: flex;
+        flex: 1;
+        margin-top: 60px;
+        margin-bottom: 10px;
+    }
 
-        table {
-            width: 100%;
-        }
+    .menu {
+        width: 15%;
+        background-color: #f8f9fa;
+        padding: 0px;
+        box-sizing: border-box;
+        border-right: 0px solid #ddd;
+        margin-left: 15px;
+
+    }
+
+    main {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #f8f9fa;
+        margin: 0px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+    }
+
+    thead th {
+        background-color: #f2f2f2;
+        color: #333;
+        padding: 10px;
+        border-bottom: 2px solid #ddd;
+        text-align: left;
+    }
+
+    tbody td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    td a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    td a:hover {
+        text-decoration: underline;
+    }
+
+    .icon img {
+        width: 16px;
+        height: 16px;
+    }
 
     </style>
 </head>
 <body>
     <div class="header">
         <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
-    </div> 
-    <div class="titulo-pagina">
-        <h2>Listar Veículos</h2>
     </div>
-    <div class="menu">
-        <?php include PATH_VIEW . 'includes/menu.php' ?>
+
+    <div class="container">
+        <div class="menu">
+            <?php include PATH_VIEW . 'includes/menu.php' ?>
+        </div>
+
+        <main>
+            <div class="titulo-pagina">
+                <h2>Listar Veículo</h2>
+            </div>
+
+            <?php if(isset($_GET['excluido'])): ?>
+                <p>Veículo Excluída</p>
+            <?php endif ?>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Código</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<$total_veiculo; $i++): ?>
+                    <tr>
+                        <td class="icon">
+                            <a href="/tcc/veiculo/ver?id=<?= $lista_veiculo[$i]->id ?>">
+                                <img title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
+                            </a> 
+                        </td>
+                        <td> <?= $lista_veiculo[$i]->id ?> </td>
+                        <td> <?= $lista_veiculo[$i]->marca ?></td>
+                        <td> <?= $lista_veiculo[$i]->placa ?></td>
+                    </tr>
+                    <?php endfor ?>
+                </tbody>
+            </table>
+        </main>
     </div>
-    <main>
 
-    <?php if(isset($_GET['excluido'])): ?>
-        <p>Veiculo Excluída</p>
-    <?php endif ?>
 
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Código</th>
-                    <th>Modelo</th>
-                    <th>Placa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php for($i=0; $i<$total_veiculo; $i++): ?>
-                <tr>
-                    <td>
-                        <a href="/tcc/veiculo/ver?id=<?= $lista_veiculo[$i]->id ?>">
-                        <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
-                        </a> 
-                    </td>
-                    <td> <?= $lista_veiculo[$i]->id ?> </td>
-                    <td> <?= $lista_veiculo[$i]->marca ?></td>
-                    <td> <?= $lista_veiculo[$i]->placa ?></td>
-                </tr>
-                <?php endfor ?>
-            </tbody>
-        </table>
-    </main>
-    <?php include PATH_VIEW . 'includes/rodape.php' ?>
+    <div class="footer">
+        <?php include PATH_VIEW . 'includes/rodape.php' ?>
+    </div>
 </body>
 </html>
