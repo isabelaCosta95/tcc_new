@@ -1,4 +1,3 @@
-<?php ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,34 +15,34 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        body{
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f3f3f3;
+            background-color: #d3eed5;
         }
 
-        img{
+        img {
             width: 180px;
             height: auto;
         }
 
-        .login{
-            display:flex;
-            flex-direction:row;
+        .login {
+            display: flex;
+            flex-direction: row;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             border-radius: 15px;
         }
 
-        .informacoes{
+        .informacoes {
             background-color: #28a745;
             width: 350px;
             border-radius: 15px 0 0 15px;
             text-align: center;
         }
 
-        .formulario{
+        .formulario {
             border-radius: 0 15px 15px 0;
             background-color: white;
             display: flex;
@@ -54,54 +53,54 @@
             height: 500px;
         }
 
-        .login-form{
+        .login-form {
             text-align: center;
         }
 
-        h2{
+        h2 {
             margin-left: -80px;
             color: white;
         }
 
-        .conta{
+        .conta {
             margin: 0;
             color: #28a745;
         }
 
-        .volta{
+        .volta {
             margin-left: -100px;
         }
 
-        p{
+        p {
             margin-top: 5px;
             margin-left: -10px;
-
         }
 
-        p, a{
+        p,
+        a {
             text-decoration: none;
             font-size: 12px;
             color: white;
         }
 
-        .txt-conta{
-            color:#a19e9e;
-            margin:  0 0 50px 0;
-
+        .txt-conta {
+            color: #a19e9e;
+            margin: 0 0 50px 0;
         }
 
-        .campos{
+        .campos {
             margin: 15px;
         }
 
-        input[type="text"], input[type="password"]{
+        input[type="text"],
+        input[type="password"] {
             padding: 10px;
             width: 400px;
-            border:none;
+            border: none;
             background-color: #f3f3f3;
         }
 
-        button{
+        button {
             margin-top: 10px;
             border-radius: 35px;
             width: 180px;
@@ -112,68 +111,76 @@
             border: none;
         }
 
-        .button-entrar{
+        .button-entrar {
             margin: 40px 0 20px 0;
             border-width: 3px;
-            border-style: solid; 
-            border-color: black;
+            border-style: solid;
             border-color: white;
-
         }
 
-        .button-cadastrar{
+        .button-cadastrar {
             border-width: 3px;
-            border-style: solid; 
+            border-style: solid;
         }
-
     </style>
 </head>
 
 <body>
-<section class="login">
-<div class="informacoes">
-            <img src="logo.png">
+    <section class="login" id="login-section">
+        <div class="informacoes">
+            <img src="/tcc/logo.png">
             <h2>Bem vindo</h2>
             <h2 class="volta">de volta!</h2>
             <p>Acesse sua conta agora mesmo</p>
-            <button class="button-entrar" type="submit">Entrar</button>
+            <button class="button-entrar" onclick="showLogin()">Entrar</button>
             <br>
             <a href="#">Esqueci minha senha</a>
         </div>
         <div class="formulario">
-            <form class="login-form">
-                
+            <form class="login-form" action="/tcc/novo">
+                <h2 class="conta">Crie sua Conta</h2>
+                <p class="txt-conta">Preencha seus dados</p>
+                <div class="campos">
+                    <input type="text" id="username" name="username" placeholder="Email" required>
+                </div>
+                <div class="campos">
+                    <input type="text" id="username" name="username" placeholder="Usuário" required>
+                </div>
+                <div class="campos">
+                    <input type="password" id="password" name="password" placeholder="Senha" required>
+                </div>
+                <button class="button-cadastrar" type="submit">Cadastrar</button>
             </form>
-
         </div>
+    </section>
 
-</section>
-
-
-
-
-
-    <div class="container">
-        <div class="image">
-            <img src="https://cdn.gencraft.com/prod/user/18520623-5951-43ff-8116-cd4b5d150085/933d90b9-898a-4715-9784-5f9a7a3a2cb4/image/image0_0.jpg?Expires=1723322767&Signature=iTfkNX34DCzVduTmngZa3t0ssns34oIFGvJItPLk4BwYqcB45ERXseO9kQVZaG7E-jU5DMUQ50HSZQyfKBPxpLW--GrbjZLtmlWq9YomXDJXVuxABvxoW6SfgEJUoA-Er6vvho9WH3kVAI475uW4maqaimayr7jbvkQ86avOg77vRlXG2dML64fx1Nh77sCWBC4Y9yu6Lzv1Donq6nntepd7uqNU9FE~JB5VPbHjmZeJ94N~eWAK7R5uMUdOFb6A3wwdrlBpV0f9R5wJ7tjWZ-TxbwGcCZ4vYbINc8D-m0LopqZc3CG074~72dsVtDSU-HPARmQCDUPcVyW2kI4MAA__&Key-Pair-Id=K3RDDB1TZ8BHT8" />
-        </div>
-        <div class="login">
-            <header>
-                <h1>Login</h1>
-            </header>
-            <main>
-                <form method="post" action="/tcc/autenticador">
-                    <label>Usuário
-                        <input name="user" type="text" required />
-                    </label>
-                    <label>Senha
-                        <input name="senha" type="password" required />
-                    </label>
-                    <button type="submit">Entrar</button>
-                </form>
-            </main>
-        </div>
+    <script>
+        function showLogin() {
+            const loginSection = document.getElementById('login-section');
+            loginSection.innerHTML = `
+                <div class="informacoes">
+                    <form method="post" action="/tcc/autenticador" style="margin-top: 150px;" autocomplete="off">
+    <h2 style="color: white; margin-bottom: 10px; margin-left: 8px; text-align: center;">Login</h2>
+    <div class="campo">
+        <input type="text" id="user" name="user" placeholder="Usuário" required style="width: 250px; border-radius: 8px;" autocomplete="off">
     </div>
+    <div class="campos">
+        <input type="password" id="senha" name="senha" placeholder="Senha" required style="width: 250px; border-radius: 8px;" autocomplete="off">
+    </div>
+    <button class="button-entrar" type="submit">Entrar</button>
+</form>
+
+                    <br>
+                    <a href="#">Esqueci minha senha</a>
+                </div>
+                <div class="formulario">
+                    <img src="/tcc/logo.png">
+                    <h2 class="conta">Bem vindo de volta!</h2>
+                    <p class="txt-conta">Acesse sua conta agora mesmo</p>
+                </div>
+            `;
+        }
+    </script>
 </body>
 
 </html>

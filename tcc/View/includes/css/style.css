@@ -7,7 +7,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: #f8f9fa;
+    background-color: #f8faf8;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -71,7 +71,7 @@ h1 {
     margin-left: 260px; 
     padding: 20px;
     width: calc(100% - 260px);
-    margin-top: 60px; 
+    margin-top: 10px; 
 }
 
 
@@ -219,4 +219,25 @@ label[for="tipo_pessoa"] {
 .parcela select {
     width: 100%; /* Garante que os campos ocupem toda a largura do container */
     box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+.parada-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.parada-row input {
+    flex: 1;
+}
+
+.parada-row .btn-remover {
+    padding: 10px 10px;
+    color: white;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -18px;
 }

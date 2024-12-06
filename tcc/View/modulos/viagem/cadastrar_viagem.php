@@ -6,28 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
     <title>Cadastrar Viagem</title>
-    <style>
-        .parada-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .parada-row input {
-            flex: 1;
-        }
-
-        .parada-row .btn-remover {
-            padding: 10px 10px;
-            color: white;
-            background-color: red;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: -18px;
-        }
-    </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const botaoAdicionar = document.getElementById('adicionar-parada');
@@ -106,33 +84,33 @@
                         </div>
                         <div class="form-column">
 
-                            <label for="id_veiculo ">Veiculo
-                                <select id="id_veiculo" name="id_veiculo" class="form-control" required>
+                            <label for="id_veiculo">Veiculo
+                                <select id="id_veiculo" name="id_veiculo" class="form-control">
                                     <option>Selecione</option>
-                                    <?php for ($i = 0; $i < $total_veiculo; $i++):
-                                        $selecionado = "";
-                                        if (isset($dados_viagem->id))
-                                            $selecionado = ($lista_veiculo[$i]->id == $dados_car->id_veiculo) ? "selected" : "";
-                                    ?>
+                                    <?php for ($i = 0; $i < $total_veiculo; $i++): ?>
+                                        <?php
+                                        $selecionado = (isset($dados_viagem->id_veiculo) && $lista_veiculo[$i]->id == $dados_viagem->id_veiculo) ? "selected" : "";
+                                        ?>
                                         <option value="<?= $lista_veiculo[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_veiculo[$i]->nome_proprietario ?>
                                         </option>
-                                    <?php endfor ?>
+                                    <?php endfor; ?>
+
                                 </select>
                             </label>
 
-                            <label for="id_funcionario ">Funcionário
-                                <select id="id_funcionario" name="id_funcionario" class="form-control" required>
+                            <label for="id_funcionario">Funcionário
+                                <select id="id_funcionario" name="id_funcionario" class="form-control">
                                     <option>Selecione</option>
-                                    <?php for ($i = 0; $i < $total_func; $i++):
-                                        $selecionado = "";
-                                        if (isset($dados_viagem->id))
-                                            $selecionado = ($lista_func[$i]->id == $dados_car->id_funcionario) ? "selected" : "";
-                                    ?>
+                                    <?php for ($i = 0; $i < $total_func; $i++): ?>
+                                        <?php
+                                        $selecionado = (isset($dados_viagem->id_funcionario) && $lista_func[$i]->id == $dados_viagem->id_funcionario) ? "selected" : "";
+                                        ?>
                                         <option value="<?= $lista_func[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_func[$i]->nome_completo ?>
                                         </option>
-                                    <?php endfor ?>
+                                    <?php endfor; ?>
+
                                 </select>
                             </label>
 
@@ -157,31 +135,36 @@
                             </label>
 
                             <div style="display: flex; align-items: center; gap: 10px;">
-                                <label for="id_carga">Carga
-                                    <select id="id_carga" name="id_carga" class="form-control" required>
-                                        <option>Selecione</option>
-                                        <?php
-                                        for ($i = 0; $i < $total_car; $i++):
-                                            $selecionado = "";
+    <div style="display: flex; flex-direction: column; width: 100%;">
+        <label for="id_carga" style="margin-bottom: 5px;">Carga</label>
+        <select id="id_carga" name="id_carga" class="form-control" required style="width: 100%; padding: 8px; font-size: 16px;">
+            <option>Selecione</option>
+            <?php for ($i = 0; $i < $total_car; $i++): ?>
+                <?php
+                // Inicializa a variável de seleção
+                $selecionado = "";
 
-                                            // Verifica se o ID está na URL
-                                            if (isset($_GET['id_carga'])) {
-                                                $selecionado = ($lista_car[$i]->id == $_GET['id_carga']) ? "selected" : "";
-                                            } elseif (isset($dados_viagem->id)) {
-                                                $selecionado = ($lista_car[$i]->id == $dados_car->id_carga) ? "selected" : "";
-                                            }
-                                        ?>
-                                            <option value="<?= $lista_car[$i]->id ?>" <?= $selecionado ?>>
-                                                <?= $lista_car[$i]->descricao ?>
-                                            </option>
-                                        <?php endfor; ?>
-                                    </select>
-                                </label>
+                // Verifica se há um ID na URL
+                if (isset($_GET['id_carga'])) {
+                    $selecionado = ($lista_car[$i]->id == $_GET['id_carga']) ? "selected" : "";
+                }
+                // Verifica se há um ID associado a $dados_viagem
+                elseif (isset($dados_viagem->id_carga)) {
+                    $selecionado = ($lista_car[$i]->id == $dados_viagem->id_carga) ? "selected" : "";
+                }
+                ?>
+                <option value="<?= $lista_car[$i]->id ?>" <?= $selecionado ?>>
+                    <?= $lista_car[$i]->descricao ?>
+                </option>
+            <?php endfor; ?>
+        </select>
+    </div>
 
-                                <a href='/tcc/carga/cadastrar' target="_blank">
-                                    <img src="/tcc/View/includes/imagem/adicionar.png" alt="Adicionar" style="width: 35px; height: auto; cursor: pointer;" />
-                                </a>
-                            </div>
+    <a href='/tcc/carga/cadastrar' target="_blank">
+        <img src="/tcc/View/includes/imagem/adicionar.png" alt="Adicionar" style="width: 35px; height: auto; cursor: pointer;" />
+    </a>
+</div>
+
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ class ContasReceberController{
         $lista_cli = $cliente_DAO->getAllRows();
         $total_cli = count($lista_cli);
             
-        include 'View/modulos/contas_receber/lista_contasreceber.php';
+        include 'View/modulos/contas_receber/listar_contasreceber.php';
     }
     
 

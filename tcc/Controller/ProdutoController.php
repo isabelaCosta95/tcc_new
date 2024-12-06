@@ -4,6 +4,10 @@ class ProdutoController{
 
     public static function index(){
 
+        $categoria_DAO = new CategoriaDAO();
+        $lista_categ = $categoria_DAO->getAllRows();
+        $total_categ = count($lista_categ);
+
         $produto_DAO = new ProdutoDAO();
         $lista_prod = $produto_DAO->getAllRows();
         $total_prod = count($lista_prod);

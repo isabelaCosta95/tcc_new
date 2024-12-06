@@ -38,7 +38,7 @@
                     <?php for($i=0; $i<$total_car; $i++): ?>
                     <tr>
                         <td class="icon">
-                            <a href="/tcc/categoria/ver?id=<?= $lista_car[$i]->id ?>">
+                            <a href="/tcc/carga/ver?id=<?= $lista_car[$i]->id ?>">
                                 <img title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
                             </a>
                         </td>

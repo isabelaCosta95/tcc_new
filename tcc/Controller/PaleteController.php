@@ -52,4 +52,8 @@ class PaleteController{
             header("Location: /tcc/palete");
         }
     }
+
+    public static function somarPaletes(){
+        
+    }
 }
