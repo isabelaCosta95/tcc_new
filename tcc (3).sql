@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/12/2024 às 14:23
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 06-Dez-2024 às 20:44
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `carga`
+-- Estrutura da tabela `carga`
 --
 
 CREATE TABLE `carga` (
@@ -40,17 +40,17 @@ CREATE TABLE `carga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `carga`
+-- Extraindo dados da tabela `carga`
 --
 
 INSERT INTO `carga` (`id`, `descricao`, `id_produto`, `id_cliente`, `status`, `id_seguradora`, `quantidade`, `valor_total`, `nmr_seguro`) VALUES
-(1, 'primeira carga', 3, 4, '', 1, 10, 45, '15'),
-(2, 'segunda carga', 3, 4, '', 1, 10, 45, '15');
+(1, 'primeira carga', 3, 4, '', 1, '10', '45', '15'),
+(2, 'segunda carga', 3, 4, '', 1, '10', '45', '15');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cargo`
+-- Estrutura da tabela `cargo`
 --
 
 CREATE TABLE `cargo` (
@@ -60,16 +60,16 @@ CREATE TABLE `cargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `cargo`
+-- Extraindo dados da tabela `cargo`
 --
 
 INSERT INTO `cargo` (`id`, `descricao`, `nome`) VALUES
-(4, 'Gerenciar a equipe administrativo', 'Gerente Administrativa');
+(4, 'Dirigir todos as equipes', 'Diretor');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categoria`
+-- Estrutura da tabela `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -79,20 +79,18 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `categoria`
+-- Extraindo dados da tabela `categoria`
 --
 
 INSERT INTO `categoria` (`id`, `descricao`, `ativo`) VALUES
-(1, 'Laticínios - Vaca', 'N'),
+(1, 'Laticínios - Vaca', 'S'),
 (5, 'Remédio', 'S'),
-(6, 'Assados', 'N'),
-(7, 'Bovino', 'N'),
 (8, 'Congelados', 'S');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cidade`
+-- Estrutura da tabela `cidade`
 --
 
 CREATE TABLE `cidade` (
@@ -103,7 +101,7 @@ CREATE TABLE `cidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `cidade`
+-- Extraindo dados da tabela `cidade`
 --
 
 INSERT INTO `cidade` (`id`, `id_estado`, `descricao`, `ibge`) VALUES
@@ -117,12 +115,13 @@ INSERT INTO `cidade` (`id`, `id_estado`, `descricao`, `ibge`) VALUES
 (8, 25, 'Florianopolis', '4205407'),
 (9, 5, 'Manaus', '1302603'),
 (10, 10, 'Goiania', '5208707'),
-(11, 26, 'Presidente Venceslau', '4528');
+(11, 26, 'Presidente Venceslau', '4528'),
+(12, 3, 'Maceio', '2704302');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cliente`
+-- Estrutura da tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -145,17 +144,17 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `cliente`
+-- Extraindo dados da tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id`, `razao_social`, `nome_fantasia`, `cnpj_cpf`, `inscricao_estadual`, `endereco`, `bairro`, `complemento`, `numero`, `id_cidade`, `id_estado`, `telefone1`, `telefone2`, `observacao`, `ativo`, `email`) VALUES
-(4, 'Amone', '', '', '', '', '', '', '', NULL, NULL, '', '', '', 'S', NULL),
+(4, 'Lider LTDA', 'Lider', '14.520.000/0011-15', '518.344.548.67', 'Rua Lider', 'Lider II', '', '255', 10, 10, '(20) 99777-547', '', '', 'S', 'lider@lider.com'),
 (11, 'Isabela Oliveira Vieira Costa', 'Isa Costa', '430.286.618-70', '123', 'Jeônimo Garcia Duarte', 'Jd. Tereza', '', '1135', 1, 26, '(18) 99630-942', '', '', 'S', 'isabelaovc95@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `contas_pagar`
+-- Estrutura da tabela `contas_pagar`
 --
 
 CREATE TABLE `contas_pagar` (
@@ -164,27 +163,29 @@ CREATE TABLE `contas_pagar` (
   `dt_vencimento` date NOT NULL,
   `valor` decimal(10,2) NOT NULL,
   `stts` varchar(1) NOT NULL,
-  `dt_pagamento` date NOT NULL,
-  `form_pagamento` varchar(20) NOT NULL,
-  `plano_contas` int(11) NOT NULL,
-  `observacao` varchar(255) NOT NULL,
+  `dt_pagamento` date DEFAULT NULL,
+  `form_pagamento` varchar(20) DEFAULT NULL,
+  `plano_contas` int(11) DEFAULT NULL,
+  `observacao` varchar(255) DEFAULT NULL,
   `qnt_parcelas` int(3) NOT NULL,
   `cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `contas_pagar`
+-- Extraindo dados da tabela `contas_pagar`
 --
 
 INSERT INTO `contas_pagar` (`id`, `descricao`, `dt_vencimento`, `valor`, `stts`, `dt_pagamento`, `form_pagamento`, `plano_contas`, `observacao`, `qnt_parcelas`, `cliente`) VALUES
-(1, 'Conta 1 teste', '2024-10-10', 100.00, 'P', '2024-10-10', 'Dinheiro', 1, '-', 1, 0),
-(2, 'Conta teste valor - alterar', '2024-11-20', 1.59, 'C', '2024-11-02', '10', 15, 'TESTE OBSERVAÇÃO', 3, 9),
-(3, 'Teste inserir valor novamente', '2024-11-01', 1500.00, '', '2024-11-17', '', 15, '', 3, 0);
+(1, 'Conta 1 teste', '2024-10-10', '100.00', 'P', '2024-10-10', 'Dinheiro', 1, '-', 1, 0),
+(2, 'Conta teste valor - alterar', '2024-11-20', '1.59', 'C', '2024-11-02', '10', 15, 'TESTE OBSERVAÇÃO', 3, 9),
+(3, 'Folha Pagamento - Maria Clara', '2024-11-01', '1500.00', 'A', '2024-11-17', '', 1, '', 1, 0),
+(4, 'Viagem:  - parada 1', '2001-01-01', '15.00', 'A', NULL, NULL, NULL, NULL, 1, 3),
+(5, 'Viagem:  - parada 2', '2001-01-01', '70.00', 'A', NULL, NULL, NULL, NULL, 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `contas_receber`
+-- Estrutura da tabela `contas_receber`
 --
 
 CREATE TABLE `contas_receber` (
@@ -202,18 +203,18 @@ CREATE TABLE `contas_receber` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `contas_receber`
+-- Extraindo dados da tabela `contas_receber`
 --
 
 INSERT INTO `contas_receber` (`id`, `descricao`, `dt_vencimento`, `valor`, `stts`, `dt_pagamento`, `form_pagamento`, `plano_contas`, `observacao`, `qnt_parcelas`, `cliente`) VALUES
-(1, 'Pagamento de Serviço', '2024-12-10', 1500, 'P', '2024-12-12', 'Cartão de Crédito', 101, 'Serviço realizado em novembro', 1, 5),
-(2, 'Venda de Produto', '2024-12-15', 300, 'A', '0000-00-00', 'Boleto Bancário', 102, 'Parcelado em 3x', 3, 8),
-(3, 'Assinatura Mensal', '2024-12-05', 100, 'P', '2024-12-06', 'Pix', 103, 'Referente ao mês de dezembro', 1, 12);
+(1, 'Pagamento de Serviço', '2024-12-10', '1500', 'P', '2024-12-12', 'Cartão de Crédito', 101, 'Serviço realizado em novembro', 1, 5),
+(2, 'Venda de Produto', '2024-12-15', '300', 'A', '2024-12-06', '', 8, 'Parcelado em 3x', 3, 0),
+(3, 'Assinatura Mensal', '2024-12-05', '100', 'P', '2024-12-06', 'Pix', 103, 'Referente ao mês de dezembro', 1, 12);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `empresa`
+-- Estrutura da tabela `empresa`
 --
 
 CREATE TABLE `empresa` (
@@ -234,16 +235,16 @@ CREATE TABLE `empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `empresa`
+-- Extraindo dados da tabela `empresa`
 --
 
 INSERT INTO `empresa` (`id`, `razao_social`, `nome_fantasia`, `inscricao_estadual`, `cnpj`, `inscricao_municipal`, `telefone`, `endereco`, `numero`, `bairro`, `complemento`, `id_cidade`, `id_estado`, `email`) VALUES
-(1, 'Empresa Teste', 'Empresa Teste', '123', '123', '123', '123', 'Jeônimo Garcia Duarte', '1135', 'Jd. Tereza', 'teste', 1, 14, 'empresa teste');
+(1, 'TMS Sistema de Gerenciamento de Transportes LTDA.', 'TMS', '', '45.789.654/0001-25', '145879641', '(18)97854-6532', 'Jeônimo Garcia Duarte', '1135', 'Jd. Tereza', '', 1, 14, 'isabela@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estado`
+-- Estrutura da tabela `estado`
 --
 
 CREATE TABLE `estado` (
@@ -254,7 +255,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `estado`
+-- Extraindo dados da tabela `estado`
 --
 
 INSERT INTO `estado` (`id`, `sigla`, `descricao`, `codigo_uf`) VALUES
@@ -289,7 +290,7 @@ INSERT INTO `estado` (`id`, `sigla`, `descricao`, `codigo_uf`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forma_pagamento`
+-- Estrutura da tabela `forma_pagamento`
 --
 
 CREATE TABLE `forma_pagamento` (
@@ -299,27 +300,25 @@ CREATE TABLE `forma_pagamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `forma_pagamento`
+-- Extraindo dados da tabela `forma_pagamento`
 --
 
 INSERT INTO `forma_pagamento` (`id`, `descricao`, `ativo`) VALUES
-(1, 'Dinheiri', 'S'),
+(1, 'Dinheiro', 'S'),
 (2, 'Cartão de Crédito', 'S'),
 (3, 'Cartão de Débito', ''),
-(4, 'Pix', ''),
-(5, 'Transferência Bancária', ''),
-(6, 'Boleto Bancário', ''),
-(7, 'Cheque isabela', 'S'),
-(8, 'Vale Alimentação', ''),
-(9, 'Vale Refeição', ''),
-(10, 'Crédito na Loja', ''),
-(11, 'Cartão de Crédito Isabela', 'S'),
-(12, 'isabela', 'S');
+(4, 'Pix', 'S'),
+(5, 'Transferência Bancária', 'S'),
+(6, 'Boleto Bancário', 'S'),
+(7, 'Cheque', 'S'),
+(8, 'Vale Alimentação', 'S'),
+(9, 'Vale Refeição', 'S'),
+(10, 'Crédito na Loja', 'S');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Estrutura da tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -344,16 +343,16 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `funcionario`
+-- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`id`, `nome_completo`, `cpf`, `cnh`, `dt_nascimento`, `rg`, `dt_venc_cnh`, `endereco`, `bairro`, `numero`, `complemento`, `id_estado`, `id_cidade`, `telefone`, `chave_pix`, `email`, `ativo`, `observacao`) VALUES
-(3, 'isabela oliveira vieira costa', '430.286.618-70', '125', '2024-12-02', '456', '2024-12-02', 'Jeônimo Garcia Duarte', 'Vila Santa Tereza', '1135', '', 3, 1, '(18) 99630-9423', '18996309423', 'isabelaovc95@gmail.com', 'S', '');
+(3, 'Isabela Oliveira Vieira Costa', '430.286.618-70', '5558889786', '2004-04-07', '456888899', '2032-06-20', 'Jeônimo Garcia Duarte', 'Vila Santa Tereza', '1135', '', 14, 3, '(18) 99630-9423', '18996309423', 'isabelaovc95@gmail.com', 'S', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `manutencao`
+-- Estrutura da tabela `manutencao`
 --
 
 CREATE TABLE `manutencao` (
@@ -372,7 +371,7 @@ CREATE TABLE `manutencao` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `palete`
+-- Estrutura da tabela `palete`
 --
 
 CREATE TABLE `palete` (
@@ -383,30 +382,38 @@ CREATE TABLE `palete` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `palete`
+-- Extraindo dados da tabela `palete`
 --
 
 INSERT INTO `palete` (`id`, `tipo`, `quantidade`, `justificativa`) VALUES
-(1, 'E', 15, 'entrada teste');
+(1, 'E', '15', 'entrada teste');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `parada`
+-- Estrutura da tabela `parada`
 --
 
 CREATE TABLE `parada` (
   `id` int(11) NOT NULL,
-  `descricao` varchar(200) NOT NULL,
+  `parada` varchar(200) NOT NULL,
   `local` varchar(200) NOT NULL,
-  `valor` decimal(10,2) NOT NULL,
+  `valor_unitario` decimal(10,2) NOT NULL,
   `id_viagem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `parada`
+--
+
+INSERT INTO `parada` (`id`, `parada`, `local`, `valor_unitario`, `id_viagem`) VALUES
+(5, 'parada 1', 'local 1', '15.00', 7),
+(6, 'parada 2', 'local 2', '70.00', 7);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `peca`
+-- Estrutura da tabela `peca`
 --
 
 CREATE TABLE `peca` (
@@ -417,17 +424,18 @@ CREATE TABLE `peca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `peca`
+-- Extraindo dados da tabela `peca`
 --
 
 INSERT INTO `peca` (`descricao`, `id`, `ativo`, `observacao`) VALUES
-('vela', 1, '', ''),
-('volantee', 2, 'N', 'Volante Elétricoo');
+('Cilindro', 1, 'S', 'Localizado no Motor'),
+('Transmissão', 3, 'S', ' Transfere a potência do motor'),
+('Freios', 4, 'S', 'Responsável por parar o carro com segurança');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `plano_conta`
+-- Estrutura da tabela `plano_conta`
 --
 
 CREATE TABLE `plano_conta` (
@@ -440,31 +448,26 @@ CREATE TABLE `plano_conta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `plano_conta`
+-- Extraindo dados da tabela `plano_conta`
 --
 
 INSERT INTO `plano_conta` (`id`, `descricao`, `ativo`, `natureza`, `tipo`, `observacao`) VALUES
-(1, 'Despesas Operacionais', '0', '', '', '0'),
-(2, 'Despesas com Pessoal', '0', '', '', '0'),
-(3, 'Despesas de Marketing', '0', '', '', '0'),
-(4, 'Despesas Administrativas', '0', '', '', '0'),
-(5, 'Despesas Financeiras', '0', '', '', '0'),
-(6, 'Despesas Tributárias', '0', '', '', '0'),
-(7, 'Receitas Operacionais', '0', '', '', '0'),
-(8, 'Receitas de Vendas', '0', '', '', '0'),
-(9, 'Receitas Financeiras', '0', '', '', '0'),
-(10, 'Receitas de Investimentos', '0', '', '', '0'),
-(11, 'Ativo Circulante', '0', '', '', '0'),
-(12, 'Ativo Não Circulante', '0', '', '', '0'),
-(13, 'Passivo Circulante', '0', '', '', '0'),
-(14, 'Passivo Não Circulante', '0', '', '', '0'),
-(15, 'Patrimônio Líquido', '0', '', '', '0'),
-(16, 'Plano testee', 'N', 'D', 'R', '-e');
+(1, 'Despesas Operacionais', 'S', 'C', 'A', ''),
+(2, 'Despesas com Pessoal', 'S', 'C', 'A', ''),
+(3, 'Despesas de Marketing', 'S', 'C', 'A', ''),
+(4, 'Despesas Administrativas', 'S', 'C', 'A', ''),
+(5, 'Despesas Financeiras', 'S', 'C', 'A', ''),
+(6, 'Despesas Tributárias', 'S', 'C', 'A', ''),
+(7, 'Receitas Operacionais', 'S', 'C', 'A', '0'),
+(8, 'Receitas de Vendas', 'S', 'C', 'A', '0'),
+(9, 'Receitas Financeiras', 'S', 'C', 'A', '0'),
+(10, 'Receitas de Investimentos', 'S', 'C', 'A', '0'),
+(11, 'Ativo Circulante', 'S', 'C', 'A', '0');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -496,18 +499,17 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
 INSERT INTO `produto` (`id`, `id_categoria`, `marca`, `descricao`, `observacao`, `estoque`, `preco`, `unidade`, `validade`, `ativo`, `ncm`, `cfop`, `pis`, `cofins`, `icms_cst`, `aliquota_pis`, `aliquota_cofins`, `aliquota_icms`, `ipi`, `aliquota_reducao_bc`, `origem_icms`, `cest`, `gtin`, `aliquota_mva`, `codigo_barras`) VALUES
-(3, 1, NULL, 'vela', NULL, 0.00, 45.00, NULL, NULL, 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, NULL),
-(6, 1, 'marca teste', 'produto teste', '15', 14.00, 1.00, 1, 1, 'S', '2', '3', '4', '5', '11', 12.00, 13.00, 6.00, 17.00, NULL, '9', '7', '8', 10.00, '1'),
-(7, 5, 'Marca melhor', 'Produto alterado - isabela', '105', 104.00, 150.00, 5, 100, 'S', '200', '300', '400', '500', '110', 999.99, 10.00, 600.00, 999.99, 2.00, '90', '700', '800', 1000.00, '17');
+(3, 8, 'Sadia', 'Presunto', '', '0.00', '45.00', 1, 0, 'S', '', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '0.00', '', '', '', '0.00', ''),
+(6, 5, 'Lider', 'Leite', '', '14.00', '25.00', 2, 30, 'S', '02013000', '5405', '99', '99', '500', '0.00', '0.00', '0.00', '0.00', '0.00', '0', '', '', '0.00', '7895457444848');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `seguradora`
+-- Estrutura da tabela `seguradora`
 --
 
 CREATE TABLE `seguradora` (
@@ -521,17 +523,17 @@ CREATE TABLE `seguradora` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `seguradora`
+-- Extraindo dados da tabela `seguradora`
 --
 
 INSERT INTO `seguradora` (`id`, `nome`, `cnpj`, `email`, `inscricao_estadual`, `contato`, `telefone`) VALUES
 (1, 'Seguradora ABC', '12.345.678/0001-90', 'contato@seguradoraabc.com', '123456789', 'João Silva', '(11) 98765-432'),
-(2, 'nome', 'cnpj', 'email', 'ins', 'cont', 'tel');
+(2, 'Maria Seguradora', '454455454400011', 'maria@mariaseguros.com.br', '487856156416', 'Maria', '18991905901');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `unidade_venda`
+-- Estrutura da tabela `unidade_venda`
 --
 
 CREATE TABLE `unidade_venda` (
@@ -541,7 +543,7 @@ CREATE TABLE `unidade_venda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `unidade_venda`
+-- Extraindo dados da tabela `unidade_venda`
 --
 
 INSERT INTO `unidade_venda` (`id`, `descricao`, `abreviacao`) VALUES
@@ -558,7 +560,7 @@ INSERT INTO `unidade_venda` (`id`, `descricao`, `abreviacao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -571,7 +573,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `usuario`, `senha`, `cargo`, `ativo`) VALUES
@@ -580,7 +582,7 @@ INSERT INTO `usuario` (`id`, `nome`, `usuario`, `senha`, `cargo`, `ativo`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `veiculo`
+-- Estrutura da tabela `veiculo`
 --
 
 CREATE TABLE `veiculo` (
@@ -599,16 +601,18 @@ CREATE TABLE `veiculo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `veiculo`
+-- Extraindo dados da tabela `veiculo`
 --
 
 INSERT INTO `veiculo` (`id`, `placa`, `nome_proprietario`, `marca`, `cor`, `observacao`, `renavam`, `rntc`, `chassi`, `combustivel`, `dt_fabricacao`, `dt_licenciamento`) VALUES
-(1, 'placa', 'nome', 'marca', 'cor', NULL, 'ren', 'rntc', 'chassi', 'comb', '2012-01-01', '2004-04-07');
+(1, 'FIA9567', 'Maria Clara Assencio Brum', 'YAMAHA NEO 125', 'Vermelho', NULL, '189756423', 'MI8234', '4444444', 'Gasolina', '2017-03-02', '2024-03-03'),
+(3, 'MAR-2503', 'Matheus Ales Viscardi', 'HONDA CG-160', 'Vermelho', NULL, '151611651451', '514564154541', '1415444244', 'Gasolina', '2017-12-06', '2024-01-25'),
+(4, 'HRT-8675', 'Marcelo de Lima', 'HYUNDAI - HR', 'Branco', NULL, '8486946854', '54564574', '8484688645', 'Etanol/Gasolina', '2015-12-06', '2024-08-06');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `viagem`
+-- Estrutura da tabela `viagem`
 --
 
 CREATE TABLE `viagem` (
@@ -624,11 +628,18 @@ CREATE TABLE `viagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Extraindo dados da tabela `viagem`
+--
+
+INSERT INTO `viagem` (`id`, `id_carga`, `data_inicio`, `data_fim`, `endereco_partida`, `endereco_chegada`, `id_veiculo`, `id_funcionario`, `observacao`) VALUES
+(7, 1, '2001-01-01', '2002-02-02', 'partida', 'chegada', 1, 3, 'obs');
+
+--
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `carga`
+-- Índices para tabela `carga`
 --
 ALTER TABLE `carga`
   ADD PRIMARY KEY (`id`),
@@ -637,26 +648,26 @@ ALTER TABLE `carga`
   ADD KEY `fk_carga_seguradora` (`id_seguradora`);
 
 --
--- Índices de tabela `cargo`
+-- Índices para tabela `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `categoria`
+-- Índices para tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `cidade`
+-- Índices para tabela `cidade`
 --
 ALTER TABLE `cidade`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_cidade_estado` (`id_estado`);
 
 --
--- Índices de tabela `cliente`
+-- Índices para tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`),
@@ -664,37 +675,39 @@ ALTER TABLE `cliente`
   ADD KEY `fk_cliente_estado` (`id_estado`);
 
 --
--- Índices de tabela `contas_pagar`
+-- Índices para tabela `contas_pagar`
 --
 ALTER TABLE `contas_pagar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `contas_receber`
+-- Índices para tabela `contas_receber`
 --
 ALTER TABLE `contas_receber`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `empresa`
+-- Índices para tabela `empresa`
 --
 ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cidade` (`id_cidade`),
+  ADD KEY `id_estado` (`id_estado`);
 
 --
--- Índices de tabela `estado`
+-- Índices para tabela `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `forma_pagamento`
+-- Índices para tabela `forma_pagamento`
 --
 ALTER TABLE `forma_pagamento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `funcionario`
+-- Índices para tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`),
@@ -702,76 +715,78 @@ ALTER TABLE `funcionario`
   ADD KEY `fk_funcionario_cidade` (`id_cidade`);
 
 --
--- Índices de tabela `manutencao`
+-- Índices para tabela `manutencao`
 --
 ALTER TABLE `manutencao`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_manutencao_veiculo` (`id_veiculo`);
 
 --
--- Índices de tabela `palete`
+-- Índices para tabela `palete`
 --
 ALTER TABLE `palete`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `parada`
+-- Índices para tabela `parada`
 --
 ALTER TABLE `parada`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `peca`
+-- Índices para tabela `peca`
 --
 ALTER TABLE `peca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `plano_conta`
+-- Índices para tabela `plano_conta`
 --
 ALTER TABLE `plano_conta`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `produto`
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_codigo_categoria` (`id_categoria`);
 
 --
--- Índices de tabela `seguradora`
+-- Índices para tabela `seguradora`
 --
 ALTER TABLE `seguradora`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `unidade_venda`
+-- Índices para tabela `unidade_venda`
 --
 ALTER TABLE `unidade_venda`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `usuario`
+-- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `veiculo`
+-- Índices para tabela `veiculo`
 --
 ALTER TABLE `veiculo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `viagem`
+-- Índices para tabela `viagem`
 --
 ALTER TABLE `viagem`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_viagem_carga` (`id_carga`),
   ADD KEY `fk_viagem_funcionario` (`id_funcionario`),
   ADD KEY `fk_viagem_veiculo` (`id_veiculo`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -784,7 +799,7 @@ ALTER TABLE `carga`
 -- AUTO_INCREMENT de tabela `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
@@ -796,19 +811,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de tabela `cidade`
 --
 ALTER TABLE `cidade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `contas_pagar`
 --
 ALTER TABLE `contas_pagar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `contas_receber`
@@ -820,7 +835,7 @@ ALTER TABLE `contas_receber`
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `estado`
@@ -838,7 +853,7 @@ ALTER TABLE `forma_pagamento`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `manutencao`
@@ -856,13 +871,13 @@ ALTER TABLE `palete`
 -- AUTO_INCREMENT de tabela `parada`
 --
 ALTER TABLE `parada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `peca`
 --
 ALTER TABLE `peca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `plano_conta`
@@ -874,13 +889,13 @@ ALTER TABLE `plano_conta`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `seguradora`
 --
 ALTER TABLE `seguradora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `unidade_venda`
@@ -898,14 +913,20 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `veiculo`
 --
 ALTER TABLE `veiculo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restrições para tabelas despejadas
+-- AUTO_INCREMENT de tabela `viagem`
+--
+ALTER TABLE `viagem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `carga`
+-- Limitadores para a tabela `carga`
 --
 ALTER TABLE `carga`
   ADD CONSTRAINT `fk_carga_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
@@ -913,46 +934,46 @@ ALTER TABLE `carga`
   ADD CONSTRAINT `fk_carga_seguradora` FOREIGN KEY (`id_seguradora`) REFERENCES `seguradora` (`id`);
 
 --
--- Restrições para tabelas `cidade`
+-- Limitadores para a tabela `cidade`
 --
 ALTER TABLE `cidade`
   ADD CONSTRAINT `fk_cidade_estado` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id`);
 
 --
--- Restrições para tabelas `cliente`
+-- Limitadores para a tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `fk_cliente_cidade` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id`),
   ADD CONSTRAINT `fk_cliente_estado` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id`);
 
 --
--- Restrições para tabelas `empresa`
+-- Limitadores para a tabela `empresa`
 --
 ALTER TABLE `empresa`
   ADD CONSTRAINT `id_cidade` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id`),
   ADD CONSTRAINT `id_estado` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id`);
 
 --
--- Restrições para tabelas `funcionario`
+-- Limitadores para a tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_funcionario_cidade` FOREIGN KEY (`id_cidade`) REFERENCES `cidade` (`id`),
   ADD CONSTRAINT `fk_funcionario_estado` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id`);
 
 --
--- Restrições para tabelas `manutencao`
+-- Limitadores para a tabela `manutencao`
 --
 ALTER TABLE `manutencao`
   ADD CONSTRAINT `fk_manutencao_veiculo` FOREIGN KEY (`id_veiculo`) REFERENCES `veiculo` (`id`);
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `fk_codigo_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 
 --
--- Restrições para tabelas `viagem`
+-- Limitadores para a tabela `viagem`
 --
 ALTER TABLE `viagem`
   ADD CONSTRAINT `fk_viagem_carga` FOREIGN KEY (`id_carga`) REFERENCES `carga` (`id`),
