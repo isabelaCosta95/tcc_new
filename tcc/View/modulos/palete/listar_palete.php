@@ -37,8 +37,9 @@
                     <?php for ($i = 0; $i < $total_pal; $i++): ?>
                         <tr>
                             <td><?= $lista_pal[$i]->id ?></td>
-                            <td><?= $lista_pal[$i]->tipo ?></td>
-                            <td><?= $lista_pal[$i]->quantidade ?></td>
+                            <td>
+                                <?= $lista_pal[$i]->tipo == 'E' ? 'Entrada' : 'Saída' ?>
+                            </td>                            <td><?= $lista_pal[$i]->quantidade ?></td>
                             <td><?= $lista_pal[$i]->justificativa ?></td>
 
                         </tr>
@@ -50,7 +51,7 @@
             <div class="total-paletes">
                 <p><strong>Total de Paletes: </strong><?= $soma_paletes ?></p>
             </div>
-            
+
         </main>
     </div>
 
