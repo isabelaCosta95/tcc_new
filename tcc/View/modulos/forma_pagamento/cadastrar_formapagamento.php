@@ -47,12 +47,18 @@
                 <?php endif; ?>
 
                 <div class="form-buttons">
+                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_fpag) ? 'Alterar' : 'Cadastrar' ?>
                     </button>
 
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/formaPagamento'">Consultar</button>
                     
+                    <?php if (isset($dados_fpag)): ?>
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/formaPagamento/excluir?id=<?= $dados_fpag->id ?>'">
+                            Excluir
+                        </button>
+                    <?php endif; ?>
                 </div>
             </form>
 

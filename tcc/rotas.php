@@ -4,430 +4,432 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-try{
-    switch($uri_parse){
+try {
+    switch ($uri_parse) {
 
-        //Tela inicial
+            // Rota para a tela de login
+        case '/tcc/login':
+            include "View/login.php"; // A tela de login
+            break;
+
+            // Rota para processar o login
+        case '/tcc/autenticador':
+            include "View/autenticador.php"; // A lógica de autenticação
+            break;
+
+
+            //Tela inicial
         case '/tcc/':
             include "View/home.php";
-        break;
+            break;
 
-        //Autenticar usuário
-        case '/tcc/login':
-        break;
-
-        case '/tcc/sair':
-        break;
-
-        // Rotas Empresa
+            // Rotas Empresa
         case '/tcc/empresa':
             EmpresaController::index();
-        break;
+            break;
 
         case '/tcc/empresa/cadastrar':
             EmpresaController::cadastrar();
-        break;
+            break;
 
         case '/tcc/empresa/ver':
             EmpresaController::ver();
-        break;
+            break;
 
         case '/tcc/empresa/salvar':
             EmpresaController::salvar();
-        break;
+            break;
 
         case '/tcc/empresa/excluir':
             EmpresaController::excluir();
-        break;
+            break;
 
-        // Rotas Seguradora
+            // Rotas Seguradora
         case '/tcc/seguradora':
             SeguradoraController::index();
-        break;
+            break;
 
         case '/tcc/seguradora/cadastrar':
             SeguradoraController::cadastrar();
-        break;
+            break;
 
         case '/tcc/seguradora/ver':
             SeguradoraController::ver();
-        break;
+            break;
 
         case '/tcc/seguradora/salvar':
             SeguradoraController::salvar();
-        break;
+            break;
 
         case '/tcc/seguradora/excluir':
             SeguradoraController::excluir();
-        break;
+            break;
 
-        // Rotas Cidade
+            // Rotas Cidade
         case '/tcc/cidade':
             CidadeController::index();
-        break;
+            break;
 
         case '/tcc/cidade/cadastrar':
             CidadeController::cadastrar();
-        break;
+            break;
 
         case '/tcc/cidade/ver':
             CidadeController::ver();
-        break;
+            break;
 
         case '/tcc/cidade/salvar':
             CidadeController::salvar();
-        break;
+            break;
 
         case '/tcc/cidade/excluir':
             CidadeController::excluir();
-        break;
+            break;
 
-        // Rotas Forma de Pagamento
+            // Rotas Forma de Pagamento
         case '/tcc/formaPagamento':
             FormaPagamentoController::index();
-        break;
+            break;
 
         case '/tcc/formaPagamento/cadastrar':
             FormaPagamentoController::cadastrar();
-        break;
+            break;
 
         case '/tcc/formaPagamento/ver':
             FormaPagamentoController::ver();
-        break;
+            break;
 
         case '/tcc/formaPagamento/salvar':
             FormaPagamentoController::salvar();
-        break;
+            break;
 
         case '/tcc/formaPagamento/excluir':
             FormaPagamentoController::excluir();
-        break;
+            break;
 
-        // Rotas Movimentação de Paletes
+            // Rotas Movimentação de Paletes
         case '/tcc/palete':
             PaleteController::index();
-        break;
+            break;
 
         case '/tcc/palete/cadastrar':
             PaleteController::cadastrar();
-        break;
+            break;
 
         case '/tcc/palete/ver':
             PaleteController::ver();
-        break;
+            break;
 
         case '/tcc/palete/salvar':
             PaleteController::salvar();
-        break;
+            break;
 
         case '/tcc/palete/excluir':
             PaleteController::excluir();
-        break;
+            break;
 
 
-        // Rotas Plano de Contas
+            // Rotas Plano de Contas
         case '/tcc/planoContas':
             PlanoContasController::index();
-        break;
+            break;
 
         case '/tcc/planoContas/cadastrar':
             PlanoContasController::cadastrar();
-        break;
+            break;
 
         case '/tcc/planoContas/ver':
             PlanoContasController::ver();
-        break;
+            break;
 
         case '/tcc/planoContas/salvar':
             PlanoContasController::salvar();
-        break;
+            break;
 
         case '/tcc/planoContas/excluir':
             PlanoContasController::excluir();
-        break;
+            break;
 
-        // Rotas Produtos
+            // Rotas Produtos
         case '/tcc/produto':
             ProdutoController::index();
-        break;
+            break;
 
         case '/tcc/produto/cadastrar':
             ProdutoController::cadastrar();
-        break;
+            break;
 
         case '/tcc/produto/ver':
             ProdutoController::ver();
-        break;
+            break;
 
         case '/tcc/produto/salvar':
             ProdutoController::salvar();
-        break;
+            break;
 
         case '/tcc/produto/excluir':
             ProdutoController::excluir();
-        break;
+            break;
 
-        // Rotas Contas a pagar
+            // Rotas Contas a pagar
         case '/tcc/contasPagar':
             ContasPagarController::index();
-        break;
+            break;
 
         case '/tcc/contasPagar/cadastrar':
             ContasPagarController::cadastrar();
-        break;
+            break;
 
         case '/tcc/contasPagar/ver':
             ContasPagarController::ver();
-        break;
+            break;
 
         case '/tcc/contasPagar/salvar':
             ContasPagarController::salvar();
-        break;
+            break;
 
         case '/tcc/contasPagar/excluir':
             ContasPagarController::excluir();
-        break;
+            break;
 
-        // Rotas Contas a receber
+            // Rotas Contas a receber
         case '/tcc/contasReceber':
             ContasReceberController::index();
-        break;
+            break;
 
         case '/tcc/contasReceber/cadastrar':
             ContasReceberController::cadastrar();
-        break;
+            break;
 
         case '/tcc/contasReceber/ver':
             ContasReceberController::ver();
-        break;
+            break;
 
         case '/tcc/contasReceber/salvar':
             ContasReceberController::salvar();
-        break;
+            break;
 
         case '/tcc/contasReceber/excluir':
             ContasReceberController::excluir();
-        break;
+            break;
 
-        // Rotas Cliente
+            // Rotas Cliente
         case '/tcc/cliente':
             ClienteController::index();
-        break;
+            break;
 
         case '/tcc/cliente/cadastrar':
             ClienteController::cadastrar();
-        break;
+            break;
 
         case '/tcc/cliente/ver':
             ClienteController::ver();
-        break;
+            break;
 
         case '/tcc/cliente/salvar':
             ClienteController::salvar();
-        break;
+            break;
 
         case '/tcc/cliente/excluir':
             ClienteController::excluir();
-        break;
-        
-        // Rotas Categoria
+            break;
+
+            // Rotas Categoria
         case '/tcc/categoria':
             CategoriaController::index(); //index
-        break;
+            break;
 
         case '/tcc/categoria/cadastrar':
             CategoriaController::cadastrar();
-        break;
+            break;
 
         case '/tcc/categoria/salvar':
             CategoriaController::salvar();
-        break;
+            break;
 
         case '/tcc/categoria/ver':
             CategoriaController::ver();
-        break;
+            break;
 
         case '/tcc/categoria/excluir':
             CategoriaController::excluir();
-        break;
+            break;
 
         default:
             echo "Rota inválida";
-        break;
+            break;
 
-        //Rotas Veículos
+            //Rotas Veículos
         case '/tcc/veiculo':
             VeiculoController::index();
-        break;
-    
+            break;
+
         case '/tcc/veiculo/cadastrar':
             VeiculoController::cadastrar();
-        break;
-    
+            break;
+
         case '/tcc/veiculo/ver':
             VeiculoController::ver();
-        break;
-    
+            break;
+
         case '/tcc/veiculo/salvar':
             VeiculoController::salvar();
-        break;
-    
+            break;
+
         case '/tcc/veiculo/excluir':
             VeiculoController::excluir();
-        break;
-    
-
-    //Rotas Estado
-    case '/tcc/estado':
-        EstadoController::index();
-    break;
-
-    case '/tcc/estado/cadastrar':
-        EstadoController::cadastrar();
-    break;
-
-    case '/tcc/estado/ver':
-        EstadoController::ver();
-    break;
-
-    case '/tcc/estado/salvar':
-        EstadoController::salvar();
-    break;
-
-    case '/tcc/estado/excluir':
-        EstadoController::excluir();
-    break;
-
-     // Rotas Funcionario
-     case '/tcc/funcionario':
-        FuncionarioController::index();
-    break;
-
-    case '/tcc/funcionario/cadastrar':
-        FuncionarioController::cadastrar();
-    break;
-
-    case '/tcc/funcionario/ver':
-        FuncionarioController::ver();
-    break;
-
-    case '/tcc/funcionario/salvar':
-        FuncionarioController::salvar();
-    break;
-
-    case '/tcc/funcionario/excluir':
-        FuncionarioController::excluir();
-    break;
-
-    // Rotas Peça
-    case '/tcc/peca':
-        PecaController::index();
-    break;
-
-    case '/tcc/peca/cadastrar':
-        PecaController::cadastrar();
-    break;
-
-    case '/tcc/peca/ver':
-        PecaController::ver();
-    break;
-
-    case '/tcc/peca/salvar':
-        PecaController::salvar();
-    break;
-
-    case '/tcc/peca/excluir':
-        PecaController::excluir();
-    break;
-
-    // Rotas Cargo
-    case '/tcc/cargo':
-        CargoController::index();
-    break;
-
-    case '/tcc/cargo/cadastrar':
-        CargoController::cadastrar();
-    break;
-
-    case '/tcc/cargo/ver':
-        CargoController::ver();
-    break;
-
-    case '/tcc/cargo/salvar':
-        CargoController::salvar();
-    break;
-
-    case '/tcc/cargo/excluir':
-        CargoController::excluir();
-    break;
-
-    // Rotas Carga
-    case '/tcc/carga':
-        CargaController::index();
-    break;
-
-    case '/tcc/carga/cadastrar':
-        CargaController::cadastrar();
-    break;
-
-    case '/tcc/carga/ver':
-        CargaController::ver();
-    break;
-
-    case '/tcc/carga/salvar':
-        CargaController::salvar();
-    break;
-
-    case '/tcc/carga/excluir':
-        CargaController::excluir();
-    break;
+            break;
 
 
-    // Rotas Viagem
-    case '/tcc/viagem':
-        ViagemController::index();
-    break;
+            //Rotas Estado
+        case '/tcc/estado':
+            EstadoController::index();
+            break;
 
-    case '/tcc/viagem/cadastrar':
-        ViagemController::cadastrar();
-    break;
+        case '/tcc/estado/cadastrar':
+            EstadoController::cadastrar();
+            break;
 
-    case '/tcc/viagem/ver':
-        ViagemController::ver();
-    break;
+        case '/tcc/estado/ver':
+            EstadoController::ver();
+            break;
 
-    case '/tcc/viagem/salvar':
-        ViagemController::salvar();
-    break;
+        case '/tcc/estado/salvar':
+            EstadoController::salvar();
+            break;
 
-    case '/tcc/viagem/excluir':
-        ViagemController::excluir();
-    break;
+        case '/tcc/estado/excluir':
+            EstadoController::excluir();
+            break;
+
+            // Rotas Funcionario
+        case '/tcc/funcionario':
+            FuncionarioController::index();
+            break;
+
+        case '/tcc/funcionario/cadastrar':
+            FuncionarioController::cadastrar();
+            break;
+
+        case '/tcc/funcionario/ver':
+            FuncionarioController::ver();
+            break;
+
+        case '/tcc/funcionario/salvar':
+            FuncionarioController::salvar();
+            break;
+
+        case '/tcc/funcionario/excluir':
+            FuncionarioController::excluir();
+            break;
+
+            // Rotas Peça
+        case '/tcc/peca':
+            PecaController::index();
+            break;
+
+        case '/tcc/peca/cadastrar':
+            PecaController::cadastrar();
+            break;
+
+        case '/tcc/peca/ver':
+            PecaController::ver();
+            break;
+
+        case '/tcc/peca/salvar':
+            PecaController::salvar();
+            break;
+
+        case '/tcc/peca/excluir':
+            PecaController::excluir();
+            break;
+
+            // Rotas Cargo
+        case '/tcc/cargo':
+            CargoController::index();
+            break;
+
+        case '/tcc/cargo/cadastrar':
+            CargoController::cadastrar();
+            break;
+
+        case '/tcc/cargo/ver':
+            CargoController::ver();
+            break;
+
+        case '/tcc/cargo/salvar':
+            CargoController::salvar();
+            break;
+
+        case '/tcc/cargo/excluir':
+            CargoController::excluir();
+            break;
+
+            // Rotas Carga
+        case '/tcc/carga':
+            CargaController::index();
+            break;
+
+        case '/tcc/carga/cadastrar':
+            CargaController::cadastrar();
+            break;
+
+        case '/tcc/carga/ver':
+            CargaController::ver();
+            break;
+
+        case '/tcc/carga/salvar':
+            CargaController::salvar();
+            break;
+
+        case '/tcc/carga/excluir':
+            CargaController::excluir();
+            break;
 
 
-    // Rotas Manutencao
-    case '/tcc/manutencao':
-        ManutencaoController::index();
-    break;
+            // Rotas Viagem
+        case '/tcc/viagem':
+            ViagemController::index();
+            break;
 
-    case '/tcc/manutencao/cadastrar':
-        ManutencaoController::cadastrar();
-    break;
+        case '/tcc/viagem/cadastrar':
+            ViagemController::cadastrar();
+            break;
 
-    case '/tcc/manutencao/ver':
-        ManutencaoController::ver();
-    break;
+        case '/tcc/viagem/ver':
+            ViagemController::ver();
+            break;
 
-    case '/tcc/manutencao/salvar':
-        ManutencaoController::salvar();
-    break;
+        case '/tcc/viagem/salvar':
+            ViagemController::salvar();
+            break;
 
-    case '/tcc/manutencao/excluir':
-        ManutencaoController::excluir();
-    break;
+        case '/tcc/viagem/excluir':
+            ViagemController::excluir();
+            break;
 
+
+            // Rotas Manutencao
+        case '/tcc/manutencao':
+            ManutencaoController::index();
+            break;
+
+        case '/tcc/manutencao/cadastrar':
+            ManutencaoController::cadastrar();
+            break;
+
+        case '/tcc/manutencao/ver':
+            ManutencaoController::ver();
+            break;
+
+        case '/tcc/manutencao/salvar':
+            ManutencaoController::salvar();
+            break;
+
+        case '/tcc/manutencao/excluir':
+            ManutencaoController::excluir();
+            break;
     }
-}
-catch(Exception $e){
+} catch (Exception $e) {
     echo 'Deu erro ' . $e->getMessage();
 }

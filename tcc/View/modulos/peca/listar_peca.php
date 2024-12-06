@@ -3,57 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Peças</title>
+    <title>Listar Contas a Pagar</title>
     <style>
-
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .footer {
-        background-color: #f8f9fa;
-        text-align: center;
-        padding: 0px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin-bottom: 0px;
-        border-top: 1px solid #ddd;
-    }
-
-    .container {
-        display: flex;
-        flex: 1;
-        margin-top: 60px;
-        margin-bottom: 10px;
-    }
-
-    .menu {
-        width: 15%;
-        background-color: #f8f9fa;
-        padding: 0px;
-        box-sizing: border-box;
-        border-right: 0px solid #ddd;
-        margin-left: 15px;
-
-    }
-
-    main {
-        flex: 1;
-        padding: 20px;
-        box-sizing: border-box;
-        background-color: #f8f9fa;
-        margin: 0px;
-    }
-
+    /* Estilo para a tabela */
     table {
-        width: 100%;
+        width: 50%;
         border-collapse: collapse;
         font-family: Arial, sans-serif;
     }
@@ -88,9 +42,64 @@
         text-decoration: underline;
     }
 
-    .icon img {
-        width: 16px;
-        height: 16px;
+    /* Estilos específicos para status com bordas arredondadas */
+    .status-aberto, .status-pago, .status-cancelado {
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 15px;
+        text-align: center;
+        width: 100px;
+        display: inline-block;
+    }
+
+    .status-aberto {
+        background-color: #ffeb3b; /* Amarelo */
+    }
+
+    .status-pago {
+        background-color: #4caf50; /* Verde */
+    }
+
+    .status-cancelado {
+        background-color: #f44336; /* Vermelho */
+    }
+    .icon{
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+
+    button {
+        margin-top: 15px;
+        background-color: #28a745; 
+        color: #ffffff; 
+        border: none; 
+        padding: 15px; 
+        border-radius: 4px; 
+        cursor: pointer; 
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #495057; 
+    }
+
+    select, input[type="text"], input[type="date"]{
+            width: 150px; 
+            padding: 10px; 
+            border: 1px solid #6c757d;
+            border-radius: 4px;
+            margin-bottom: 15px; 
+            font-size: 16px; 
+            transition: border-color 0.3s;
+        }
+
+    .checkbox-group{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
     }
 
 </style>
@@ -99,53 +108,47 @@
 <body>
     <div class="header">
         <?php include PATH_VIEW . 'includes/cabecalho.php' ?>
+    </div> 
+    <div class="titulo-pagina">
+        <h2>Listar Contas a Pagar</h2>
     </div>
-
-    <div class="container">
-        <div class="menu">
-            <?php include PATH_VIEW . 'includes/menu.php' ?>
-        </div>
-
-        <main>
-            <div class="titulo-pagina">
-                <h2>Peças</h2>
-            </div>
-
-            <?php if(isset($_GET['excluido'])): ?>
-                <p>Peça Excluída</p>
-            <?php endif ?>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Código</th>
-                        <th>Descrição</th>
-                        <th>Ativo</th>
-                        <th>Observação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for($i=0; $i<$total_peca; $i++): ?>
-                    <tr>
-                        <td class="icon">
-                            <a href="/tcc/peca/ver?id=<?= $lista_peca[$i]->id ?>">
-                                <img title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
-                            </a>
-                        </td>
-                        <td><?= $lista_peca[$i]->id ?></td>
-                        <td><?= $lista_peca[$i]->descricao ?></td>
-                        <td><?= $lista_peca[$i]->ativo ?></td>
-                        <td><?= $lista_peca[$i]->observacao ?></td>
-                    </tr>
-                    <?php endfor; ?>
-                </tbody>
-            </table>
-        </main>
-
-    <div class="footer">
-        <?php include PATH_VIEW . 'includes/rodape.php' ?>
+    <div class="menu">
+        <?php include PATH_VIEW . 'includes/menu.php' ?>
     </div>
-    
+    <main>
+
+    <?php if(isset($_GET['excluido'])): ?>
+        <p>Cidade Excluída</p>
+    <?php endif ?>
+
+    <!-- Resultados -->
+    <table>
+        <thead>
+            <tr>
+                <th>Ações</th>
+                <th>Código</th>
+                <th>Descrição</th>
+                <th>Ativo</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php for($i=0; $i<$total_peca; $i++): ?>
+            <tr>
+                <td class="icon">
+                    <a href="/tcc/peca/ver?id=<?= $lista_peca[$i]->id ?>">
+                        <img class="icon" title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
+                    </a>
+                </td>
+                <td><?= $lista_peca[$i]->id ?></td>
+                <td><?= $lista_peca[$i]->descricao ?></td>
+                <td><?= $lista_peca[$i]->ativo ?></td>
+                <td><?= $lista_peca[$i]->observacao ?></td>
+            </tr>
+            <?php endfor; ?>
+        </tbody>
+    </table>
+    </main>
+    <?php include PATH_VIEW . 'includes/rodape.php' ?>
 </body>
 </html>

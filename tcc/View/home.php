@@ -1,30 +1,25 @@
-<?php
+<html>
+    <head>
+        <title>Sistema</title>
+        
 
-// if(!isset($_SESSION['usuario_login'])){
-//     header("Location: login.php");
-// }
-// if(isset($_GET['sair'])){
-//     unset($_SESSION['usuario_login']);
-//     header("Location: login.php");
-// }
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TMS - Sistema de Gestão Para Transporte</title>
-</head>
-<body>
-    <div class="content">
-        <?php include 'includes/cabecalho.php' ?>
-        <?php include 'includes/menu.php' ?>
-        <main>
-            Tela inicial
-        </main>
-        <?php include 'includes/rodape.php' ?>
+    </head>
+    <body>
+    <div class="header">
+        <?php include PATH_VIEW . 'includes/cabecalho.php'; ?>
     </div>
-</body>
+    
+    <div class="spacer"></div>
+
+    <div class="menu">
+        <?php include PATH_VIEW . 'includes/menu.php' ?>
+    </div>
+
+        <main class="container">
+            <h2>Dashboard</h2>
+        </main>
+
+        <?php include 'includes/rodape.php' ?>
+
+    </body>
 </html>

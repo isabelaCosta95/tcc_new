@@ -39,7 +39,8 @@ class CargaController
             'valor_total' => $_POST['valor_total'],
             'status' => $_POST['status'],
             'id_seguradora' => $_POST['id_seguradora'],
-            'nmr_seguro' => $_POST['nmr_seguro']
+            'nmr_seguro' => $_POST['nmr_seguro'],
+            'descricao' => $_POST['descricao'],
         );
 
         if (isset($_POST['id'])) {
@@ -48,6 +49,24 @@ class CargaController
         } else {
             $carga_DAO->insert($dados_para_salvar);
         }
+
+        //Gerar contas a Receber
+        $receber_DAO = new contasreceberDAO();
+
+        $dados_para_salvar_rc = array(
+            'descricao' => 'Carga: '. $_POST['descricao'],
+            'dt_vencimento' => date('Y-m-d', strtotime('+1 month')),
+            'valor' => $_POST['valor_total'],
+            'stts' => 'A',
+            'dt_pagamento' => NULL,
+            'form_pagamento' => NULL,
+            'plano_contas' => NULL,
+            'observacao' => NULL,
+            'qnt_parcelas' => 1,
+            'cliente' => $_POST['id_cliente']
+        );
+
+        $receber_DAO->insert($dados_para_salvar_rc);
         header('Location: /tcc/carga');
     }
 
@@ -58,14 +77,15 @@ class CargaController
         header("Location: /tcc/carga");
     }
 
-    public static function ver()
-    {
-        if (isset($_GET['id'])) {
-
-            $produto_DAO = new ProdutoDAO();
-            $lista_prod = $produto_DAO->getAllRows();
+    public static function ver(){
+        if(isset($_GET['id'])){
+            $carga_DAO = new CargaDAO();
+            $dados_car = $carga_DAO->getById($_GET['id']);
+            
+            $produto = new ProdutoDAO();
+            $lista_prod = $produto->getAllRows();
             $total_prod = count($lista_prod);
-
+    
             $cliente_DAO = new ClienteDAO();
             $lista_cli = $cliente_DAO->getAllRows();
             $total_cli = count($lista_cli);
@@ -73,10 +93,7 @@ class CargaController
             $seguradora_DAO = new SeguradoraDAO();
             $lista_seg = $seguradora_DAO->getAllRows();
             $total_seg = count($lista_seg);
-
-            $carga_DAO = new CargaDAO();
-            $dados_car = $carga_DAO->getById($_GET['id']);
-
+            
             include 'View/modulos/carga/cadastrar_carga.php';
         } else {
             header("Location: /tcc/carga");

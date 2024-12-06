@@ -12,8 +12,8 @@ class CargaDAO
 
     public function insert($dados_carga)
     {
-        $sql = "INSERT INTO carga(id_cliente, id_produto, quantidade, valor_total, status, id_seguradora, nmr_seguro)
-        VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO carga(id_cliente, id_produto, quantidade, valor_total, status, id_seguradora, nmr_seguro, descricao)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         +$stmt->bindValue(1, $dados_carga['id_cliente']);
@@ -23,12 +23,14 @@ class CargaDAO
         $stmt->bindValue(5, $dados_carga['status']);
         $stmt->bindValue(6, $dados_carga['id_seguradora']);
         $stmt->bindValue(7, $dados_carga['nmr_seguro']);
+        $stmt->bindValue(8, $dados_carga['descricao']);
+
         $stmt->execute();
     }
 
     public function update($dados_carga)
     {
-        $sql = "UPDATE carga SET id_cliente = ?, id_produto = ?, quantidade = ?, valor_total = ?, status = ?, id_seguradora = ?, nmr_seguro = ? WHERE id = ?";
+        $sql = "UPDATE carga SET id_cliente = ?, id_produto = ?, quantidade = ?, valor_total = ?, status = ?, id_seguradora = ?, nmr_seguro = ?, descricao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $dados_carga['id_cliente']);
@@ -38,7 +40,8 @@ class CargaDAO
         $stmt->bindValue(5, $dados_carga['status']);
         $stmt->bindValue(6, $dados_carga['id_seguradora']);
         $stmt->bindValue(7, $dados_carga['nmr_seguro']);
-        $stmt->bindValue(8, $dados_carga['id']);
+        $stmt->bindValue(8, $dados_carga['descricao']);
+        $stmt->bindValue(9, $dados_carga['id']);
         $stmt->execute();
     }
 

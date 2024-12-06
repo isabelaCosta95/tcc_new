@@ -6,7 +6,6 @@ class ProdutoController{
 
         $produto_DAO = new ProdutoDAO();
         $lista_prod = $produto_DAO->getAllRows();
-    
         $total_prod = count($lista_prod);
             
         include 'View/modulos/produto/listar_produto.php';

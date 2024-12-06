@@ -157,20 +157,27 @@
                             </label>
 
                             <div style="display: flex; align-items: center; gap: 10px;">
-                                <label for="id_carga ">Carga
+                                <label for="id_carga">Carga
                                     <select id="id_carga" name="id_carga" class="form-control" required>
                                         <option>Selecione</option>
-                                        <?php for ($i = 0; $i < $total_car; $i++):
+                                        <?php
+                                        for ($i = 0; $i < $total_car; $i++):
                                             $selecionado = "";
-                                            if (isset($dados_viagem->id))
+
+                                            // Verifica se o ID está na URL
+                                            if (isset($_GET['id_carga'])) {
+                                                $selecionado = ($lista_car[$i]->id == $_GET['id_carga']) ? "selected" : "";
+                                            } elseif (isset($dados_viagem->id)) {
                                                 $selecionado = ($lista_car[$i]->id == $dados_car->id_carga) ? "selected" : "";
+                                            }
                                         ?>
                                             <option value="<?= $lista_car[$i]->id ?>" <?= $selecionado ?>>
                                                 <?= $lista_car[$i]->descricao ?>
                                             </option>
-                                        <?php endfor ?>
+                                        <?php endfor; ?>
                                     </select>
                                 </label>
+
                                 <a href='/tcc/carga/cadastrar' target="_blank">
                                     <img src="/tcc/View/includes/imagem/adicionar.png" alt="Adicionar" style="width: 35px; height: auto; cursor: pointer;" />
                                 </a>
