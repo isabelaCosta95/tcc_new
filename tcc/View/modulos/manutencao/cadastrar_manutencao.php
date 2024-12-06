@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">  
-    <title>Cadastro de Manutenção</title>  
+    <title>Manutenção de Veículos</title>  
     <style>
         .peca-row {
             display: flex;
@@ -33,58 +33,50 @@
             const container = document.getElementById('peca-container');
             
             botaoAdicionar.addEventListener('click', () => {
-                // Cria uma nova div para os campos
                 const divPeca = document.createElement('div');
-                divPeca.classList.add('peca-row'); // Adicione uma classe para estilização, se necessário
+                divPeca.classList.add('peca-row');
                 
-                // Campo para a peça
                 const inputPeca = document.createElement('input');
                 inputPeca.type = 'text';
                 inputPeca.name = 'peca[]';
                 inputPeca.placeholder = 'Peça';
                 inputPeca.classList.add('form-control');
 
-                // Campo para a quantidade
                 const inputQuantidade = document.createElement('input');
                 inputQuantidade.type = 'text';
                 inputQuantidade.name = 'quantidade[]';
                 inputQuantidade.placeholder = 'Quantidade';
                 inputQuantidade.classList.add('form-control');
 
-                // Campo para o valor unitário
                 const inputValor = document.createElement('input');
                 inputValor.type = 'text';
                 inputValor.name = 'valor_unitario[]';
                 inputValor.placeholder = 'Valor Unitário';
                 inputValor.classList.add('form-control');
 
-                // Campo para o valor unitário
+
                 const inputValorT = document.createElement('input');
                 inputValorT.type = 'text';
                 inputValorT.name = 'valor_total[]';
                 inputValorT.placeholder = 'Valor Total';
                 inputValorT.classList.add('form-control');
 
-                // Botão de remover
                 const botaoRemover = document.createElement('button');
                 botaoRemover.type = 'button';
                 botaoRemover.textContent = 'Remover';
                 botaoRemover.classList.add('btn-remover');
                 botaoRemover.addEventListener('click', () => {
-                    divPeca.remove(); // Remove o bloco de campos
+                    divPeca.remove();
                 });
 
-                // Adiciona os campos e o botão à div
                 divPeca.appendChild(inputPeca);
                 divPeca.appendChild(inputQuantidade);
                 divPeca.appendChild(inputValor);
                 divPeca.appendChild(inputValorT);
                 divPeca.appendChild(botaoRemover);
 
-                // Adiciona a div ao contêiner
                 container.appendChild(divPeca);
 
-                // Aplica a classe last-row na última linha
                     const todasAsLinhas = container.querySelectorAll('.peca-row');
                     if (todasAsLinhas.length > 0) {
                         const ultimaLinha = todasAsLinhas[todasAsLinhas.length - 1];
@@ -110,7 +102,6 @@
         }
     }
 
-    // Atualiza os campos na inicialização, caso haja valor selecionado no servidor
     document.addEventListener('DOMContentLoaded', () => {
         atualizarCamposResponsavel();
     });
@@ -176,7 +167,7 @@
                                             $selecionado = ($lista_veic[$i]->id == $dados_manutencao->veiculo) ? "selected" : "";
                                     ?>
                                         <option value="<?= $lista_veic[$i]->id ?>" <?= $selecionado ?>>
-                                            <?= $lista_veic[$i]->descricao ?>
+                                            <?= $lista_veic[$i]->marca ?>
                                         </option>
                                     <?php endfor ?>
                                 </select>

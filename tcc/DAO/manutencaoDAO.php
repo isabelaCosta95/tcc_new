@@ -37,8 +37,7 @@ class ManutencaoDAO{
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->conexao->prepare($sql);
-    
-        // Corrigindo os índices
+
         $stmt->bindValue(1, $dados_manutencao['id_categoria']);
         $stmt->bindValue(2, $dados_manutencao['descricao']);
         $stmt->bindValue(3, $dados_manutencao['preco']);
@@ -74,7 +73,6 @@ class ManutencaoDAO{
         
         $stmt = $this->conexao->prepare($sql);
     
-        // Corrigindo os índices
         $stmt->bindValue(1, $dados_manutencao['id_categoria']);
         $stmt->bindValue(2, $dados_manutencao['descricao']);
         $stmt->bindValue(3, $dados_manutencao['preco']);

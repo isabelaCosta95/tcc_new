@@ -7,19 +7,10 @@ class FormaPagamentoController{
         $lista_fpag = $forma_pagamento_DAO->getAllRows();
         $total_fpag = count($lista_fpag);
     
-        // Verifica se é a primeira vez que a página é carregada na sessão
-        if (!isset($_SESSION['janela_aberta'])) {
-            $_SESSION['janela_aberta'] = true;
-            $abrir_nova_janela = true; // Define para abrir a janela
-        } else {
-            $abrir_nova_janela = false; // Não abrir a janela novamente
-        }
-    
         include 'View/modulos/forma_pagamento/listar_formapagamento.php';
     }
     
     
-
     public static function cadastrar(){
         include 'View/modulos/forma_pagamento/cadastrar_formapagamento.php';
     }

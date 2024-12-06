@@ -91,10 +91,6 @@ class ViagemController
 
         
 
-        
-
-
-
 
         header('Location: /tcc/viagem');
         exit();

@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+
 }
 
 .footer {
@@ -16,13 +16,13 @@ body {
     left: 0;
     right: 0;
     margin-bottom: 0px;
-    border-top: 1px solid #ddd;
+    border-top: 0px solid #ddd;
 }
 
 .container {
     display: flex;
     flex: 1;
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 

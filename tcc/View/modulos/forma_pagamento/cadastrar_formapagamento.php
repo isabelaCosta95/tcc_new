@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Forma de Pagamentos</h1>
+            <h1>Forma de Pagamento</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/formaPagamento/salvar">
@@ -47,7 +47,6 @@
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_fpag) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

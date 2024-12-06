@@ -1,34 +1,32 @@
-/* Estilização do cabeçalho */
+
 header {
-    background-color: #28a745; /* Cor predominante do site */
-    color: #fff; /* Texto branco para contraste */
-    padding: 20px 40px; /* Espaçamento interno */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    background-color: #28a745;
+    color: #fff;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilização do nav */
 header nav {
     display: flex;
-    justify-content: space-between; /* Espaça o texto do usuário e o botão de sair */
-    align-items: center; /* Alinha verticalmente os itens */
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Texto de boas-vindas */
 header nav p {
-    margin: 0; /* Remove margens padrão */
-    font-size: 16px; /* Tamanho de texto */
-    font-weight: 500; /* Texto levemente destacado */
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-/* Link de sair */
+
 header nav a {
-    color: #fff; /* Texto branco */
-    background-color: #dd1717; /* Tom mais escuro do verde */
-    text-decoration: none; /* Remove o sublinhado */
-    padding: 8px 12px; /* Espaçamento interno do link */
-    border-radius: 5px; /* Cantos arredondados */
+    color: #fff;
+    background-color: #dd1717;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
     font-size: 14px;
-    transition: background-color 0.3s ease; /* Animação suave na interação */
+    transition: background-color 0.3s ease;
 }
 
 header nav a:hover {

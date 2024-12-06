@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Seguradora</h1>
+            <h1>Seguradora</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/seguradora/salvar">

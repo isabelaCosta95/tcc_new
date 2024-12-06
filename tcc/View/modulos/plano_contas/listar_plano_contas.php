@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/listar.css">
-    <title>Listar Plano de Cpntas</title>
+    <title>Listar Plano de Contas</title>
 </head>
 <body>
     <div class="header">
@@ -38,7 +38,7 @@
                     <?php for ($i = 0; $i < $total_plac; $i++): ?>
                         <tr>
                             <td class="icon">
-                                <a href="/tcc/plano_contas/ver?id=<?= $lista_plac[$i]->id ?>">
+                                <a href="/tcc/planoContas/ver?id=<?= $lista_plac[$i]->id ?>">
                                     <img title="Editar" src="/tcc/View/includes/imagem/lapis.png" alt="Ícone de Lápis">
                                 </a>
                             </td>

@@ -18,7 +18,7 @@
 
         <main>
             <div class="titulo-pagina">
-                <h2>Listar Categoria</h2>
+                <h2>Categorias</h2>
             </div>
 
             <?php if(isset($_GET['excluido'])): ?>

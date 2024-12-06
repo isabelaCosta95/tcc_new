@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
-    <title>Cadastro Contas a Receber</title>
+    <title>Lançamento Contas a Receber</title>
 </head>
 <body>
     <div class="header">
@@ -20,7 +20,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Contas a Receber</h1>
+            <h1>Lançamento Contas a Receber</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/contasReceber/salvar">
@@ -99,13 +99,12 @@
                     </label>
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
+                
                 <?php if (isset($dados_receber)): ?>
                     <input type="hidden" name="id" value="<?= $dados_receber->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_receber) ? 'Alterar' : 'Cadastrar' ?>
                     </button>
