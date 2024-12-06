@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">  
-    <title>Cadastro de Manutenção</title>  
+    <title>Manutenção de Veículos</title>  
     <style>
         .peca-row {
             display: flex;
@@ -27,20 +27,19 @@
             margin-top: -18px; 
         }
     </style>
-
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const botaoAdicionar = document.getElementById('adicionar-peca');
             const container = document.getElementById('peca-container');
-
+            
             botaoAdicionar.addEventListener('click', () => {
                 const divPeca = document.createElement('div');
                 divPeca.classList.add('peca-row');
-
+                
                 const inputPeca = document.createElement('input');
                 inputPeca.type = 'text';
                 inputPeca.name = 'peca[]';
-                inputPeca.placeholder = 'Peca';
+                inputPeca.placeholder = 'Peça';
                 inputPeca.classList.add('form-control');
 
                 const inputQuantidade = document.createElement('input');
@@ -52,8 +51,15 @@
                 const inputValor = document.createElement('input');
                 inputValor.type = 'text';
                 inputValor.name = 'valor_unitario[]';
-                inputValor.placeholder = 'Valor';
+                inputValor.placeholder = 'Valor Unitário';
                 inputValor.classList.add('form-control');
+
+
+                const inputValorT = document.createElement('input');
+                inputValorT.type = 'text';
+                inputValorT.name = 'valor_total[]';
+                inputValorT.placeholder = 'Valor Total';
+                inputValorT.classList.add('form-control');
 
                 const botaoRemover = document.createElement('button');
                 botaoRemover.type = 'button';
@@ -66,11 +72,39 @@
                 divPeca.appendChild(inputPeca);
                 divPeca.appendChild(inputQuantidade);
                 divPeca.appendChild(inputValor);
+                divPeca.appendChild(inputValorT);
                 divPeca.appendChild(botaoRemover);
 
                 container.appendChild(divPeca);
+
+                    const todasAsLinhas = container.querySelectorAll('.peca-row');
+                    if (todasAsLinhas.length > 0) {
+                        const ultimaLinha = todasAsLinhas[todasAsLinhas.length - 1];
+                        ultimaLinha.classList.add('last-row');
+                    }
             });
         });
+
+        function atualizarCamposResponsavel() {
+        const responsavel = document.getElementById('responsavel').value;
+        const campoFuncionario = document.getElementById('campo-funcionario');
+        const campoMecanico = document.getElementById('campo-mecanico');
+
+        if (responsavel === 'F') {
+            campoFuncionario.style.display = 'block';
+            campoMecanico.style.display = 'none';
+        } else if (responsavel === 'M') {
+            campoFuncionario.style.display = 'none';
+            campoMecanico.style.display = 'block';
+        } else {
+            campoFuncionario.style.display = 'none';
+            campoMecanico.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        atualizarCamposResponsavel();
+    });
     </script>
 </head>
 
@@ -100,17 +134,17 @@
                             </label>
 
                             <label>Tipo de Manutencao
-                                <select name="tipo" class="form-control">
+                                <select name="ativo" class="form-control">
                                     <option>Selecione</option>
-                                    <option value="PR" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'PR' ? 'selected' : '' ?>>Preventiva</option>
-                                    <option value="CO" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'CO' ? 'selected' : '' ?>>Corretiva</option>
-                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'N' ? 'selected' : '' ?>>Preditiva</option>
-                                    <option value="S" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'S' ? 'selected' : '' ?>>Emergência</option>
-                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'N' ? 'selected' : '' ?>>Estética</option>
-                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'N' ? 'selected' : '' ?>>Periódica</option>
-                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'N' ? 'selected' : '' ?>>Modificações</option>
-                                    <option value="S" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'S' ? 'selected' : '' ?>>Elétrica</option>
-                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->tipo == 'N' ? 'selected' : '' ?>>Outra</option>
+                                    <option value="PR" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'PR' ? 'selected' : '' ?>>Preventiva</option>
+                                    <option value="CO" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'CO' ? 'selected' : '' ?>>Corretiva</option>
+                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'N' ? 'selected' : '' ?>>Preditiva</option>
+                                    <option value="S" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'S' ? 'selected' : '' ?>>Emergência</option>
+                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'N' ? 'selected' : '' ?>>Estética</option>
+                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'N' ? 'selected' : '' ?>>Periódica</option>
+                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'N' ? 'selected' : '' ?>>Modificações</option>
+                                    <option value="S" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'S' ? 'selected' : '' ?>>Elétrica</option>
+                                    <option value="N" <?= isset($dados_manutencao) && $dados_manutencao->ativo == 'N' ? 'selected' : '' ?>>Outra</option>
                                 </select>
                             </label>
 
@@ -124,13 +158,13 @@
 
                         </div>
                         <div class="form-column">
-                            <label for="id_veiculo">Veiculo
-                                <select id="id_veiculo" name="id_veiculo" class="form-control">
+                            <label for="veiculo ">Veiculo
+                                <select id="veiculo" name="veiculo" class="form-control">
                                     <option>Selecione</option>
                                     <?php for ($i = 0; $i < $total_veic; $i++): 
                                         $selecionado = "";
                                         if (isset($dados_manutencao->id)) 
-                                            $selecionado = ($lista_veic[$i]->id == $dados_manutencao->id_veiculo) ? "selected" : "";
+                                            $selecionado = ($lista_veic[$i]->id == $dados_manutencao->veiculo) ? "selected" : "";
                                     ?>
                                         <option value="<?= $lista_veic[$i]->id ?>" <?= $selecionado ?>>
                                             <?= $lista_veic[$i]->marca ?>
@@ -146,31 +180,63 @@
                                     oninput="formatarValor(this)" />
                             </label>
 
-                            <label for="valor_total"> Valor total
-                                <input id="valor_total" name="valor_total" 
-                                    value="<?= isset($dados_manutencao) && isset($dados_manutencao->valor_total) ? number_format($dados_manutencao->valor_total, 2, ',', '') : "0,00" ?>" 
+                            <label for="valor"> Valor total
+                                <input id="valor" name="valor" 
+                                    value="<?= isset($dados_manutencao) && isset($dados_manutencao->valor) ? number_format($dados_manutencao->valor, 2, ',', '') : "0,00" ?>" 
                                     type="text" required 
                                     oninput="formatarValor(this)" readonly/>
                             </label>
 
-                                        <label for="id_funcionario">Funcionário
-                                            <select id="id_funcionario" name="id_funcionario" class="form-control">
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <label>Responsável
+                                        <select id="responsavel" name="responsavel" class="form-control" onchange="atualizarCamposResponsavel()">
+                                            <option value="F" <?= isset($dados_manutencao) && $dados_manutencao->responsavel == 'F' ? 'selected' : '' ?>>Funcionário</option>
+                                            <option value="M" <?= isset($dados_manutencao) && $dados_manutencao->responsavel == 'M' ? 'selected' : '' ?>>Mecânico</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="form-column">
+                                    <div id="campo-funcionario" style="display: none;" class="campo-responsavel">
+                                        <label for="funcionario">Funcionário
+                                            <select id="funcionario" name="funcionario" class="form-control">
                                                 <option>Selecione</option>
                                                 <?php for ($i = 0; $i < $total_func; $i++): 
                                                     $selecionado = "";
                                                     if (isset($dados_manutencao->id)) 
-                                                        $selecionado = ($lista_func[$i]->id == $dados_manutencao->id_funcionario) ? "selected" : "";
+                                                        $selecionado = ($lista_func[$i]->id == $dados_manutencao->funcionario) ? "selected" : "";
                                                 ?>
                                                     <option value="<?= $lista_func[$i]->id ?>" <?= $selecionado ?>>
-                                                        <?= $lista_func[$i]->nome_completo ?>
+                                                        <?= $lista_func[$i]->descricao ?>
                                                     </option>
                                                 <?php endfor ?>
                                             </select>
                                         </label>
+                                    </div>
+
+                                    <div id="campo-mecanico" style="display: none;" class="campo-responsavel">
+                                        <label for="mecanico">Mecânico
+                                            <input id="mecanico" name="mecanico" type="text" class="form-control" 
+                                                value="<?= isset($dados_manutencao) ? $dados_manutencao->mecanico : "" ?>" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
+
+                <div class="form-buttons">
+                    <button type="submit">Cadastrar</button>
+                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/manutencao'">Consultar</button>
+                    <?php if (isset($dados_manutencao)): ?>
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/manutencao/excluir?id=<?= $dados_manutencao->id ?>'">
+                            Excluir
+                        </button>
+                    <?php endif ?>
+                </div>
+
                 </br>
                 <section class="peca">
                     <h2>Peças</h2>
@@ -179,30 +245,6 @@
                     </div>
                     <button type="button" id="adicionar-peca">Adicionar Peça</button>
                 </section>
-
-                <br>
-
-                <?php if (isset($dados_manutencao)): ?>
-                    <input type="hidden" name="id" value="<?= $dados_manutencao->id ?>">
-                <?php endif; ?>
-
-                <div class="form-buttons">
-                <?php if (!isset($dados_manutencao)): ?>
-
-                    <button type="submit">
-                        <?= isset($dados_manutencao) ? 'Alterar' : 'Cadastrar' ?>
-                    </button>
-                    <?php endif; ?>
-
-
-                    <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/manutencao'">Consultar</button>
-
-                    <?php if (isset($dados_manutencao)): ?>
-                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/manutencao/excluir?id=<?= $dados_manutencao->id ?>'">
-                            Excluir
-                        </button>
-                    <?php endif; ?>
-                </div>
             </form>
         </div>
     </div>

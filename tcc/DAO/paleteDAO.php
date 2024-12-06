@@ -63,12 +63,4 @@ class PaleteDAO{
 
     }
 
-    public function somarPaletes(){
-        $stmt = $this->conexao->prepare("SELECT SUM(CASE WHEN tipo = 'E' THEN quantidade WHEN tipo = 'S' THEN -quantidade END) AS total_paletes FROM palete");
-        $stmt->execute();
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $resultado['total_paletes'];
-    }
-    
-
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="/tcc/View/includes/css/style.css">
-    <title>Cadastro Cidade</title>
+    <title>Cidade</title>
 </head>
 <body>
     <div class="header">
@@ -53,13 +53,11 @@
                     </div>    
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_cidade)): ?>
                     <input type="hidden" name="id" value="<?= $dados_cidade->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_cidade) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

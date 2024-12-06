@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tcc/View/includes/css/listar.css">
-    <title>Listar Cidades</title>
+    <title>Cidades</title>
 </head>
 <body>
     <div class="header">
@@ -18,7 +18,7 @@
 
         <main>
             <div class="titulo-pagina">
-                <h2>Listar Cidade</h2>
+                <h2>Cidades</h2>
             </div>
 
             <?php if(isset($_GET['excluido'])): ?>

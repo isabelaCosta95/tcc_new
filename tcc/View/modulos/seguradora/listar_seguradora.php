@@ -20,7 +20,7 @@
 
         <main>
             <div class="titulo-pagina">
-                <h2>Seguradora</h2>
+                <h2>Seguradoras</h2>
             </div>
 
             <?php if (isset($_GET['excluido'])): ?>

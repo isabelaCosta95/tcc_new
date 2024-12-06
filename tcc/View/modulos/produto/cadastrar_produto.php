@@ -19,7 +19,7 @@
 
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Produto</h1>
+            <h1>Produto</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/produto/salvar">
@@ -164,14 +164,11 @@
                 </label>
                 </div>
                 
-
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_prod)): ?>
                     <input type="hidden" name="id" value="<?= $dados_prod->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_prod) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

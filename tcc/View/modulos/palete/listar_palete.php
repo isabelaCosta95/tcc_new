@@ -40,14 +40,11 @@
                             <td><?= $lista_pal[$i]->tipo ?></td>
                             <td><?= $lista_pal[$i]->quantidade ?></td>
                             <td><?= $lista_pal[$i]->justificativa ?></td>
+
                         </tr>
                     <?php endfor; ?>
                 </tbody>
             </table>
-
-            <div class="total-paletes">
-                <p><strong>Total de Paletes: </strong><?= $soma_paletes ?></p>
-            </div>  
         </main>
     </div>
 

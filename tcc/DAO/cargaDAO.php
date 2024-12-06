@@ -77,25 +77,4 @@ class CargaDAO
 
         return $stmt->fetchObject();
     }
-
-    public static function buscarConta($descricao)
-{
-    // Criar uma instância da classe CargaDAO para acessar a conexão
-    $dao = new CargaDAO();
-
-    // A consulta agora utiliza LIKE para buscar na descrição
-    $sql = "SELECT id FROM contas_receber WHERE descricao LIKE ?";
-
-    $stmt = $dao->conexao->prepare($sql);
-    $stmt->bindValue(1, '%' . $descricao . '%');  // O % é usado para fazer a correspondência parcial com LIKE
-    $stmt->execute();
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Retorna o ID da conta a receber ou null se não existir
-    return $result ? $result['id'] : null;
-}
-
-
-
 }

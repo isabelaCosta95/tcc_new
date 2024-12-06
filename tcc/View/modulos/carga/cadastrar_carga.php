@@ -125,12 +125,12 @@
                     <button type="button" class="btn-consultar" onclick="window.location.href='/tcc/carga'">Consultar</button>
 
                     <?php if (isset($dados_car)): ?>
-                        <button type="button" class="btn-associar" onclick="window.location.href='/tcc/viagem/cadastrar?id_carga=<?= $dados_car->id ?>'">Associar Viagem</button>
-                        <button type="button" class="btn-receber" 
-                                onclick="window.location.href='/tcc/contasReceber/ver?id=<?php echo isset($idConta) ? htmlspecialchars($idConta) : ''; ?>'">
-                            Contas a Receber
+                        <button type="button" class="btn-excluir" onclick="window.location.href='/tcc/carga/excluir?id=<?= $dados_car->id ?>'">
+                            Excluir
                         </button>
-                        <?php endif; ?>
+                        <button type="button" class="btn-associar" onclick="window.location.href='/tcc/viagem/cadastrar?id_carga=<?= $dados_car->id ?>'">Associar Viagem</button>
+                        <button type="button" class="btn-receber" onclick="window.location.href='/tcc/carga'">Contas a Receber</button>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>

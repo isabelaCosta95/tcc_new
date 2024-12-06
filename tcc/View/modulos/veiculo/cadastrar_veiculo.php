@@ -19,7 +19,7 @@
     </div>
     <div class="conteudo">
         <div class="titulo-pagina">
-            <h1>Cadastrar Veículo</h1>
+            <h1>Veículo</h1>
         </div>
         <div class="formulario">
             <form method="post" action="/tcc/veiculo/salvar">
@@ -84,13 +84,11 @@
                     </div>  
                 </div>
     
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
                 <?php if (isset($dados_veiculo)): ?>
                     <input type="hidden" name="id" value="<?= $dados_veiculo->id ?>">
                 <?php endif; ?>
 
                 <div class="form-buttons">
-                    <!-- Botão dinâmico -->
                     <button type="submit">
                         <?= isset($dados_veiculo) ? 'Alterar' : 'Cadastrar' ?>
                     </button>

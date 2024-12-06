@@ -18,71 +18,46 @@ class ManutencaoController{
         $lista_veic = $veiculo_DAO->getAllRows();
         $total_veic = count($lista_veic);
 
-        $funcionario_DAO = new FuncionarioDAO();
-        $lista_func = $funcionario_DAO->getAllRows();
-        $total_func = count($lista_func);
-
         include 'View/modulos/manutencao/cadastrar_manutencao.php';
     }
 
     public static function salvar(){
 
         $manutencao_DAO = new ManutencaoDAO();
-
         $dados_para_salvar = array(
+            'id_categoria' => $_POST['id_categoria'],
             'descricao' => $_POST['descricao'],
-    'tipo' => $_POST['tipo'],
-    'dt_manutencao' => $_POST['dt_manutencao'],
-    'quilometragem' => $_POST['quilometragem'],
-    'id_veiculo' => $_POST['id_veiculo'],
-    'valor' => str_replace(',', '.', str_replace('.', '', $_POST['valor'])), // Convertendo valor para formato numérico
-    'valor_total' => str_replace(',', '.', str_replace('.', '', $_POST['valor_total'])), // Convertendo valor_total para formato numérico
-    'id_funcionario' => $_POST['id_funcionario'],
+            'preco' => $_POST['preco'],
+            'marca' => $_POST['marca'],
+            'observacao' => $_POST['observacao'],
+            'estoque' => $_POST['estoque'],
+            'unidade' => $_POST['unidade'],
+            'validade' => $_POST['validade'],
+            'ativo' => $_POST['ativo'],
+            'ncm' => $_POST['ncm'],
+            'cfop' => $_POST['cfop'],
+            'pis' => $_POST['pis'],
+            'cofins' => $_POST['cofins'],
+            'icms_cst' => $_POST['icms_cst'],
+            'aliquota_pis' => $_POST['aliquota_pis'],
+            'aliquota_cofins' => $_POST['aliquota_cofins'],
+            'aliquota_icms' => $_POST['aliquota_icms'],
+            'ipi' => $_POST['ipi'],
+            'aliquota_recucao_bc' => $_POST['aliquota_recucao_bc'],
+            'origem_icms' => $_POST['origem_icms'],
+            'cest' => $_POST['cest'],
+            'gtin' => $_POST['gtin'],
+            'aliquota_mva' => $_POST['aliquota_mva'],
+            'codigo_barras' => $_POST['codigo_barras']
         );
         
-        if (isset($_POST['id']) && !empty($_POST['id'])) {
+        if(isset($_POST['id'])){
+            $dados_para_salvar['id'] = $_POST['id'];
             $manutencao_DAO->update($dados_para_salvar);
-            $manutencao_id = $dados_para_salvar['id'];
-        } else {
-            $manutencao_id = $manutencao_DAO->insert($dados_para_salvar);
-        }   
-
-        $pecas = $_POST['peca'] ?? [];
-        $quantidades = $_POST['quantidade'] ?? [];
-        $valores = $_POST['valor_unitario'] ?? [];
-
-        if (!empty($pecas)) {
-            $peca_DAO = new PecasusadasDAO();
-            for ($i = 0; $i < count($pecas); $i++) {
-                $dados_peca = [
-                    'peca' => $pecas[$i],
-                    'quantidade' => $quantidades[$i],
-                    'valor_unitario' => $valores[$i],
-                    'id_veiculo' => $manutencao_id,
-                ];
-                $peca_DAO->insert($dados_peca);
-
-                //Gerar contas a Pagar
-                $pagar_DAO = new contaspagarDAO();
-
-                $dados_para_salvar_pg = array(
-                    'descricao' => 'Viagem: '. $dados_para_salvar['id'] . ' - ' . $pecas[$i],
-                    'dt_vencimento' => date('Y-m-d', strtotime('+1 month')),
-                    'valor' => $valores[$i], 
-                    'stts' => 'A',
-                    'dt_pagamento' => NULL,
-                    'form_pagamento' => NULL,
-                    'plano_contas' => NULL, 
-                    'observacao' => NULL,
-                    'qnt_parcelas' => 1,
-                    'cliente' => $_POST['id_funcionario']
-                );
-
-                $pagar_id = $pagar_DAO->insert($dados_para_salvar_pg);
-
-                }
         }
-
+        else{
+            $manutencao_DAO->insert($dados_para_salvar);
+        }      
         header('Location: /tcc/manutencao'); 
     }
 

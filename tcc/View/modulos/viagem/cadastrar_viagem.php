@@ -92,7 +92,7 @@
                                         $selecionado = (isset($dados_viagem->id_veiculo) && $lista_veiculo[$i]->id == $dados_viagem->id_veiculo) ? "selected" : "";
                                         ?>
                                         <option value="<?= $lista_veiculo[$i]->id ?>" <?= $selecionado ?>>
-                                            <?= $lista_veiculo[$i]->nome_proprietario ?>
+                                            <?= $lista_veiculo[$i]->marca ?>
                                         </option>
                                     <?php endfor; ?>
 
@@ -141,14 +141,10 @@
             <option>Selecione</option>
             <?php for ($i = 0; $i < $total_car; $i++): ?>
                 <?php
-                // Inicializa a variável de seleção
                 $selecionado = "";
-
-                // Verifica se há um ID na URL
                 if (isset($_GET['id_carga'])) {
                     $selecionado = ($lista_car[$i]->id == $_GET['id_carga']) ? "selected" : "";
                 }
-                // Verifica se há um ID associado a $dados_viagem
                 elseif (isset($dados_viagem->id_carga)) {
                     $selecionado = ($lista_car[$i]->id == $dados_viagem->id_carga) ? "selected" : "";
                 }
