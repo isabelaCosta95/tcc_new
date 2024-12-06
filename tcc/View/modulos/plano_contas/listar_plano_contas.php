@@ -44,7 +44,9 @@
                             </td>
                             <td> <?= $lista_plac[$i]->id ?> </td>
                             <td> <?= $lista_plac[$i]->descricao ?></td>
-                            <td> <?= $lista_plac[$i]->ativo ?> </td>
+                            <td>
+                                <?= $lista_plac[$i]->ativo == 'S' ? 'Sim' : 'Não' ?>
+                            </td>
                         </tr>
                     <?php endfor ?>
                 </tbody>
