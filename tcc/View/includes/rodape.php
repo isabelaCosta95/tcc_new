@@ -1,4 +1,3 @@
-<foter>
-    <hr/>
+<footer>
     <p>TMS - Todos os direitos reservados</p>
-</foter>
+</footer>

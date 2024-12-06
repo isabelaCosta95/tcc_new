@@ -52,7 +52,7 @@
                     </div>   
                 </div>
 
-                <!-- Campo oculto para o ID (aparece apenas se houver um ID) -->
+                
                 <?php if (isset($dados_pal)): ?>
                     <input type="hidden" name="id" value="<?= $dados_pal->id ?>">
                 <?php endif; ?>
